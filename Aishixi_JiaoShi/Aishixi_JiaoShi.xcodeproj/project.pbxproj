@@ -8,9 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4D6AFE91212D46B86B2BD5E9 /* libPods-Aishixi_JiaoShi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */; };
+		5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024BC1F70C6F700924CCD /* WarningBox.m */; };
+		5D5024C11F70DFB600924CCD /* XL_FMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024C01F70DFB600924CCD /* XL_FMDB.m */; };
+		5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */; };
 		5DEA435C1F6FB2FC00486956 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA435B1F6FB2FC00486956 /* main.m */; };
 		5DEA435F1F6FB2FC00486956 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA435E1F6FB2FC00486956 /* AppDelegate.m */; };
-		5DEA43621F6FB2FC00486956 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA43611F6FB2FC00486956 /* ViewController.m */; };
+		5DEA43621F6FB2FC00486956 /* DengLu_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA43611F6FB2FC00486956 /* DengLu_ViewController.m */; };
 		5DEA43651F6FB2FC00486956 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEA43631F6FB2FC00486956 /* Main.storyboard */; };
 		5DEA43671F6FB2FC00486956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEA43661F6FB2FC00486956 /* Assets.xcassets */; };
 		5DEA436A1F6FB2FC00486956 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEA43681F6FB2FC00486956 /* LaunchScreen.storyboard */; };
@@ -37,12 +40,18 @@
 
 /* Begin PBXFileReference section */
 		1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aishixi_JiaoShi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D5024BB1F70C6F700924CCD /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
+		5D5024BC1F70C6F700924CCD /* WarningBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningBox.m; sourceTree = "<group>"; };
+		5D5024BF1F70DFB600924CCD /* XL_FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XL_FMDB.h; sourceTree = "<group>"; };
+		5D5024C01F70DFB600924CCD /* XL_FMDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XL_FMDB.m; sourceTree = "<group>"; };
+		5D9CDCB71F70B7AB001C15C5 /* Color+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Color+Hex.h"; sourceTree = "<group>"; };
+		5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Color+Hex.m"; sourceTree = "<group>"; };
 		5DEA43571F6FB2FC00486956 /* Aishixi_JiaoShi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aishixi_JiaoShi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEA435B1F6FB2FC00486956 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5DEA435D1F6FB2FC00486956 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5DEA435E1F6FB2FC00486956 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5DEA43601F6FB2FC00486956 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5DEA43611F6FB2FC00486956 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5DEA43601F6FB2FC00486956 /* DengLu_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DengLu_ViewController.h; sourceTree = "<group>"; };
+		5DEA43611F6FB2FC00486956 /* DengLu_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DengLu_ViewController.m; sourceTree = "<group>"; };
 		5DEA43641F6FB2FC00486956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5DEA43661F6FB2FC00486956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DEA43691F6FB2FC00486956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,6 +100,65 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5D5024BA1F70C6EB00924CCD /* XL_HUD */ = {
+			isa = PBXGroup;
+			children = (
+				5D5024BB1F70C6F700924CCD /* WarningBox.h */,
+				5D5024BC1F70C6F700924CCD /* WarningBox.m */,
+			);
+			name = XL_HUD;
+			sourceTree = "<group>";
+		};
+		5D5024BE1F70DF9A00924CCD /* XL_FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				5D5024BF1F70DFB600924CCD /* XL_FMDB.h */,
+				5D5024C01F70DFB600924CCD /* XL_FMDB.m */,
+			);
+			name = XL_FMDB;
+			sourceTree = "<group>";
+		};
+		5D5024C21F70DFFA00924CCD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5DEA43601F6FB2FC00486956 /* DengLu_ViewController.h */,
+				5DEA43611F6FB2FC00486956 /* DengLu_ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		5D9CDCB61F70B754001C15C5 /* 自己封装 */ = {
+			isa = PBXGroup;
+			children = (
+				5D5024BE1F70DF9A00924CCD /* XL_FMDB */,
+				5D5024BA1F70C6EB00924CCD /* XL_HUD */,
+				5D9CDCBA1F70B7BB001C15C5 /* XL_Color */,
+			);
+			name = "自己封装";
+			sourceTree = "<group>";
+		};
+		5D9CDCBA1F70B7BB001C15C5 /* XL_Color */ = {
+			isa = PBXGroup;
+			children = (
+				5D9CDCB71F70B7AB001C15C5 /* Color+Hex.h */,
+				5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */,
+			);
+			name = XL_Color;
+			sourceTree = "<group>";
+		};
+		5D9CDCBB1F70B7CC001C15C5 /* 界面 */ = {
+			isa = PBXGroup;
+			children = (
+				5DEA435D1F6FB2FC00486956 /* AppDelegate.h */,
+				5DEA435E1F6FB2FC00486956 /* AppDelegate.m */,
+				5DEA43661F6FB2FC00486956 /* Assets.xcassets */,
+				5DEA43681F6FB2FC00486956 /* LaunchScreen.storyboard */,
+				5DEA436B1F6FB2FC00486956 /* Info.plist */,
+				5DEA43631F6FB2FC00486956 /* Main.storyboard */,
+			);
+			name = "界面";
+			sourceTree = "<group>";
+		};
 		5DEA434E1F6FB2FC00486956 = {
 			isa = PBXGroup;
 			children = (
@@ -116,14 +184,9 @@
 		5DEA43591F6FB2FC00486956 /* Aishixi_JiaoShi */ = {
 			isa = PBXGroup;
 			children = (
-				5DEA435D1F6FB2FC00486956 /* AppDelegate.h */,
-				5DEA435E1F6FB2FC00486956 /* AppDelegate.m */,
-				5DEA43601F6FB2FC00486956 /* ViewController.h */,
-				5DEA43611F6FB2FC00486956 /* ViewController.m */,
-				5DEA43631F6FB2FC00486956 /* Main.storyboard */,
-				5DEA43661F6FB2FC00486956 /* Assets.xcassets */,
-				5DEA43681F6FB2FC00486956 /* LaunchScreen.storyboard */,
-				5DEA436B1F6FB2FC00486956 /* Info.plist */,
+				5D5024C21F70DFFA00924CCD /* Controller */,
+				5D9CDCBB1F70B7CC001C15C5 /* 界面 */,
+				5D9CDCB61F70B754001C15C5 /* 自己封装 */,
 				5DEA435A1F6FB2FC00486956 /* Supporting Files */,
 			);
 			path = Aishixi_JiaoShi;
@@ -354,8 +417,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DEA43621F6FB2FC00486956 /* ViewController.m in Sources */,
+				5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */,
+				5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */,
+				5DEA43621F6FB2FC00486956 /* DengLu_ViewController.m in Sources */,
 				5DEA435F1F6FB2FC00486956 /* AppDelegate.m in Sources */,
+				5D5024C11F70DFB600924CCD /* XL_FMDB.m in Sources */,
 				5DEA435C1F6FB2FC00486956 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,6 +664,7 @@
 				5DEA43861F6FB2FC00486956 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5DEA43871F6FB2FC00486956 /* Build configuration list for PBXNativeTarget "Aishixi_JiaoShiTests" */ = {
 			isa = XCConfigurationList;
@@ -606,6 +673,7 @@
 				5DEA43891F6FB2FC00486956 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5DEA438A1F6FB2FC00486956 /* Build configuration list for PBXNativeTarget "Aishixi_JiaoShiUITests" */ = {
 			isa = XCConfigurationList;
@@ -614,6 +682,7 @@
 				5DEA438C1F6FB2FC00486956 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
