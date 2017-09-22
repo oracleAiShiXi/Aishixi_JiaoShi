@@ -15,6 +15,12 @@
 		5D5024E01F70FED400924CCD /* ZiXun_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024DF1F70FED400924CCD /* ZiXun_ViewController.m */; };
 		5D5024E41F70FEF200924CCD /* GongGao_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024E31F70FEF200924CCD /* GongGao_ViewController.m */; };
 		5D5024E81F70FF0700924CCD /* JinJi_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024E71F70FF0700924CCD /* JinJi_ViewController.m */; };
+		5D549ABE1F725F5D001A92F4 /* JinJiXiangQing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549ABD1F725F5D001A92F4 /* JinJiXiangQing_ViewController.m */; };
+		5D549AC11F725F7C001A92F4 /* GongGaoXiangQing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AC01F725F7C001A92F4 /* GongGaoXiangQing_ViewController.m */; };
+		5D549AC41F725F93001A92F4 /* ZiXunXiangQing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AC31F725F93001A92F4 /* ZiXunXiangQing_ViewController.m */; };
+		5D549AC71F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AC61F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m */; };
+		5D549ACD1F7260F0001A92F4 /* FaBuGongGao_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549ACC1F7260F0001A92F4 /* FaBuGongGao_ViewController.m */; };
+		5D549AD11F72632A001A92F4 /* WangJiMiMa_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AD01F72632A001A92F4 /* WangJiMiMa_ViewController.m */; };
 		5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */; };
 		5DEA435C1F6FB2FC00486956 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA435B1F6FB2FC00486956 /* main.m */; };
 		5DEA435F1F6FB2FC00486956 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA435E1F6FB2FC00486956 /* AppDelegate.m */; };
@@ -59,6 +65,18 @@
 		5D5024E31F70FEF200924CCD /* GongGao_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GongGao_ViewController.m; sourceTree = "<group>"; };
 		5D5024E61F70FF0700924CCD /* JinJi_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JinJi_ViewController.h; sourceTree = "<group>"; };
 		5D5024E71F70FF0700924CCD /* JinJi_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JinJi_ViewController.m; sourceTree = "<group>"; };
+		5D549ABC1F725F5D001A92F4 /* JinJiXiangQing_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JinJiXiangQing_ViewController.h; sourceTree = "<group>"; };
+		5D549ABD1F725F5D001A92F4 /* JinJiXiangQing_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JinJiXiangQing_ViewController.m; sourceTree = "<group>"; };
+		5D549ABF1F725F7C001A92F4 /* GongGaoXiangQing_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GongGaoXiangQing_ViewController.h; sourceTree = "<group>"; };
+		5D549AC01F725F7C001A92F4 /* GongGaoXiangQing_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GongGaoXiangQing_ViewController.m; sourceTree = "<group>"; };
+		5D549AC21F725F93001A92F4 /* ZiXunXiangQing_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZiXunXiangQing_ViewController.h; sourceTree = "<group>"; };
+		5D549AC31F725F93001A92F4 /* ZiXunXiangQing_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZiXunXiangQing_ViewController.m; sourceTree = "<group>"; };
+		5D549AC51F725FA2001A92F4 /* KaoqInXiangqing_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KaoqInXiangqing_ViewController.h; sourceTree = "<group>"; };
+		5D549AC61F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KaoqInXiangqing_ViewController.m; sourceTree = "<group>"; };
+		5D549ACB1F7260F0001A92F4 /* FaBuGongGao_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaBuGongGao_ViewController.h; sourceTree = "<group>"; };
+		5D549ACC1F7260F0001A92F4 /* FaBuGongGao_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaBuGongGao_ViewController.m; sourceTree = "<group>"; };
+		5D549ACF1F72632A001A92F4 /* WangJiMiMa_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WangJiMiMa_ViewController.h; sourceTree = "<group>"; };
+		5D549AD01F72632A001A92F4 /* WangJiMiMa_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WangJiMiMa_ViewController.m; sourceTree = "<group>"; };
 		5D9CDCB71F70B7AB001C15C5 /* Color+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Color+Hex.h"; sourceTree = "<group>"; };
 		5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Color+Hex.m"; sourceTree = "<group>"; };
 		5DEA43571F6FB2FC00486956 /* Aishixi_JiaoShi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aishixi_JiaoShi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +169,7 @@
 			children = (
 				5DEA43601F6FB2FC00486956 /* DengLu_ViewController.h */,
 				5DEA43611F6FB2FC00486956 /* DengLu_ViewController.m */,
+				5D549ACE1F726314001A92F4 /* 忘记密码 */,
 			);
 			name = "登陆相关";
 			sourceTree = "<group>";
@@ -169,6 +188,7 @@
 			children = (
 				5D5024DA1F70FEA800924CCD /* KaoQin_ViewController.h */,
 				5D5024DB1F70FEA800924CCD /* KaoQin_ViewController.m */,
+				5D549AB81F725EFE001A92F4 /* 考勤详情 */,
 			);
 			name = "考勤管理";
 			sourceTree = "<group>";
@@ -178,6 +198,7 @@
 			children = (
 				5D5024DE1F70FED400924CCD /* ZiXun_ViewController.h */,
 				5D5024DF1F70FED400924CCD /* ZiXun_ViewController.m */,
+				5D549AB91F725F0E001A92F4 /* 咨询详情 */,
 			);
 			name = "咨询管理";
 			sourceTree = "<group>";
@@ -187,6 +208,8 @@
 			children = (
 				5D5024E21F70FEF200924CCD /* GongGao_ViewController.h */,
 				5D5024E31F70FEF200924CCD /* GongGao_ViewController.m */,
+				5D549AC91F7260D3001A92F4 /* 发布公告 */,
+				5D549ABA1F725F1E001A92F4 /* 公告详情 */,
 			);
 			name = "公告管理";
 			sourceTree = "<group>";
@@ -196,8 +219,63 @@
 			children = (
 				5D5024E61F70FF0700924CCD /* JinJi_ViewController.h */,
 				5D5024E71F70FF0700924CCD /* JinJi_ViewController.m */,
+				5D549ABB1F725F28001A92F4 /* 紧急详情 */,
 			);
 			name = "紧急呼叫";
+			sourceTree = "<group>";
+		};
+		5D549AB81F725EFE001A92F4 /* 考勤详情 */ = {
+			isa = PBXGroup;
+			children = (
+				5D549AC51F725FA2001A92F4 /* KaoqInXiangqing_ViewController.h */,
+				5D549AC61F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m */,
+			);
+			name = "考勤详情";
+			sourceTree = "<group>";
+		};
+		5D549AB91F725F0E001A92F4 /* 咨询详情 */ = {
+			isa = PBXGroup;
+			children = (
+				5D549AC21F725F93001A92F4 /* ZiXunXiangQing_ViewController.h */,
+				5D549AC31F725F93001A92F4 /* ZiXunXiangQing_ViewController.m */,
+			);
+			name = "咨询详情";
+			sourceTree = "<group>";
+		};
+		5D549ABA1F725F1E001A92F4 /* 公告详情 */ = {
+			isa = PBXGroup;
+			children = (
+				5D549ABF1F725F7C001A92F4 /* GongGaoXiangQing_ViewController.h */,
+				5D549AC01F725F7C001A92F4 /* GongGaoXiangQing_ViewController.m */,
+			);
+			name = "公告详情";
+			sourceTree = "<group>";
+		};
+		5D549ABB1F725F28001A92F4 /* 紧急详情 */ = {
+			isa = PBXGroup;
+			children = (
+				5D549ABC1F725F5D001A92F4 /* JinJiXiangQing_ViewController.h */,
+				5D549ABD1F725F5D001A92F4 /* JinJiXiangQing_ViewController.m */,
+			);
+			name = "紧急详情";
+			sourceTree = "<group>";
+		};
+		5D549AC91F7260D3001A92F4 /* 发布公告 */ = {
+			isa = PBXGroup;
+			children = (
+				5D549ACB1F7260F0001A92F4 /* FaBuGongGao_ViewController.h */,
+				5D549ACC1F7260F0001A92F4 /* FaBuGongGao_ViewController.m */,
+			);
+			name = "发布公告";
+			sourceTree = "<group>";
+		};
+		5D549ACE1F726314001A92F4 /* 忘记密码 */ = {
+			isa = PBXGroup;
+			children = (
+				5D549ACF1F72632A001A92F4 /* WangJiMiMa_ViewController.h */,
+				5D549AD01F72632A001A92F4 /* WangJiMiMa_ViewController.m */,
+			);
+			name = "忘记密码";
 			sourceTree = "<group>";
 		};
 		5D9CDCB61F70B754001C15C5 /* 自己封装 */ = {
@@ -490,15 +568,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D549AC71F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m in Sources */,
 				5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */,
+				5D549AD11F72632A001A92F4 /* WangJiMiMa_ViewController.m in Sources */,
 				5D5024D81F70F44E00924CCD /* TabBar_ViewController.m in Sources */,
 				5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */,
 				5D5024E41F70FEF200924CCD /* GongGao_ViewController.m in Sources */,
+				5D549ACD1F7260F0001A92F4 /* FaBuGongGao_ViewController.m in Sources */,
 				5D5024E81F70FF0700924CCD /* JinJi_ViewController.m in Sources */,
 				5D5024DC1F70FEA800924CCD /* KaoQin_ViewController.m in Sources */,
+				5D549ABE1F725F5D001A92F4 /* JinJiXiangQing_ViewController.m in Sources */,
 				5DEA43621F6FB2FC00486956 /* DengLu_ViewController.m in Sources */,
+				5D549AC41F725F93001A92F4 /* ZiXunXiangQing_ViewController.m in Sources */,
 				5DEA435F1F6FB2FC00486956 /* AppDelegate.m in Sources */,
 				5D5024C11F70DFB600924CCD /* XL_FMDB.m in Sources */,
+				5D549AC11F725F7C001A92F4 /* GongGaoXiangQing_ViewController.m in Sources */,
 				5D5024E01F70FED400924CCD /* ZiXun_ViewController.m in Sources */,
 				5DEA435C1F6FB2FC00486956 /* main.m in Sources */,
 			);

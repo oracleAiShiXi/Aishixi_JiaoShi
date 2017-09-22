@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GongGao_ViewController : UIViewController
+@interface GongGao_ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UISegmentedControl *SegShou_Fa;
+- (IBAction)FaShou:(id)sender;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "KaoQin_ViewController.h"
+#import "KaoqInXiangqing_ViewController.h"
+#import "Color+Hex.h"
 
 @interface KaoQin_ViewController ()
 
@@ -18,11 +20,13 @@
     [super viewDidLoad];
     [self TableViewDelegate];
 }
+#pragma mark ----TableViewDelegate
 -(void)TableViewDelegate{
     _tableView.delegate = self;
     _tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
+#pragma mark -----TableView---方法
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * cellString =@"kaoqincell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellString];
@@ -34,16 +38,38 @@
     UILabel * YerMonth = [cell viewWithTag:103];
     UILabel * QianShi = [cell viewWithTag:104];
     UILabel * Time = [cell viewWithTag:105];
-    ImageView.image=[UIImage imageNamed:@"头像"];
-    Name.text = @"斌小狼";
-    YerMonth.text = @"2017-09-28";
-    QianShi.text = @"签到时间:";
-    Time.text = @"08:57";
     
+    UIImage * image = [[UIImage alloc] init];
+    NSString * NameString =@"";
+    NSString * YerMonthString =@"";
+    NSString * QianShiSring =@"";
+    NSString * TimeString = @"";
+    
+    image = [UIImage imageNamed:@"头像"];
+    NameString = @"斌小狼";
+    YerMonthString = @"2017-09-28";
+    QianShiSring = @"签到时间:";
+    TimeString = @"08:57";
+    
+    //异常
+    if (indexPath.section == 0) {
+        QianShi.textColor = [UIColor colorWithHexString:@""];
+        Time.textColor = [UIColor colorWithHexString:@""];
+    }
+    
+    ImageView.image = image;
+    Name.text = NameString;
+    YerMonth.text = YerMonthString;
+    QianShi.text = QianShiSring;
+    Time.text = TimeString;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self TiaoYeFangFa:indexPath];
+}
+#pragma mark ----TableView---不变
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
@@ -56,19 +82,20 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark ----跳页方法
+-(void)TiaoYeFangFa:(NSIndexPath *)indexPath{
+    /*数据处理*/
+    
+    
+    
+    /*TabBar 隐藏*/
+    self.tabBarController.tabBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = YES;
+    KaoqInXiangqing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"kaoqinxiangqing"];
+    /*数据传输*/
+    
+    [self.navigationController pushViewController:Kao animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

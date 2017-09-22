@@ -7,6 +7,8 @@
 //
 
 #import "DengLu_ViewController.h"
+#import "TabBar_ViewController.h"
+#import "WangJiMiMa_ViewController.h"
 #import "Color+Hex.h"
 
 @interface DengLu_ViewController ()
@@ -28,10 +30,20 @@
 }
 
 - (IBAction)ForgetPassword:(id)sender {
+    /*数据处理*/
     
+    WangJiMiMa_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wangjimima"];
+    /*数据传输*/
+    
+    [self.navigationController pushViewController:Kao animated:YES];
 }
 
 - (IBAction)Login_ShouDong:(id)sender {
+    /*数据处理*/
     
+    TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
+    /*数据传输*/
+    
+    [self.navigationController pushViewController:Kao animated:YES];
 }
 @end
