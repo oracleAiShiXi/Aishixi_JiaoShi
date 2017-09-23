@@ -9,6 +9,11 @@
 #import "ZiXunXiangQing_ViewController.h"
 #import "Color+Hex.h"
 #import <Speech/Speech.h>
+#import "WarningBox.h"
+
+
+
+#define Width [[UIScreen mainScreen] bounds].size.width;
 
 @interface ZiXunXiangQing_ViewController ()<SFSpeechRecognizerDelegate,UITextViewDelegate>
 @property(nonatomic,strong)SFSpeechRecognizer * recognizer ;
@@ -52,8 +57,11 @@
     
 }
 -(void)jiemianbuju:(NSDictionary *)dd :(int) i{
-    _shouView.layer.cornerRadius = 20;
-    _faView.layer.cornerRadius = 20;
+    _shouView.layer.cornerRadius = 15;
+    _faView.layer.cornerRadius = 15;
+    _TextF.layer.borderColor = [UIColor colorWithHexString:@"d9d9d9"].CGColor;
+    _TextF.layer.cornerRadius = 10;
+    _TextF.layer.masksToBounds = YES;
     _yuYinShu.backgroundColor =[UIColor colorWithHexString:@"6ca3fd"];
     
     
@@ -75,7 +83,7 @@
         typeString = @"其他";
         _Type.textColor = [UIColor colorWithHexString:@"fcca26"];
     }
-    NSString *shouString = @"老师啊";
+    NSString *shouString = @"老师啊,你说我长得帅不帅？说实话不能骗我、如果你骗我的话我就去自杀！！";
     NSString *faSring =_TextF.text;
     UIImage *shouImage = [UIImage imageNamed:@"头像"];
     UIImage *faImage = [UIImage imageNamed:@"头像"];
@@ -124,13 +132,18 @@
     self.view.frame = viewFrame;
 }
 -(void)textViewDidChange:(UITextView *)textView {
-    //获得textView的初始尺寸
-    CGFloat width = CGRectGetWidth(textView.frame);
-    CGFloat height = CGRectGetHeight(textView.frame);
-    CGSize newSize = [textView sizeThatFits:CGSizeMake(width,MAXFLOAT)];
-    CGRect newFrame = textView.frame;
-    newFrame.size = CGSizeMake(fmax(newSize.width, width), fmax(newSize.height,height ));
-    textView.frame= newFrame;
+    CGSize size = CGSizeMake(textView.frame.size.width, CGFLOAT_MAX);
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont systemFontOfSize:15],NSFontAttributeName, nil];
+    CGFloat curheight = [textView.text boundingRectWithSize:size
+                                                    options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                 attributes:dic
+                                                    context:nil].size.height;
+    CGFloat y = CGRectGetMaxY(textView.frame);
+    
+    textView.frame = CGRectMake(textView.frame.origin.x, y- textView.contentSize.height,textView.frame.size.width, textView.contentSize.height);
+//    _ZiView.frame = CGRectMake(0, y- textView.contentSize.height-8,[[UIScreen mainScreen] bounds].size.width, textView.contentSize.height+16);
+//    _yuYinShu.frame = _yuYinShu.frame;
+    
 }
 -(void)tapAction{
     
@@ -234,6 +247,24 @@
 
 - (IBAction)FaSong:(id)sender {
     [self.view endEditing:YES];
-    [self jiemianbuju:nil :1];
+    if ([self isEmpty:_TextF.text] ||_TextF.text.length == 0) {
+        [WarningBox warningBoxModeText:@"请输入内容🐱" andView:self.view];
+    }else{
+        [self jiemianbuju:nil :1];
+    }
+}
+//判断是否全是空格
+- (BOOL)isEmpty:(NSString *) str {
+    if (!str) {
+        return true;
+    } else {
+        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
+        if ([trimedString length] == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 @end

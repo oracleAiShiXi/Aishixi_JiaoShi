@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *BanJi;
 @property (weak, nonatomic) IBOutlet UILabel *ShiJian;
 @property (weak, nonatomic) IBOutlet UILabel *Type;
-- (IBAction)yuyin:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *shouTouXiang;
 @property (weak, nonatomic) IBOutlet UIView *shouView;
 @property (weak, nonatomic) IBOutlet UILabel *shouLable;

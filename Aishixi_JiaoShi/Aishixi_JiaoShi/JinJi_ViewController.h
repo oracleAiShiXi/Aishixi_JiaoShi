@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JinJi_ViewController : UIViewController
+@interface JinJi_ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *TableView;
 
 @end

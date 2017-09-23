@@ -21,7 +21,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = message;
-    hud.labelFont = [UIFont systemFontOfSize:12];
+    hud.labelFont = [UIFont systemFontOfSize:15];
     hud.yOffset = 160;
     //hud.xOffset = 30;
     hud.userInteractionEnabled=NO;
