@@ -24,45 +24,59 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
     _YuanXi.adjustsFontSizeToFitWidth = YES;
     _ZhuanYe.adjustsFontSizeToFitWidth = YES;
     _TextF.delegate = self;
- 
+    
     [self delegate];
     [self KeyboardJianTing];
-    [self jiemianbuju:nil];
+    [self jiemianbuju:nil :0];
 }
 - (IBAction)anxia:(id)sender {
     NSLog(@"anxiale");
+    if ([self.audioEngine isRunning]) {
+        
+    }else{
+        [self startRecording];
+    }
 }
 
 - (IBAction)songshou:(id)sender {
     NSLog(@"songkaile");
+    if ([self.audioEngine isRunning]) {
+        [self.audioEngine stop];
+        [self.recognitionRequest endAudio];
+    }
+    //    [self.audioEngine stop];
+    
 }
--(void)jiemianbuju:(NSDictionary *)dd{
+-(void)jiemianbuju:(NSDictionary *)dd :(int) i{
+    _shouView.layer.cornerRadius = 20;
+    _faView.layer.cornerRadius = 20;
     _yuYinShu.backgroundColor =[UIColor colorWithHexString:@"6ca3fd"];
     
     
-    NSString *nameString=@"";
-    NSString *XuehaoString = @"";
-    NSString *XuejieString = @"";
-    NSString *yuanxiString = @"";
-    NSString *zhuanyeString = @"";
-    NSString *banjiString = @"";
-    NSString *shijianString = @"";
+    NSString *nameString=@"王小明";
+    NSString *XuehaoString = @"2012021385";
+    NSString *XuejieString = @"2018";
+    NSString *yuanxiString = @"电气工程及其自动化";
+    NSString *zhuanyeString = @"电气专业";
+    NSString *banjiString = @"电气15-16班";
+    NSString *shijianString = @"2017-06-28 12:24:36";
     NSString *typeString =@"";
-    if (1 == 1) {
+    if (i == 0) {
         typeString = @"岗位";
         _Type.textColor = [UIColor colorWithHexString:@"0ee6ca"];
-    }else if (1 == 2){
+    }else if (i == 1){
         typeString = @"请假";
         _Type.textColor = [UIColor colorWithHexString:@"fa9463"];
     }else{
         typeString = @"其他";
         _Type.textColor = [UIColor colorWithHexString:@"fcca26"];
     }
-    NSString *shouString = @"";
-    NSString *faSring =@"";
+    NSString *shouString = @"老师啊";
+    NSString *faSring =_TextF.text;
     UIImage *shouImage = [UIImage imageNamed:@"头像"];
     UIImage *faImage = [UIImage imageNamed:@"头像"];
     
@@ -79,40 +93,35 @@
     _shouTouXiang.image = shouImage;
     _FaTouXiang.image = faImage;
     
-    //    if (123 == 1) {
-    //        _faView.hidden = YES;
-    //        _FaTouXiang.hidden = YES;
-    //        _ZiView.hidden = NO;
-    //    }else{
-    //        _faView.hidden = NO;
-    //        _FaTouXiang.hidden = NO;
-    //        _ZiView.hidden = YES;
-    //    }
-    
-    
+    if (i == 0) {
+        _faView.hidden = YES;
+        _FaTouXiang.hidden = YES;
+        _ZiView.hidden = NO;
+    }else{
+        _faView.hidden = NO;
+        _FaTouXiang.hidden = NO;
+        _ZiView.hidden = YES;
+    }
 }
 -(void)KeyboardJianTing{
     //监听键盘是否呼出
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(upViews:) name:UIKeyboardWillShowNotification object:nil];
-    
-    //添加手势
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
-    [self.view addGestureRecognizer:tap];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(tapAction)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 #pragma mark - 键盘弹出时界面上移及还原
 -(void)upViews:(NSNotification *) notification{
-    
     //获取键盘的高度
     NSDictionary *userInfo = [notification userInfo];
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [aValue CGRectValue];
     int keyBoardHeight = keyboardRect.size.height;
-    
     //使视图上移
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y = -keyBoardHeight;
     self.view.frame = viewFrame;
-    
 }
 -(void)textViewDidChange:(UITextView *)textView {
     //获得textView的初始尺寸
@@ -127,25 +136,20 @@
     
     if ([_TextF isFirstResponder]&&UIKeyboardDidShowNotification)
     {
-        
         [_TextF resignFirstResponder];
-        
         //使视图还原
         CGRect viewFrame = self.view.frame;
         viewFrame.origin.y = 0;
         self.view.frame = viewFrame;
-        
-        
     }
 }
 #pragma  mark ---- 语音转文字
 -(void)delegate{
     NSLocale *cale = [[NSLocale alloc]initWithLocaleIdentifier:@"zh-CN"];
     self.recognizer = [[SFSpeechRecognizer alloc]initWithLocale:cale];
-    self.yuYinShu.enabled = false;
+    //    self.yuYinShu.enabled = false;
     //设置代理
     self.recognizer.delegate = self;
-    
     [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
         bool isButtonEnabled = false;
         switch (status) {
@@ -168,22 +172,11 @@
             default:
                 break;
         }
-        self.yuYinShu.enabled = isButtonEnabled;
+        //        self.yuYinShu.enabled = isButtonEnabled;
     }];
     
     self.audioEngine = [[AVAudioEngine alloc]init];
 }
-
-- (IBAction)dianji:(id)sender {
-    //    UIButton * but = (UIButton *)sender;
-    //    if (but.highlighted == YES) {
-    //        [self startRecording];
-    //    }else if (but.selected == YES){
-    //        [self.audioEngine stop];
-    //    }
-}
-
-
 
 - (void)startRecording{
     if (self.recognitionTask) {
@@ -217,7 +210,7 @@
             [inputNode removeTapOnBus:0];
             self.recognitionRequest = nil;
             self.recognitionTask = nil;
-            self.yuYinShu.enabled = true;
+            //            self.yuYinShu.enabled = true;
         }
     }];
     AVAudioFormat *recordingFormat = [inputNode outputFormatForBus:0];
@@ -232,13 +225,15 @@
 //语音代理
 - (void)speechRecognizer:(SFSpeechRecognizer *)speechRecognizer availabilityDidChange:(BOOL)available{
     if (available) {
-        self.yuYinShu.enabled = YES;
+        //        self.yuYinShu.enabled = YES;
     }else{
         
-        self.yuYinShu.enabled = NO;
+        //        self.yuYinShu.enabled = NO;
     }
 }
 
 - (IBAction)FaSong:(id)sender {
+    [self.view endEditing:YES];
+    [self jiemianbuju:nil :1];
 }
 @end

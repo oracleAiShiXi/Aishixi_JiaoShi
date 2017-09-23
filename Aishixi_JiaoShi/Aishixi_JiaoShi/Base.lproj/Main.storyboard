@@ -213,7 +213,7 @@
                                         <rect key="frame" x="0.0" y="28" width="359" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IFl-Gl-5zQ" id="Rg7-pO-4xg">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HdL-CJ-6W4">
@@ -717,7 +717,7 @@
                                         <rect key="frame" x="0.0" y="28" width="359" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sA1-Ht-O0v" id="GGB-w9-38X">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="359" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="121" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="Zim-8k-PGv">
@@ -1069,7 +1069,7 @@
                                         <rect key="frame" x="61" y="283.5" width="306" height="54.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您好，在学校请长假的话或者办理休学应该找谁沟通?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adS-yk-UOH">
-                                                <rect key="frame" x="8" y="8" width="290" height="38.5"/>
+                                                <rect key="frame" x="8" y="8" width="277.5" height="38.5"/>
                                                 <color key="backgroundColor" red="0.42134577035903931" green="0.63514769077301025" blue="0.99620801210403442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1086,20 +1086,19 @@
                                             <constraint firstItem="adS-yk-UOH" firstAttribute="top" secondItem="8o0-Zq-Zrd" secondAttribute="top" constant="8" id="7M6-M5-vqX"/>
                                             <constraint firstItem="adS-yk-UOH" firstAttribute="height" secondItem="8o0-Zq-Zrd" secondAttribute="height" constant="-16" id="fYY-Sw-wAj"/>
                                             <constraint firstItem="adS-yk-UOH" firstAttribute="leading" secondItem="8o0-Zq-Zrd" secondAttribute="leading" constant="8" id="hdb-B5-nth"/>
-                                            <constraint firstAttribute="trailing" secondItem="adS-yk-UOH" secondAttribute="trailing" constant="8" id="uVY-7p-r0X"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="adS-yk-UOH" secondAttribute="trailing" constant="8" id="uVY-7p-r0X"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cernerRadius">
                                                 <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.clipsToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbG-SA-6pZ">
                                         <rect key="frame" x="8" y="368" width="306" height="54.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你去找教务处的某某主任，有他的联系方式吗？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAC-bm-uEH">
-                                                <rect key="frame" x="16" y="8" width="290" height="38.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你去找教务处的某某主任，有他的联系方式吗？" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAC-bm-uEH">
+                                                <rect key="frame" x="28.5" y="8" width="277.5" height="38.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1108,15 +1107,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="sAC-bm-uEH" secondAttribute="trailing" id="8jZ-YR-0jR"/>
-                                            <constraint firstItem="sAC-bm-uEH" firstAttribute="leading" secondItem="AbG-SA-6pZ" secondAttribute="leading" constant="16" id="S41-wk-7tV"/>
+                                            <constraint firstItem="sAC-bm-uEH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AbG-SA-6pZ" secondAttribute="leading" constant="16" id="S41-wk-7tV"/>
                                             <constraint firstItem="sAC-bm-uEH" firstAttribute="top" secondItem="AbG-SA-6pZ" secondAttribute="top" constant="8" id="goP-8O-2Gg"/>
                                             <constraint firstItem="sAC-bm-uEH" firstAttribute="height" secondItem="AbG-SA-6pZ" secondAttribute="height" constant="-16" id="jS2-yt-DED"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cernerRadius">
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.clipsToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="头像" translatesAutoresizingMaskIntoConstraints="NO" id="EDT-X4-QTz">
@@ -1171,7 +1169,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="anxia:" destination="KbG-Te-8Pa" eventType="touchDown" id="t61-SZ-gKY"/>
-                                                    <action selector="dianji:" destination="KbG-Te-8Pa" eventType="touchUpInside" id="GNT-dg-EjW"/>
                                                     <action selector="songshou:" destination="KbG-Te-8Pa" eventType="touchUpInside" id="jSQ-qh-yVb"/>
                                                 </connections>
                                             </button>
@@ -1377,7 +1374,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="359" height="60"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8v4-P3-3gR" id="pIY-1u-sey">
-                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="60"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="59.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" tag="111" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="公告" translatesAutoresizingMaskIntoConstraints="NO" id="L2p-bT-Zj1">
