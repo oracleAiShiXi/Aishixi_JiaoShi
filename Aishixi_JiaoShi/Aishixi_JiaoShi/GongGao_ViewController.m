@@ -9,6 +9,7 @@
 #import "GongGao_ViewController.h"
 #import "GongGaoXiangQing_ViewController.h"
 #import "FaBuGongGao_ViewController.h"
+#import "SheZhi_ViewController.h"
 
 @interface GongGao_ViewController ()
 
@@ -61,7 +62,7 @@
     ZhongYao.image = image;
     ShiJian.text = ShiJianString;
     
-    cell.selectionStyle = UITableViewCellStyleDefault;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -137,5 +138,18 @@
         default:
             break;
     }
+}
+- (IBAction)ShezhiButton:(id)sender {
+    /*TabBar 隐藏*/
+    self.tabBarController.tabBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = YES;
+    SheZhi_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shezhi"];
+    /*数据传输*/
+    
+    [self.navigationController pushViewController:Kao animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+- (IBAction)ShaixuanButton:(id)sender {
 }
 @end

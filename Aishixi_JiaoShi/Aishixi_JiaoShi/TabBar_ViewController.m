@@ -50,12 +50,7 @@
     UIImage *imgImage =[UIImage imageNamed:pic2name];
     tabBarItem.selectedImage = [tabBarItemImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     tabBarItem.image = [imgImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
-//                                                        NSForegroundColorAttributeName : [UIColor blackColor]
-//                                                        } forState:UIControlStateNormal];//未选中
-//    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont fontWithName:@"HelveticaNeue-Bold" size:10.0f],
-//                                                        NSForegroundColorAttributeName : [UIColor blackColor]
-//                                                        } forState:UIControlStateSelected];
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

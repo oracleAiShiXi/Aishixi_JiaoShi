@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"忘记密码";
     // Do any additional setup after loading the view.
 }
 

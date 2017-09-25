@@ -1,23 +1,22 @@
-
 //
-//  JinJiXiangQing_ViewController.m
+//  PingJiaXiangQing_ViewController.m
 //  Aishixi_JiaoShi
 //
-//  Created by 斌小狼 on 2017/9/20.
+//  Created by 斌小狼 on 2017/9/25.
 //  Copyright © 2017年 GuoYun. All rights reserved.
 //
 
-#import "JinJiXiangQing_ViewController.h"
+#import "PingJiaXiangQing_ViewController.h"
 
-@interface JinJiXiangQing_ViewController ()
+@interface PingJiaXiangQing_ViewController ()
 
 @end
 
-@implementation JinJiXiangQing_ViewController
+@implementation PingJiaXiangQing_ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"呼叫详情";
+    self.navigationItem.title = @"评价详情";
 }
 
 - (void)didReceiveMemoryWarning {

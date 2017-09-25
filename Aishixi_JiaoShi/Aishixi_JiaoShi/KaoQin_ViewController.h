@@ -10,5 +10,7 @@
 
 @interface KaoQin_ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)ShaixuanButton:(id)sender;
+- (IBAction)ShezhiButton:(id)sender;
 
 @end

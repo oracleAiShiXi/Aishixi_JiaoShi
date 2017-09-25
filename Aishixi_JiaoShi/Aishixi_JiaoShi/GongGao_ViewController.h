@@ -13,4 +13,7 @@
 - (IBAction)FaShou:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (IBAction)ShezhiButton:(id)sender;
+- (IBAction)ShaixuanButton:(id)sender;
+
 @end

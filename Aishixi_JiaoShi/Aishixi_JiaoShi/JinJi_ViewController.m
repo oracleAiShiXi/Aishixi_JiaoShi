@@ -8,6 +8,7 @@
 
 #import "JinJi_ViewController.h"
 #import "JinJiXiangQing_ViewController.h"
+#import "SheZhi_ViewController.h"
 #import "Color+Hex.h"
 
 @interface JinJi_ViewController ()
@@ -66,6 +67,7 @@
     DiZhi.text = DiZhiString;
     ShiJian.text = ShiJianString;
     Tpye.text = TpyeString;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -92,10 +94,23 @@
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;
     self.hidesBottomBarWhenPushed = YES;
-    JinJiXiangQing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jinixiangqing"];
+    JinJiXiangQing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jinjixiangqing"];
     /*数据传输*/
     
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
+}
+- (IBAction)ShezhiButton:(id)sender {
+    /*TabBar 隐藏*/
+    self.tabBarController.tabBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = YES;
+    SheZhi_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shezhi"];
+    /*数据传输*/
+    
+    [self.navigationController pushViewController:Kao animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+- (IBAction)ShaixuanButton:(id)sender {
 }
 @end

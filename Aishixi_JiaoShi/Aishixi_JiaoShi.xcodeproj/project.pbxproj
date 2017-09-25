@@ -22,6 +22,9 @@
 		5D549ACD1F7260F0001A92F4 /* FaBuGongGao_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549ACC1F7260F0001A92F4 /* FaBuGongGao_ViewController.m */; };
 		5D549AD11F72632A001A92F4 /* WangJiMiMa_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AD01F72632A001A92F4 /* WangJiMiMa_ViewController.m */; };
 		5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */; };
+		5DBE44B21F788D91001B6371 /* SheZhi_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B11F788D91001B6371 /* SheZhi_ViewController.m */; };
+		5DBE44B61F789827001B6371 /* PingJia_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B51F789827001B6371 /* PingJia_ViewController.m */; };
+		5DBE44BA1F789F75001B6371 /* PingJiaXiangQing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B91F789F75001B6371 /* PingJiaXiangQing_ViewController.m */; };
 		5DEA435C1F6FB2FC00486956 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA435B1F6FB2FC00486956 /* main.m */; };
 		5DEA435F1F6FB2FC00486956 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA435E1F6FB2FC00486956 /* AppDelegate.m */; };
 		5DEA43621F6FB2FC00486956 /* DengLu_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA43611F6FB2FC00486956 /* DengLu_ViewController.m */; };
@@ -79,6 +82,12 @@
 		5D549AD01F72632A001A92F4 /* WangJiMiMa_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WangJiMiMa_ViewController.m; sourceTree = "<group>"; };
 		5D9CDCB71F70B7AB001C15C5 /* Color+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Color+Hex.h"; sourceTree = "<group>"; };
 		5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Color+Hex.m"; sourceTree = "<group>"; };
+		5DBE44B01F788D91001B6371 /* SheZhi_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheZhi_ViewController.h; sourceTree = "<group>"; };
+		5DBE44B11F788D91001B6371 /* SheZhi_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheZhi_ViewController.m; sourceTree = "<group>"; };
+		5DBE44B41F789827001B6371 /* PingJia_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingJia_ViewController.h; sourceTree = "<group>"; };
+		5DBE44B51F789827001B6371 /* PingJia_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingJia_ViewController.m; sourceTree = "<group>"; };
+		5DBE44B81F789F75001B6371 /* PingJiaXiangQing_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingJiaXiangQing_ViewController.h; sourceTree = "<group>"; };
+		5DBE44B91F789F75001B6371 /* PingJiaXiangQing_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingJiaXiangQing_ViewController.m; sourceTree = "<group>"; };
 		5DEA43571F6FB2FC00486956 /* Aishixi_JiaoShi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aishixi_JiaoShi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEA435B1F6FB2FC00486956 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5DEA435D1F6FB2FC00486956 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -154,6 +163,7 @@
 		5D5024C21F70DFFA00924CCD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5DBE44AF1F788AE3001B6371 /* 设置 */,
 				5D5024E51F70FEF600924CCD /* 紧急呼叫 */,
 				5D5024E11F70FEDA00924CCD /* 公告管理 */,
 				5D5024DD1F70FEB200924CCD /* 咨询管理 */,
@@ -308,6 +318,35 @@
 				5DEA436B1F6FB2FC00486956 /* Info.plist */,
 			);
 			name = "界面";
+			sourceTree = "<group>";
+		};
+		5DBE44AF1F788AE3001B6371 /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				5DBE44B01F788D91001B6371 /* SheZhi_ViewController.h */,
+				5DBE44B11F788D91001B6371 /* SheZhi_ViewController.m */,
+				5DBE44B31F78980B001B6371 /* 评价列表 */,
+			);
+			name = "设置";
+			sourceTree = "<group>";
+		};
+		5DBE44B31F78980B001B6371 /* 评价列表 */ = {
+			isa = PBXGroup;
+			children = (
+				5DBE44B41F789827001B6371 /* PingJia_ViewController.h */,
+				5DBE44B51F789827001B6371 /* PingJia_ViewController.m */,
+				5DBE44B71F789F58001B6371 /* 评价详情 */,
+			);
+			name = "评价列表";
+			sourceTree = "<group>";
+		};
+		5DBE44B71F789F58001B6371 /* 评价详情 */ = {
+			isa = PBXGroup;
+			children = (
+				5DBE44B81F789F75001B6371 /* PingJiaXiangQing_ViewController.h */,
+				5DBE44B91F789F75001B6371 /* PingJiaXiangQing_ViewController.m */,
+			);
+			name = "评价详情";
 			sourceTree = "<group>";
 		};
 		5DEA434E1F6FB2FC00486956 = {
@@ -570,12 +609,15 @@
 			files = (
 				5D549AC71F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m in Sources */,
 				5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */,
+				5DBE44B61F789827001B6371 /* PingJia_ViewController.m in Sources */,
 				5D549AD11F72632A001A92F4 /* WangJiMiMa_ViewController.m in Sources */,
 				5D5024D81F70F44E00924CCD /* TabBar_ViewController.m in Sources */,
 				5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */,
 				5D5024E41F70FEF200924CCD /* GongGao_ViewController.m in Sources */,
 				5D549ACD1F7260F0001A92F4 /* FaBuGongGao_ViewController.m in Sources */,
+				5DBE44B21F788D91001B6371 /* SheZhi_ViewController.m in Sources */,
 				5D5024E81F70FF0700924CCD /* JinJi_ViewController.m in Sources */,
+				5DBE44BA1F789F75001B6371 /* PingJiaXiangQing_ViewController.m in Sources */,
 				5D5024DC1F70FEA800924CCD /* KaoQin_ViewController.m in Sources */,
 				5D549ABE1F725F5D001A92F4 /* JinJiXiangQing_ViewController.m in Sources */,
 				5DEA43621F6FB2FC00486956 /* DengLu_ViewController.m in Sources */,

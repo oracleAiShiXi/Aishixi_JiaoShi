@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
+   self.navigationItem.title = @"咨询详情"; self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
     _YuanXi.adjustsFontSizeToFitWidth = YES;
     _ZhuanYe.adjustsFontSizeToFitWidth = YES;
     _TextF.delegate = self;

@@ -35,7 +35,8 @@
     WangJiMiMa_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wangjimima"];
     /*数据传输*/
     
-    [self.navigationController pushViewController:Kao animated:YES];
+    [self presentViewController:Kao animated:YES completion:nil];
+//    [self.navigationController pushViewController:Kao animated:YES];
 }
 
 - (IBAction)Login_ShouDong:(id)sender {

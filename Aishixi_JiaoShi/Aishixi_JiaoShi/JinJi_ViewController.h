@@ -10,5 +10,7 @@
 
 @interface JinJi_ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *TableView;
+- (IBAction)ShezhiButton:(id)sender;
+- (IBAction)ShaixuanButton:(id)sender;
 
 @end
