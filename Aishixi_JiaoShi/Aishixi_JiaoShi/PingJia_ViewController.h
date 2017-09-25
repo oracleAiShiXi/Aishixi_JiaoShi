@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PingJia_ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *TableView;
 
 @end
