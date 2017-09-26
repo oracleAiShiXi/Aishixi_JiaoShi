@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D6AFE91212D46B86B2BD5E9 /* libPods-Aishixi_JiaoShi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */; };
+		5D4E61DB1F7A318100D5EAF0 /* XL_WangLuo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E61D91F7A248000D5EAF0 /* XL_WangLuo.m */; };
 		5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024BC1F70C6F700924CCD /* WarningBox.m */; };
 		5D5024C11F70DFB600924CCD /* XL_FMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024C01F70DFB600924CCD /* XL_FMDB.m */; };
 		5D5024D81F70F44E00924CCD /* TabBar_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024D71F70F44E00924CCD /* TabBar_ViewController.m */; };
@@ -20,7 +21,6 @@
 		5D549AC41F725F93001A92F4 /* ZiXunXiangQing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AC31F725F93001A92F4 /* ZiXunXiangQing_ViewController.m */; };
 		5D549AC71F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AC61F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m */; };
 		5D549ACD1F7260F0001A92F4 /* FaBuGongGao_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549ACC1F7260F0001A92F4 /* FaBuGongGao_ViewController.m */; };
-		5D549AD11F72632A001A92F4 /* WangJiMiMa_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AD01F72632A001A92F4 /* WangJiMiMa_ViewController.m */; };
 		5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */; };
 		5DBE44B21F788D91001B6371 /* SheZhi_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B11F788D91001B6371 /* SheZhi_ViewController.m */; };
 		5DBE44B61F789827001B6371 /* PingJia_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B51F789827001B6371 /* PingJia_ViewController.m */; };
@@ -54,6 +54,11 @@
 
 /* Begin PBXFileReference section */
 		1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aishixi_JiaoShi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D4E61D81F7A248000D5EAF0 /* XL_WangLuo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_WangLuo.h; sourceTree = "<group>"; };
+		5D4E61D91F7A248000D5EAF0 /* XL_WangLuo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XL_WangLuo.m; sourceTree = "<group>"; };
+		5D4E61DA1F7A24B800D5EAF0 /* XL_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_Header.h; sourceTree = "<group>"; };
+		5D4E61DC1F7A3A1600D5EAF0 /* XL_TouWenJian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_TouWenJian.h; sourceTree = "<group>"; };
+		5D4E61DD1F7A489800D5EAF0 /* Aishixi_JiaoShi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aishixi_JiaoShi.entitlements; sourceTree = "<group>"; };
 		5D5024BB1F70C6F700924CCD /* WarningBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningBox.h; sourceTree = "<group>"; };
 		5D5024BC1F70C6F700924CCD /* WarningBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningBox.m; sourceTree = "<group>"; };
 		5D5024BF1F70DFB600924CCD /* XL_FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XL_FMDB.h; sourceTree = "<group>"; };
@@ -78,8 +83,6 @@
 		5D549AC61F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KaoqInXiangqing_ViewController.m; sourceTree = "<group>"; };
 		5D549ACB1F7260F0001A92F4 /* FaBuGongGao_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaBuGongGao_ViewController.h; sourceTree = "<group>"; };
 		5D549ACC1F7260F0001A92F4 /* FaBuGongGao_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaBuGongGao_ViewController.m; sourceTree = "<group>"; };
-		5D549ACF1F72632A001A92F4 /* WangJiMiMa_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WangJiMiMa_ViewController.h; sourceTree = "<group>"; };
-		5D549AD01F72632A001A92F4 /* WangJiMiMa_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WangJiMiMa_ViewController.m; sourceTree = "<group>"; };
 		5D9CDCB71F70B7AB001C15C5 /* Color+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Color+Hex.h"; sourceTree = "<group>"; };
 		5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Color+Hex.m"; sourceTree = "<group>"; };
 		5DBE44B01F788D91001B6371 /* SheZhi_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheZhi_ViewController.h; sourceTree = "<group>"; };
@@ -142,6 +145,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5D4E61D71F7A245A00D5EAF0 /* AFNetWorking */ = {
+			isa = PBXGroup;
+			children = (
+				5D4E61DC1F7A3A1600D5EAF0 /* XL_TouWenJian.h */,
+				5D4E61DA1F7A24B800D5EAF0 /* XL_Header.h */,
+				5D4E61D81F7A248000D5EAF0 /* XL_WangLuo.h */,
+				5D4E61D91F7A248000D5EAF0 /* XL_WangLuo.m */,
+			);
+			name = AFNetWorking;
+			sourceTree = "<group>";
+		};
 		5D5024BA1F70C6EB00924CCD /* XL_HUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,7 +193,6 @@
 			children = (
 				5DEA43601F6FB2FC00486956 /* DengLu_ViewController.h */,
 				5DEA43611F6FB2FC00486956 /* DengLu_ViewController.m */,
-				5D549ACE1F726314001A92F4 /* 忘记密码 */,
 			);
 			name = "登陆相关";
 			sourceTree = "<group>";
@@ -279,18 +292,10 @@
 			name = "发布公告";
 			sourceTree = "<group>";
 		};
-		5D549ACE1F726314001A92F4 /* 忘记密码 */ = {
-			isa = PBXGroup;
-			children = (
-				5D549ACF1F72632A001A92F4 /* WangJiMiMa_ViewController.h */,
-				5D549AD01F72632A001A92F4 /* WangJiMiMa_ViewController.m */,
-			);
-			name = "忘记密码";
-			sourceTree = "<group>";
-		};
 		5D9CDCB61F70B754001C15C5 /* 自己封装 */ = {
 			isa = PBXGroup;
 			children = (
+				5D4E61D71F7A245A00D5EAF0 /* AFNetWorking */,
 				5D5024BE1F70DF9A00924CCD /* XL_FMDB */,
 				5D5024BA1F70C6EB00924CCD /* XL_HUD */,
 				5D9CDCBA1F70B7BB001C15C5 /* XL_Color */,
@@ -374,6 +379,7 @@
 		5DEA43591F6FB2FC00486956 /* Aishixi_JiaoShi */ = {
 			isa = PBXGroup;
 			children = (
+				5D4E61DD1F7A489800D5EAF0 /* Aishixi_JiaoShi.entitlements */,
 				5D5024C21F70DFFA00924CCD /* Controller */,
 				5D9CDCBB1F70B7CC001C15C5 /* 界面 */,
 				5D9CDCB61F70B754001C15C5 /* 自己封装 */,
@@ -489,6 +495,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = GP8BUACAG4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					5DEA436F1F6FB2FC00486956 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -607,10 +618,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4E61DB1F7A318100D5EAF0 /* XL_WangLuo.m in Sources */,
 				5D549AC71F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m in Sources */,
 				5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */,
 				5DBE44B61F789827001B6371 /* PingJia_ViewController.m in Sources */,
-				5D549AD11F72632A001A92F4 /* WangJiMiMa_ViewController.m in Sources */,
 				5D5024D81F70F44E00924CCD /* TabBar_ViewController.m in Sources */,
 				5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */,
 				5D5024E41F70FEF200924CCD /* GongGao_ViewController.m in Sources */,
@@ -776,10 +787,51 @@
 			baseConfigurationReference = 9C543ACD30E41B45EF6AE123 /* Pods-Aishixi_JiaoShi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				CODE_SIGN_ENTITLEMENTS = Aishixi_JiaoShi/Aishixi_JiaoShi.entitlements;
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = Aishixi_JiaoShi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"FMDB\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"SBJson\"",
+					"-l\"SDWebImage\"",
+					"-l\"jcore-ios-1.1.5\"",
+					"-l\"jpush-ios-3.0.6\"",
+					"-l\"resolv\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+					"-w",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GuoYun.Aishixi-JiaoShi";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -790,10 +842,51 @@
 			baseConfigurationReference = D1551CDA0E1B48377DA00260 /* Pods-Aishixi_JiaoShi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				CODE_SIGN_ENTITLEMENTS = Aishixi_JiaoShi/Aishixi_JiaoShi.entitlements;
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = Aishixi_JiaoShi/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"FMDB\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"SBJson\"",
+					"-l\"SDWebImage\"",
+					"-l\"jcore-ios-1.1.5\"",
+					"-l\"jpush-ios-3.0.6\"",
+					"-l\"resolv\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+					"\"UserNotifications\"",
+					"-w",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GuoYun.Aishixi-JiaoShi";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

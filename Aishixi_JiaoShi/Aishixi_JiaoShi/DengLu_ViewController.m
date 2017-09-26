@@ -8,8 +8,7 @@
 
 #import "DengLu_ViewController.h"
 #import "TabBar_ViewController.h"
-#import "WangJiMiMa_ViewController.h"
-#import "Color+Hex.h"
+#import "XL_TouWenJian.h"
 
 @interface DengLu_ViewController ()
 
@@ -29,22 +28,34 @@
     _mingView.layer.borderColor=[UIColor colorWithHexString:@"a0c3fd"].CGColor;
 }
 
-- (IBAction)ForgetPassword:(id)sender {
-    /*数据处理*/
-    
-    WangJiMiMa_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"wangjimima"];
-    /*数据传输*/
-    
-    [self presentViewController:Kao animated:YES completion:nil];
-//    [self.navigationController pushViewController:Kao animated:YES];
-}
-
 - (IBAction)Login_ShouDong:(id)sender {
-    /*数据处理*/
+    [self jiekou];
     
-    TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
-    /*数据传输*/
     
-    [self.navigationController pushViewController:Kao animated:YES];
+    
+}
+-(void)jiekou{
+    NSDictionary * did =[NSDictionary dictionaryWithObjectsAndKeys:@"thinkgem",@"userName",@"admin",@"passWord",@"2" ,@"userTpye",nil];
+    [WarningBox warningBoxModeIndeterminate:@"登陆中..." andView:self.view];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/user/logined" Rucan:did type:Post success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            /*数据处理*/
+            
+            
+            TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
+            /*数据传输*/
+            
+//            [self presentViewController:Kao animated:YES completion:^{
+            
+//            }];
+        }else{
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 @end

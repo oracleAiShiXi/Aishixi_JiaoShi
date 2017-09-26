@@ -7,8 +7,7 @@
 //
 
 #import "KaoqInXiangqing_ViewController.h"
-#import "Color+Hex.h"
-
+#import "XL_TouWenJian.h"
 @interface KaoqInXiangqing_ViewController ()
 
 @end

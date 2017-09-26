@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIView *miView;
 @property (weak, nonatomic) IBOutlet UITextField *Name;
 @property (weak, nonatomic) IBOutlet UITextField *Password;
-- (IBAction)ForgetPassword:(id)sender;
+//- (IBAction)ForgetPassword:(id)sender;
 - (IBAction)Login_ShouDong:(id)sender;
 @end
 
