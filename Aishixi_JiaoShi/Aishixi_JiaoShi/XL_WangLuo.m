@@ -18,16 +18,10 @@
     NSString *BizMethod=BizMetho;
     
     NSString *Url=[NSString stringWithFormat:@"%@%@",Waiwang,BizMethod];
-    
-    NSString *UserID=@"";
-    NSString *vaildToken=@"1";//传空或非空
-    NSString *accessToken=@"";//登陆不用传
     SBJson5Writer *writer=[[SBJson5Writer alloc] init];
-    
-    NSDictionary*BizParamStr=BizParamSt;
-    
+    NSDictionary*BizParamStr = BizParamSt;
     NSString *Rucan=[writer stringWithObject:BizParamStr];
-    NSDictionary *ChuanCan=[NSDictionary dictionaryWithObjectsAndKeys:Appkey,@"appkey",UserID,@"userid",vaildToken,@"vaildToken",accessToken,@"accessToken",Rucan,@"params", nil];
+    NSDictionary *ChuanCan=[NSDictionary dictionaryWithObjectsAndKeys:Appkey,@"appkey",Rucan,@"params", nil];
     AFHTTPSessionManager *manager=[AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/html", nil];
     

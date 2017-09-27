@@ -8,6 +8,7 @@
 
 #import "SheZhi_ViewController.h"
 #import "PingJia_ViewController.h"
+#import "XiuGai_ViewController.h"
 
 
 @interface SheZhi_ViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -44,7 +45,16 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellString];
     }
-    
+    UILabel * ming = [cell viewWithTag:10010];
+    if (indexPath.row == 0) {
+        ming.text = @"学生评价";
+    }else if (indexPath.row == 1){
+        ming.text = @"修改密码";
+    }else if (indexPath.row == 2){
+        
+    }else{
+        
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -58,11 +68,13 @@
         
         [self.navigationController pushViewController:a animated:YES];
     }else if (indexPath.row == 1){
+        XiuGai_ViewController *a = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"xiugai"];
         
+        [self.navigationController pushViewController:a animated:YES];
     }else if (indexPath.row == 2){
-        
+        //用户建议
     }else if (indexPath.row == 3){
-        
+        //使用帮助
     }else if (indexPath.row == 4){
         
     }

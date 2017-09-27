@@ -9,9 +9,11 @@
 #import "KaoQin_ViewController.h"
 #import "KaoqInXiangqing_ViewController.h"
 #import "SheZhi_ViewController.h"
-#import "Color+Hex.h"
+#import "XL_TouWenJian.h"
 
-@interface KaoQin_ViewController ()
+@interface KaoQin_ViewController (){
+    int  pageNo,pageSize;
+}
 
 @end
 
@@ -20,7 +22,61 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TableViewDelegate];
+
+    pageSize = 5;
+    pageNo = 1;
+    
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        //Call this Block When enter the refresh status automatically
+//    }];
+
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    
+    // Enter the refresh status immediately
+//    [self.tableView.mj_header beginRefreshing];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
+-(void)loadNewData{
+    pageNo = 1;
+    [self JieKou1];
+    [_tableView.mj_header endRefreshing];
+}
+-(void)loadMoreData{
+    pageNo += 1;
+    [self JieKou1];
+    [_tableView.mj_footer endRefreshing];
+}
+-(void)JieKou1{
+    
+}
+-(void)JieKou{
+    //
+    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+    NSString *userId = [user objectForKey:@"userId"];
+    //
+    NSString *officeId = @"";
+    //
+    NSString *professionId =@"";
+    //
+    NSString *classId =@"";
+    //
+    NSString *attendanceType =@"";
+    //
+    NSString *attendanceDate = @"";
+    //
+    NSString *attendanceStartTime =@"";
+    //
+    NSString *attendanceEndTime =@"";
+    
+    NSDictionary *did =[NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",attendanceType,@"attendanceType",attendanceDate,@"attendanceDate",attendanceStartTime,@"attendanceStartTime",attendanceEndTime,@"attendanceEndTime", nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/teacher/attendanceList" Rucan:did type:Post success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 #pragma mark ----TableViewDelegate
 -(void)TableViewDelegate{
     _tableView.delegate = self;

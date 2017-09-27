@@ -92,14 +92,14 @@
 }
 #pragma  mark -- 注册用户 （JPush）
 -(void)method{
-    NSString*tag=[[NSUserDefaults standardUserDefaults] objectForKey:@"mendian"];
-    NSSet *tags=[NSSet setWithObjects:tag, nil];
-    
-    NSString*alias=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
-    
-    [JPUSHService setTags:tags alias:alias fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias){
-        NSLog(@"\n%d\n%@\n%@",iResCode,iTags,iAlias);
-    }];
+//    NSString*tag=[[NSUserDefaults standardUserDefaults] objectForKey:@"mendian"];
+//    NSSet *tags=[NSSet setWithObjects:tag, nil];
+//    
+//    NSString*alias=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
+//    
+//    [JPUSHService setTags:tags alias:alias fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias){
+//        NSLog(@"\n%d\n%@\n%@",iResCode,iTags,iAlias);
+//    }];
 }
 #pragma mark -- 启动页接口
 -(void)jiekou{
