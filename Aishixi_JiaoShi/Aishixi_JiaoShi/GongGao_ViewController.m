@@ -68,10 +68,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (_SegShou_Fa.selectedSegmentIndex) {
         case 0:
-            [self ShouJianXiangQiang:indexPath];
+            [self ShouJianXiangQiang:indexPath :0];
             break;
         case 1:
-            [self FaJianXiangQiang:indexPath];
+            [self ShouJianXiangQiang:indexPath :1];
             break;
         default:
             break;
@@ -95,17 +95,23 @@
 }
 
 #pragma mark ----跳页方法
--(void)ShouJianXiangQiang:(NSIndexPath *)indexPath{
-    /*数据处理*/
-    
-    
-    
+-(void)ShouJianXiangQiang:(NSIndexPath *)indexPath :(int)a{
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;
     self.hidesBottomBarWhenPushed = YES;
     GongGaoXiangQing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"gonggaoxiangqing"];
     /*数据传输*/
-    
+    if (a == 0) {
+        Kao.titleX = @"收件详情";
+        
+        
+        
+    }else{
+        Kao.titleX = @"发件详情";
+        
+        
+        
+    }
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }

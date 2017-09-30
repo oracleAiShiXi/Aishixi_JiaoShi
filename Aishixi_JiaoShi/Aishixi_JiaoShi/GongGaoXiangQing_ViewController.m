@@ -16,22 +16,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"公告详情";
+    
+    self.navigationItem.title = _titleX;
+    [self JieKou];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)JieKou{
+    [self BuJu:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)BuJu:(NSDictionary *)dd{
+    _Title.text=@"vdsv";
+    _TextView.text = @"vdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadvvdsvsadv";
+    _FaBuRen.text = @"vdsvsadv";
+    _FaBuShiJian.text = @"vsvsv";
 }
-*/
-
 @end

@@ -31,24 +31,17 @@
 //    }];
 
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-    
-    // Enter the refresh status immediately
-//    [self.tableView.mj_header beginRefreshing];
-    
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
 -(void)loadNewData{
     pageNo = 1;
-    [self JieKou1];
+    [self JieKou];
     [_tableView.mj_header endRefreshing];
 }
 -(void)loadMoreData{
     pageNo += 1;
-    [self JieKou1];
+    [self JieKou];
     [_tableView.mj_footer endRefreshing];
-}
--(void)JieKou1{
-    
 }
 -(void)JieKou{
     //
@@ -69,7 +62,11 @@
     //
     NSString *attendanceEndTime =@"";
     
-    NSDictionary *did =[NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",attendanceType,@"attendanceType",attendanceDate,@"attendanceDate",attendanceStartTime,@"attendanceStartTime",attendanceEndTime,@"attendanceEndTime", nil];
+    NSString *_pageSize = [NSString stringWithFormat:@"%d",pageSize];
+    
+    NSString *_pageNo = [NSString stringWithFormat:@"%d",pageNo];
+    
+    NSDictionary *did =[NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",attendanceType,@"attendanceType",attendanceDate,@"attendanceDate",attendanceStartTime,@"attendanceStartTime",attendanceEndTime,@"attendanceEndTime",_pageSize,@"pageSize",_pageNo,@"pageNo", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/teacher/attendanceList" Rucan:did type:Post success:^(id responseObject) {
         NSLog(@"%@",responseObject);
     } failure:^(NSError *error) {

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface JinJiXiangQing_ViewController : UIViewController
-
+@property (nonatomic ,strong) NSString *sosId;
 @end

@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface GongGaoXiangQing_ViewController : UIViewController
+@property (nonatomic , strong) NSString * titleX;
+@property (weak, nonatomic) IBOutlet UILabel *Title;
+@property (weak, nonatomic) IBOutlet UILabel *TextView;
+
+@property (weak, nonatomic) IBOutlet UILabel *FaBuRen;
+@property (weak, nonatomic) IBOutlet UILabel *FaBuShiJian;
+
 
 @end

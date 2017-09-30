@@ -9,9 +9,11 @@
 #import "JinJi_ViewController.h"
 #import "JinJiXiangQing_ViewController.h"
 #import "SheZhi_ViewController.h"
-#import "Color+Hex.h"
-
-@interface JinJi_ViewController ()
+#import "XL_TouWenJian.h"
+@interface JinJi_ViewController (){
+    int  pageNo,pageSize,count;
+    NSMutableArray *sosList;
+}
 
 @end
 
@@ -20,8 +22,69 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TableViewDelegate];
-    
+    count = 0;
+    pageSize = 5;
+    pageNo = 1;
+    sosList = [[NSMutableArray alloc] init];
+    self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.TableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    [self JieKou];
 }
+-(void)loadNewData{
+    sosList = [[NSMutableArray alloc] init];
+    pageNo = 1;
+    [self JieKou];
+    [_TableView.mj_header endRefreshing];
+    self.TableView.mj_footer.hidden = NO;
+}
+-(void)loadMoreData{
+    if (pageNo * pageSize >= count) {
+        self.TableView.mj_footer.hidden = YES;
+    }else{
+        pageNo += 1;
+        [self JieKou];
+        [_TableView.mj_footer endRefreshing];
+    }
+}
+#pragma mark ----接口
+-(void)JieKou{
+    NSString * method = @"/teacher/sosList";
+    //请求页数
+    NSString * pageNo =@"1";
+    //请求条数
+    NSString * pageSize =@"5";
+    //用户Id
+    NSString * userId =@"1";
+    //所属单位
+    NSString * officeId =@"1505";
+    //专业
+    NSString * professionId =@"1002";
+    //班级
+    NSString * classId =@"1";
+    //选 年、月、周 的标识
+    NSString * createDate =@"1";
+    //开始时间
+    NSString * startTime =@"2017-09-27";
+    //结束时间
+    NSString * endTime =@"2017-09-29";
+    
+    NSDictionary * Rucan = [NSDictionary dictionaryWithObjectsAndKeys:pageNo,@"pageNo",pageSize,@"pageSize",userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime", nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            NSDictionary * data =[responseObject objectForKey:@"data"];
+            NSArray * aa=[data objectForKey:@"sosList"];
+            [sosList addObjectsFromArray:aa];
+            count = [[data objectForKey:@"count"] intValue];
+            NSLog(@"----%@,---%d",sosList,count);
+            
+            [_TableView reloadData];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
 #pragma mark -----TableViewDelegate----
 -(void)TableViewDelegate{
     _TableView.delegate = self;
@@ -48,19 +111,24 @@
     NSString *TpyeString = @"";
     
     image = [UIImage imageNamed:@"头像"];
-    NameString = @"王小明";
-    DiZhiString = @"哈尔滨香坊区红旗大街";
-    ShiJianString = @"2017-07-28";
-    if (1 == 1) {
-        TpyeString = @"未处理";
-        Tpye.textColor = [UIColor colorWithHexString:@"fe8192"];
-    }else if (1 == 2){
-        TpyeString = @"已处理";
-        Tpye.textColor = [UIColor colorWithHexString:@"74e471"];
-    }else{
-        TpyeString = @"处理中";
-        Tpye.textColor = [UIColor colorWithHexString:@"97bcfd"];
+    NSLog(@"%ld",(long)indexPath.section);
+    NameString = [NSString stringWithFormat:@"%@",[sosList[indexPath.section] objectForKey:@"nick"] !=nil ? [sosList[indexPath.section] objectForKey:@"nick"]:@""];
+    DiZhiString = [NSString stringWithFormat:@"%@",[sosList[indexPath.section] objectForKey:@"sosLocation"]!=nil ? [sosList[indexPath.section] objectForKey:@"sosLocation"]:@""];
+    ShiJianString =[NSString stringWithFormat:@"%@",[sosList[indexPath.section] objectForKey:@"sosTime"]!=nil ? [sosList[indexPath.section] objectForKey:@"sosTime"]:@""];
+    NSString * handleState = [sosList[indexPath.section] objectForKey:@"handleState"];
+    if (handleState!=nil) {
+        if ([handleState isEqual: @"1"]) {
+            TpyeString = @"已处理";
+            Tpye.textColor = [UIColor colorWithHexString:@"74e471"];
+        }else if ([[sosList[indexPath.section] objectForKey:@"handleState"]  isEqual: @"2"]){
+            TpyeString = @"未处理";
+            Tpye.textColor = [UIColor colorWithHexString:@"fe8192"];
+        }else{
+            TpyeString = @"处理中";
+            Tpye.textColor = [UIColor colorWithHexString:@"97bcfd"];
+        }
     }
+    
     
     TouXiang.image = image ;
     Name.text = NameString ;
@@ -81,7 +149,7 @@
     return 60;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 6;
+    return sosList.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
@@ -89,6 +157,7 @@
 -(void)TiaoYe:(NSIndexPath *)indexPath{
     /*数据处理*/
     
+    NSString* sosId = [sosList[indexPath.section] objectForKey:@"sosId"];
     
     
     /*TabBar 隐藏*/
@@ -96,7 +165,7 @@
     self.hidesBottomBarWhenPushed = YES;
     JinJiXiangQing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"jinjixiangqing"];
     /*数据传输*/
-    
+    Kao.sosId = sosId;
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
