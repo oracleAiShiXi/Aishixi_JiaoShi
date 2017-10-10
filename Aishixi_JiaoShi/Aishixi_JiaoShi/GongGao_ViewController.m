@@ -21,6 +21,7 @@
     [super viewDidLoad];
     [self TableViewDelegate];
     _SegShou_Fa.selectedSegmentIndex = 0;
+    _fa.hidden = YES;
 }
 #pragma mark ---TableViewDelegate
 -(void)TableViewDelegate{
@@ -69,9 +70,11 @@
     switch (_SegShou_Fa.selectedSegmentIndex) {
         case 0:
             [self ShouJianXiangQiang:indexPath :0];
+            
             break;
         case 1:
             [self ShouJianXiangQiang:indexPath :1];
+            
             break;
         default:
             break;
@@ -103,23 +106,44 @@
     /*数据传输*/
     if (a == 0) {
         Kao.titleX = @"收件详情";
-        
-        
-        
     }else{
         Kao.titleX = @"发件详情";
-        
-        
-        
     }
+//    Kao.inboxId = []
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
--(void)FaJianXiangQiang:(NSIndexPath *)indexPath{
-    /*数据处理*/
-    
-    
-    
+//-(void)FaJianXiangQiang:(NSIndexPath *)indexPath{
+//    /*数据处理*/
+//
+//
+//    
+//    /*TabBar 隐藏*/
+//    self.tabBarController.tabBar.hidden = YES;
+//    self.hidesBottomBarWhenPushed = YES;
+//    FaBuGongGao_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fabugonggao"];
+//    /*数据传输*/
+//
+//    [self.navigationController pushViewController:Kao animated:YES];
+//    self.hidesBottomBarWhenPushed = NO;
+//}
+#pragma mark ----SegmentControl点击方法;
+- (IBAction)FaShou:(id)sender {
+    UISegmentedControl * control = (UISegmentedControl *)sender;
+    switch (control.selectedSegmentIndex) {
+        case 0:
+            _fa.hidden = YES;
+            [_tableView reloadData];
+            break;
+        case 1:
+            _fa.hidden = NO;
+            [_tableView reloadData];
+            break;
+        default:
+            break;
+    }
+}
+- (IBAction)TiaoFaBu:(id)sender {
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;
     self.hidesBottomBarWhenPushed = YES;
@@ -129,22 +153,7 @@
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
-#pragma mark ----SegmentControl点击方法;
-- (IBAction)FaShou:(id)sender {
-    UISegmentedControl * control = (UISegmentedControl *)sender;
-    switch (control.selectedSegmentIndex) {
-        case 0:
-            
-            [_tableView reloadData];
-            break;
-        case 1:
-            
-            [_tableView reloadData];
-            break;
-        default:
-            break;
-    }
-}
+
 - (IBAction)ShezhiButton:(id)sender {
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;

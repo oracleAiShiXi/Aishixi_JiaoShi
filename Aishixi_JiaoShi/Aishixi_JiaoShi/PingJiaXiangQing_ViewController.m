@@ -43,10 +43,10 @@
     _ShiJian.text = @"2017-07-13 14:16:42";
     if(1 == 1){
         _Tpye.text =@"已评价";
-        _Tpye.textColor = @"8db5fb";
+        _Tpye.textColor = [UIColor colorWithHexString:@"8db5fb"];
     }else{
         _Tpye.text =@"未评价";
-        _Tpye.textColor = @"fe697c";
+        _Tpye.textColor = [UIColor colorWithHexString:@"fe697c"];
     }
    
 }

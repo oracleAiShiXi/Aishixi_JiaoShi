@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegShou_Fa;
 - (IBAction)FaShou:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *fa;
+- (IBAction)TiaoFaBu:(id)sender;
 
 - (IBAction)ShezhiButton:(id)sender;
 - (IBAction)ShaixuanButton:(id)sender;

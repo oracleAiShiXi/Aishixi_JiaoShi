@@ -699,6 +699,11 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="UJ8-6w-zmS"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="122" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王小明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pa-Rn-SNh">
                                                     <rect key="frame" x="68" y="8" width="110" height="25"/>
@@ -1043,7 +1048,7 @@
                                             <constraint firstAttribute="width" constant="45" id="gb0-X5-RHE"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cernerRadius">
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
@@ -1938,8 +1943,8 @@
                                             <constraint firstItem="lL8-cn-enJ" firstAttribute="top" secondItem="n6Z-in-GPO" secondAttribute="top" constant="10" id="yNP-LY-coO"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RlQ-zW-Nns">
-                                        <rect key="frame" x="8" y="61" width="359" height="493"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RlQ-zW-Nns">
+                                        <rect key="frame" x="8" y="61" width="359" height="303"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="shoujiancell" rowHeight="60" id="8v4-P3-3gR">
@@ -1999,14 +2004,36 @@
                                         </prototypes>
                                         <sections/>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOT-NE-bbE">
+                                        <rect key="frame" x="317" y="504" width="50" height="50"/>
+                                        <color key="backgroundColor" red="0.42134577039999999" green="0.6351476908" blue="0.99620801209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="DzS-iG-niA"/>
+                                            <constraint firstAttribute="height" constant="50" id="QSA-Cc-Ref"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="发布">
+                                            <color key="titleColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="25"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="TiaoFaBu:" destination="54u-Rx-n4c" eventType="touchUpInside" id="nar-ZY-xfA"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.92929863929748535" green="0.9293968677520752" blue="0.93338280916213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.92146831750869751" green="0.92162626981735229" blue="0.92145836353302002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kOT-NE-bbE" secondAttribute="trailing" constant="8" id="4cf-ab-yr1"/>
                                     <constraint firstItem="RlQ-zW-Nns" firstAttribute="leading" secondItem="XvS-3u-DDO" secondAttribute="leading" constant="8" id="P80-e9-HUT"/>
                                     <constraint firstItem="n6Z-in-GPO" firstAttribute="top" secondItem="XvS-3u-DDO" secondAttribute="top" id="QKw-ea-Rhj"/>
                                     <constraint firstAttribute="trailing" secondItem="n6Z-in-GPO" secondAttribute="trailing" id="VBe-wJ-SWk"/>
                                     <constraint firstItem="RlQ-zW-Nns" firstAttribute="top" secondItem="n6Z-in-GPO" secondAttribute="bottom" constant="1" id="Vuz-fq-CSp"/>
                                     <constraint firstAttribute="bottom" secondItem="RlQ-zW-Nns" secondAttribute="bottom" id="dDV-eo-gLs"/>
+                                    <constraint firstAttribute="bottom" secondItem="kOT-NE-bbE" secondAttribute="bottom" id="ncf-Rd-TJU"/>
                                     <constraint firstItem="n6Z-in-GPO" firstAttribute="leading" secondItem="XvS-3u-DDO" secondAttribute="leading" id="rZ6-T7-uAv"/>
                                     <constraint firstAttribute="trailing" secondItem="RlQ-zW-Nns" secondAttribute="trailing" constant="8" id="sJ7-94-I3a"/>
                                 </constraints>
@@ -2036,6 +2063,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="SegShou_Fa" destination="lL8-cn-enJ" id="8NP-6r-LVV"/>
+                        <outlet property="fa" destination="kOT-NE-bbE" id="BY9-PK-UOu"/>
                         <outlet property="tableView" destination="RlQ-zW-Nns" id="f60-8v-jEA"/>
                     </connections>
                 </viewController>
@@ -2147,12 +2175,27 @@
                     <view key="view" contentMode="scaleToFill" id="bH2-ma-fa5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QbI-i5-nmx">
+                                <rect key="frame" x="8" y="0.0" width="359" height="647"/>
+                                <color key="backgroundColor" red="0.94891661405563354" green="0.94907897710800171" blue="0.94890636205673218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92146831750869751" green="0.92162626981735229" blue="0.92145836353302002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QbI-i5-nmx" firstAttribute="top" secondItem="Odh-9l-ili" secondAttribute="bottom" id="0uD-w6-WUn"/>
+                            <constraint firstItem="gbN-Kt-VDZ" firstAttribute="top" secondItem="QbI-i5-nmx" secondAttribute="bottom" id="H0V-GA-TaD"/>
+                            <constraint firstAttribute="trailing" secondItem="QbI-i5-nmx" secondAttribute="trailing" constant="8" id="fqq-qc-B4T"/>
+                            <constraint firstItem="QbI-i5-nmx" firstAttribute="leading" secondItem="bH2-ma-fa5" secondAttribute="leading" constant="8" id="rcJ-aL-mht"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="TableView" destination="QbI-i5-nmx" id="eur-Cg-eJE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LNp-Xe-11h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="612"/>
+            <point key="canvasLocation" x="1808.8" y="611.24437781109452"/>
         </scene>
         <!--Xiu Gai View Controller-->
         <scene sceneID="Hux-tn-FlN">

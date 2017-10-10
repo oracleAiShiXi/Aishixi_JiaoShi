@@ -10,6 +10,7 @@
 
 @interface GongGaoXiangQing_ViewController : UIViewController
 @property (nonatomic , strong) NSString * titleX;
+@property (nonatomic , strong) NSString * inboxId;
 @property (weak, nonatomic) IBOutlet UILabel *Title;
 @property (weak, nonatomic) IBOutlet UILabel *TextView;
 

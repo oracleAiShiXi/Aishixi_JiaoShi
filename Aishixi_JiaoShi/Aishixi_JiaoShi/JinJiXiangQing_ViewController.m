@@ -9,8 +9,7 @@
 
 #import "JinJiXiangQing_ViewController.h"
 
-@interface JinJiXiangQing_ViewController ()
-
+@interface JinJiXiangQing_ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @end
 
 @implementation JinJiXiangQing_ViewController
@@ -21,4 +20,24 @@
     NSLog(@"%@",_sosId);
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 7;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 8;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 4;
+}
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    static NSString * cellString = @"hehe";
+//    UITableViewCell *cell =[]
+//
+//}
 @end

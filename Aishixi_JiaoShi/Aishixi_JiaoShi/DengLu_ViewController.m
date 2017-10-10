@@ -20,7 +20,7 @@
     [super viewDidLoad];
     [self JieMian];
     _Name.text = @"zls";
-    _Password.text = @"123456";
+    _Password.text = @"123456789";
     [self delegate];
 }
 -(void)delegate{
