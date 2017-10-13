@@ -10,4 +10,6 @@
 
 @interface JinJiXiangQing_ViewController : UIViewController
 @property (nonatomic ,strong) NSString *sosId;
+@property (weak, nonatomic) IBOutlet UITableView *table;
+
 @end
