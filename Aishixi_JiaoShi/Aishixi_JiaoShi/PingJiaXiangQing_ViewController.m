@@ -111,7 +111,6 @@
         _BadP.tintColor = [UIColor colorWithHexString:@"cfd2d2"];
         [_BadP setImage:[UIImage imageNamed:@"对号3"] forState:UIWindowLevelNormal];
     }
-    
     [_GoodP setTitle:@"好评" forState:UIControlStateNormal];
     _GoodP.titleEdgeInsets = UIEdgeInsetsMake(0,2,0,-2);
     _GoodP.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);

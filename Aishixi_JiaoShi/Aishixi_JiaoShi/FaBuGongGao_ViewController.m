@@ -10,7 +10,12 @@
 #import "XL_TouWenJian.h"
 
 @interface FaBuGongGao_ViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UITextViewDelegate,UITextFieldDelegate>{
-    int pan;
+    int pan,bian;
+    UITextView * tv;
+    NSString*tihuan;
+    NSString *jiao,*zhuan,*ban,*gou;
+    NSMutableArray * xuanzezhuangtai;
+    NSArray * jiaoArr,*zhuanArr,*banArr,*gouArr;
 }
 
 @end
@@ -20,11 +25,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"发布公告";
-    pan = 0;
+    pan = 0;bian = 0;tihuan = [NSString string];
     _TableView.delegate = self;
     _TableView.dataSource = self;
     _TableView.tableHeaderView.backgroundColor = [UIColor clearColor];
     _TableView.backgroundColor = [UIColor colorWithHexString:@""];
+    NSString * s1 = @"所属教学单位";
+    NSString * s2 = @"所属专业";
+    NSString * s3 = @"所属班级";
+    NSString * s4 = @"机构人员";
+    xuanzezhuangtai =[NSMutableArray arrayWithObjects:s1,s2,s3,s4, nil];
+    jiao = s1;zhuan = s2;ban = s3;gou = s4;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -34,6 +45,9 @@
     return 7;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 2) {
+        return 138;
+    }
     return 46;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -78,28 +92,54 @@
         [Pu addTarget:self action:@selector(DianZhong) forControlEvents:UIControlEventTouchUpInside];
         [Pu setTitle:@"普通" forState:UIControlStateNormal];
         Pu.titleEdgeInsets = UIEdgeInsetsMake(0,2,0,-2);
-        Pu.imageEdgeInsets = UIEdgeInsetsMake(0,-5,0,5);
+        Pu.imageEdgeInsets = UIEdgeInsetsMake(0,-2,0,2);
         [cell addSubview:Pu];
-        cell.backgroundColor =[UIColor clearColor];
+//        cell.backgroundColor =[UIColor clearColor];
     }else if (indexPath.section == 1){
-        UITextField * tt = [[UITextField alloc] initWithFrame:CGRectMake(8, 6, Width-32,32 )];
-        tt.delegate =self;
-        tt.placeholder = @"请输写公告主题";
+        UITextField * tf = [[UITextField alloc] initWithFrame:CGRectMake(8, 6, Width-32,32 )];
+        tf.delegate =self;
+        tf.placeholder = @"请输写公告主题";
+        [cell addSubview:tf];
     }else if (indexPath.section == 2){
-        UITextView * tt = [[UITextView alloc] initWithFrame:CGRectMake(8, 6, Width-32, 100)];
-        tt.delegate=self;
+        tv = [[UITextView alloc] initWithFrame:CGRectMake(8, 6, Width - 32, 130)];
+        tv.delegate=self;
+        tv.text = tihuan;
+        if (bian == 1) {
+            [tv becomeFirstResponder];
+        }
+        [cell addSubview:tv];
+        UIButton * bb = [[UIButton alloc] initWithFrame:CGRectMake(Width - 58, 88, 50, 50)];
+        [bb setImage:[UIImage imageNamed:@"编辑"] forState:UIControlStateNormal];
+        [bb addTarget:self action:@selector(BianJi) forControlEvents:UIControlEventTouchUpInside];
+        if (bian == 0) {
+            [cell addSubview:bb];
+        }
+    }else if (indexPath.section == 3){
+        UILabel * suo = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, Width - 120, 30)];
+        suo.text = jiao;
+        UILabel * xuan = [self xuanzetishi:jiao :indexPath];
+        [cell addSubview:xuan];
+        [cell addSubview:suo];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//右箭头
+    }else if (indexPath.section == 4){
+        UILabel * suo = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, Width - 120, 30)];
+        suo.text = zhuan;
+        UILabel * xuan = [self xuanzetishi:zhuan :indexPath];
+        [cell addSubview:xuan];
+        [cell addSubview:suo];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//右箭头
+    }else if (indexPath.section == 5){
+        UILabel * suo = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, Width - 120, 30)];
+        suo.text = ban;
+        UILabel * xuan = [self xuanzetishi:ban :indexPath];
+        [cell addSubview:xuan];
+        [cell addSubview:suo];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//右箭头
+    }else if (indexPath.section == 6){
         
     }
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-}
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-////    if (indexPath.section == 0) {
-//
-//        cell.backgroundColor = [UIColor clearColor];
-//        cell.backgroundView.backgroundColor = [UIColor clearColor];
-////    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
@@ -124,20 +164,47 @@
         case 6:
             
             break;
-        case 7:
-            
-            break;
         default:
             break;
     }
+}
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+    if (bian == 0) {
+        return NO;
+    }
+    return YES;
+}
+-(void)BianJi{
+    tihuan = tv.text;
+    if (bian == 0) {
+        bian = 1;
+    }else{
+        bian = 0;
+    }
+    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:2];
+    [_TableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 -(void)DianZhong{
     if (pan == 0) {
         pan = 1;
     }else{
         pan = 0;
+        [_TableView.superview endEditing:YES];
     }
     NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
     [_TableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+}
+-(UILabel *)xuanzetishi:(NSString *)ss :(NSIndexPath * )indexPath{
+    UILabel * xuan = [[UILabel alloc] initWithFrame:CGRectMake(Width-100, 8, 72, 30)];
+    xuan.textColor = [UIColor colorWithHexString:@"c8c8c8"];
+    if ([ss  isEqual: xuanzezhuangtai[indexPath.section-3]]) {
+        xuan.text = @"请选择";
+    }else{
+        xuan.text = @"已选择";
+    }
+    return xuan;
 }
 @end

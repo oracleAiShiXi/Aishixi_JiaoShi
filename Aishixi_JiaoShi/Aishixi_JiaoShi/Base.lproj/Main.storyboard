@@ -2004,22 +2004,15 @@
                                         </prototypes>
                                         <sections/>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOT-NE-bbE">
-                                        <rect key="frame" x="317" y="504" width="50" height="50"/>
-                                        <color key="backgroundColor" red="0.42134577039999999" green="0.6351476908" blue="0.99620801209999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kOT-NE-bbE">
+                                        <rect key="frame" x="302" y="481" width="65" height="65"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="DzS-iG-niA"/>
-                                            <constraint firstAttribute="height" constant="50" id="QSA-Cc-Ref"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="65" id="SSf-Zw-cW4"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="hf4-Zv-SWL"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="发布">
+                                        <state key="normal" image="aaaa">
                                             <color key="titleColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="TiaoFaBu:" destination="54u-Rx-n4c" eventType="touchUpInside" id="nar-ZY-xfA"/>
                                         </connections>
@@ -2028,12 +2021,12 @@
                                 <color key="backgroundColor" red="0.92146831750869751" green="0.92162626981735229" blue="0.92145836353302002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="kOT-NE-bbE" secondAttribute="trailing" constant="8" id="4cf-ab-yr1"/>
+                                    <constraint firstAttribute="bottom" secondItem="kOT-NE-bbE" secondAttribute="bottom" constant="8" id="DtY-Zg-nRh"/>
                                     <constraint firstItem="RlQ-zW-Nns" firstAttribute="leading" secondItem="XvS-3u-DDO" secondAttribute="leading" constant="8" id="P80-e9-HUT"/>
                                     <constraint firstItem="n6Z-in-GPO" firstAttribute="top" secondItem="XvS-3u-DDO" secondAttribute="top" id="QKw-ea-Rhj"/>
                                     <constraint firstAttribute="trailing" secondItem="n6Z-in-GPO" secondAttribute="trailing" id="VBe-wJ-SWk"/>
                                     <constraint firstItem="RlQ-zW-Nns" firstAttribute="top" secondItem="n6Z-in-GPO" secondAttribute="bottom" constant="1" id="Vuz-fq-CSp"/>
                                     <constraint firstAttribute="bottom" secondItem="RlQ-zW-Nns" secondAttribute="bottom" id="dDV-eo-gLs"/>
-                                    <constraint firstAttribute="bottom" secondItem="kOT-NE-bbE" secondAttribute="bottom" id="ncf-Rd-TJU"/>
                                     <constraint firstItem="n6Z-in-GPO" firstAttribute="leading" secondItem="XvS-3u-DDO" secondAttribute="leading" id="rZ6-T7-uAv"/>
                                     <constraint firstAttribute="trailing" secondItem="RlQ-zW-Nns" secondAttribute="trailing" constant="8" id="sJ7-94-I3a"/>
                                 </constraints>
@@ -2308,6 +2301,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="aaaa" width="48" height="48"/>
         <image name="专业" width="37" height="40"/>
         <image name="公告" width="23" height="31"/>
         <image name="头像" width="68" height="68"/>
