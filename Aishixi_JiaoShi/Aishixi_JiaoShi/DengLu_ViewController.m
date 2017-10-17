@@ -10,6 +10,8 @@
 #import "TabBar_ViewController.h"
 #import "XL_TouWenJian.h"
 
+#import "CeshiJieKou_ViewController.h"
+
 @interface DengLu_ViewController ()<UITextFieldDelegate>
 
 @end
@@ -47,7 +49,45 @@
     return YES;
 }
 - (IBAction)Login_ShouDong:(id)sender {
-    [self jiekou];
+//    [self jiekou];
+    
+#pragma mark  通用
+//    [CeshiJieKou_ViewController  jiekou1];
+//    [CeshiJieKou_ViewController  jiekou2];
+//    [CeshiJieKou_ViewController  jiekou3];
+//    [CeshiJieKou_ViewController  jiekou4];//500 评论 4
+#pragma mark  学生
+//    [CeshiJieKou_ViewController  jiekou5];
+//    [CeshiJieKou_ViewController  jiekou6];
+//    [CeshiJieKou_ViewController  jiekou7];
+//    [CeshiJieKou_ViewController  jiekou8];
+//    [CeshiJieKou_ViewController  jiekou9];
+//    [CeshiJieKou_ViewController  jiekou10];
+//    [CeshiJieKou_ViewController  jiekou11];//  学生考勤 8
+//    [CeshiJieKou_ViewController  jiekou12];
+//    [CeshiJieKou_ViewController  jiekou13];//  学生公告详情 10
+//    [CeshiJieKou_ViewController  jiekou14];//500  学生日记发布 15
+//    [CeshiJieKou_ViewController  jiekou15];
+//    [CeshiJieKou_ViewController  jiekou16];
+//    [CeshiJieKou_ViewController  jiekou17];
+//    [CeshiJieKou_ViewController  jiekou18];//  学生   信息修改保存 19
+
+#pragma mark 教师
+//    [CeshiJieKou_ViewController  jiekou19];
+//    [CeshiJieKou_ViewController  jiekou20];
+//    [CeshiJieKou_ViewController  jiekou21];
+//    [CeshiJieKou_ViewController  jiekou22];
+//    [CeshiJieKou_ViewController  jiekou23];
+//    [CeshiJieKou_ViewController  jiekou24];
+//    [CeshiJieKou_ViewController  jiekou25];
+//    [CeshiJieKou_ViewController  jiekou26];
+//    [CeshiJieKou_ViewController  jiekou27];
+//    [CeshiJieKou_ViewController  jiekou28];
+//    [CeshiJieKou_ViewController  jiekou29];
+//    [CeshiJieKou_ViewController  jiekou30];
+//    [CeshiJieKou_ViewController  jiekou31];
+//    [CeshiJieKou_ViewController  jiekou32];
+//    [CeshiJieKou_ViewController  jiekou33];
 }
 -(void)jiekou{
     TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];

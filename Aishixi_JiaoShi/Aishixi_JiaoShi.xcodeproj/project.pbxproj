@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D6AFE91212D46B86B2BD5E9 /* libPods-Aishixi_JiaoShi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */; };
+		5D0101AF1F945FA9003D9B33 /* CeshiJieKou_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0101AE1F945FA9003D9B33 /* CeshiJieKou_ViewController.m */; };
 		5D261E141F7B76B600724B6B /* XiuGai_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D261E131F7B76B600724B6B /* XiuGai_ViewController.m */; };
 		5D4E61DB1F7A318100D5EAF0 /* XL_WangLuo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E61D91F7A248000D5EAF0 /* XL_WangLuo.m */; };
 		5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024BC1F70C6F700924CCD /* WarningBox.m */; };
@@ -55,6 +56,8 @@
 
 /* Begin PBXFileReference section */
 		1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aishixi_JiaoShi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D0101AD1F945FA9003D9B33 /* CeshiJieKou_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeshiJieKou_ViewController.h; sourceTree = "<group>"; };
+		5D0101AE1F945FA9003D9B33 /* CeshiJieKou_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CeshiJieKou_ViewController.m; sourceTree = "<group>"; };
 		5D261E121F7B76B600724B6B /* XiuGai_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XiuGai_ViewController.h; sourceTree = "<group>"; };
 		5D261E131F7B76B600724B6B /* XiuGai_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XiuGai_ViewController.m; sourceTree = "<group>"; };
 		5D4E61D81F7A248000D5EAF0 /* XL_WangLuo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_WangLuo.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				5D5024D91F70FE7900924CCD /* 考勤管理 */,
 				5D5024D51F70F40500924CCD /* 标签栏Tab Bar */,
 				5D5024D41F70F3F900924CCD /* 登陆相关 */,
+				5D0101AD1F945FA9003D9B33 /* CeshiJieKou_ViewController.h */,
+				5D0101AE1F945FA9003D9B33 /* CeshiJieKou_ViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -640,6 +645,7 @@
 				5DBE44B61F789827001B6371 /* PingJia_ViewController.m in Sources */,
 				5D5024D81F70F44E00924CCD /* TabBar_ViewController.m in Sources */,
 				5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */,
+				5D0101AF1F945FA9003D9B33 /* CeshiJieKou_ViewController.m in Sources */,
 				5D5024E41F70FEF200924CCD /* GongGao_ViewController.m in Sources */,
 				5D549ACD1F7260F0001A92F4 /* FaBuGongGao_ViewController.m in Sources */,
 				5DBE44B21F788D91001B6371 /* SheZhi_ViewController.m in Sources */,
