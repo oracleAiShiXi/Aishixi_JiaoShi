@@ -58,7 +58,7 @@
      evaluateType 1 好评 2 中评 3 差评
      evaluatEdType 受评类型 1 企业 2 老师 3 学生
      */
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"3965",@"userId",@"14",@"edUserId",@"啦啦啦德玛西亚",@"content",@"1",@"evaluateType",@"3",@"evaluatEdType", nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"3965",@"userId",@"1",@"edUserId",@"啦啦啦德玛西亚",@"content",@"1",@"evaluateType",@"3",@"evaluatEdType", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"4、评价\n%@",responseObject);
     } failure:^(NSError *error) {
@@ -208,129 +208,124 @@
 }
 #pragma  mark  以下为教师端;
 +(void)jiekou20{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/attend/choice";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"5",@"userId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"21 教师筛选\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou21{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/attend/attendanceList";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"5",@"userId",@"0",@"pageNo",@"10",@"pageSize",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"22 教师考勤列表\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou22{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/attend/attendanceInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"attendanceId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"23.    教师考勤详情\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou23{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/attend/consulList";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"5",@"userId",@"0",@"pageNo",@"10",@"pageSize",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"24.    教师咨询列表\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou24{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/attend/consulInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1024",@"consulId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"25.    教师咨询详情\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou25{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/teacher/inboxList";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"1",@"type",@"1",@"leve",@"1",@"createDate",@"1",@"startTime",@"1",@"endTime",@"1",@"pageSize",@"1",@"pageNo",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"26.    教师公告通知收件箱，发件箱\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou26{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/teacher/inboxInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"inboxId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"27.    教师公告通知收件箱，发件箱详情\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou27{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/teacher/outboxPublic";
+    NSDictionary * dd = [NSDictionary dictionaryWithObjectsAndKeys:@"1002",@"userId",@"张三",@"userName", nil];
+    NSArray *officeList = [NSArray arrayWithObjects:dd, nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"4",@"userId",@"2",@"level",@"1",@"noticeTitle",@"1",@"noticeContent",@"1500",@"officeId",@"123456",@"officeName",@"1003",@"professionId",@"12355",@"professionName",@"1",@"companyName",@"1",@"companyTelephone",@"4",@"classId",@"5241",@"className",officeList,@"officeList",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"28.    教师公告通知发布\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou28{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/teacher/sosList";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"1505",@"officeId",@"1002",@"professionId",@"1",@"classId",@"1",@"createDate",@"2017-09-27",@"startTime",@"2017-09-29",@"endTime",@"1",@"pageNo",@"10",@"pageSize",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"29.    教师SOS列表\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou29{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/teacher/sosInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"15",@"sosId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"30.    教师SOS详情\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou30{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/teacher/handle";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"2",@"userId",@"13",@"sosId",@"处理结束二",@"handleContent",@"",@"handleStrTime",@"",@"handleEndTime",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"31.    教师SOS处理\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou31{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/teacher/getStudentList";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"1",@"pageNo",@"10",@"pageSize",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"32.    教师评价-获取学生列表\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 +(void)jiekou32{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
+    NSString * Method = @"/teacher/evaluateInfo";
+    //userId(Long):学生ID
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
+        NSLog(@"33.    教师评价详情\n%@",responseObject);
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
-+(void)jiekou33{
-    NSString * Method = @"/attend/userInfoSet";
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"1",@"userId",@"13888888888",@"mobilePhone",@"1",@"qqCode",@"1",@"wxCode",@"1",@"isInPost",@"1",@"money",@"1",@"companyIndustry",@"1",@"companyName",@"1",@"companyName",@"1",@"companyTelephone",@"1",@"postId",@"1",@"postName",@"1",@"location",@"1",@"address",@"1",@"urgentName",@"1",@"urgentTel",@"1",@"locationAll",@"1",@"addressAll",nil];
-    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"19 学生个人信息保存\n%@",responseObject);
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
-}
+
 @end

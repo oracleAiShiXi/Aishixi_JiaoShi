@@ -42,5 +42,5 @@
 +(void)jiekou30;
 +(void)jiekou31;
 +(void)jiekou32;
-+(void)jiekou33;
+
 @end

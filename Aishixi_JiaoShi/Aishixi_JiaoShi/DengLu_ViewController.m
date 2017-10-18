@@ -49,13 +49,13 @@
     return YES;
 }
 - (IBAction)Login_ShouDong:(id)sender {
-//    [self jiekou];
+    [self jiekou];
     
 #pragma mark  通用
 //    [CeshiJieKou_ViewController  jiekou1];
 //    [CeshiJieKou_ViewController  jiekou2];
 //    [CeshiJieKou_ViewController  jiekou3];
-//    [CeshiJieKou_ViewController  jiekou4];//500 评论 4
+//    [CeshiJieKou_ViewController  jiekou4];//  评论 4
 #pragma mark  学生
 //    [CeshiJieKou_ViewController  jiekou5];
 //    [CeshiJieKou_ViewController  jiekou6];
@@ -71,23 +71,23 @@
 //    [CeshiJieKou_ViewController  jiekou16];
 //    [CeshiJieKou_ViewController  jiekou17];
 //    [CeshiJieKou_ViewController  jiekou18];//  学生   信息修改保存 19
-
-#pragma mark 教师
 //    [CeshiJieKou_ViewController  jiekou19];
+    
+#pragma mark 教师
 //    [CeshiJieKou_ViewController  jiekou20];
 //    [CeshiJieKou_ViewController  jiekou21];
 //    [CeshiJieKou_ViewController  jiekou22];
 //    [CeshiJieKou_ViewController  jiekou23];
-//    [CeshiJieKou_ViewController  jiekou24];
+    [CeshiJieKou_ViewController  jiekou24];//25.教师咨询详情
 //    [CeshiJieKou_ViewController  jiekou25];
-//    [CeshiJieKou_ViewController  jiekou26];
+//    [CeshiJieKou_ViewController  jiekou26];//27.    教师公告通知收件箱，发件箱详情
 //    [CeshiJieKou_ViewController  jiekou27];
 //    [CeshiJieKou_ViewController  jiekou28];
-//    [CeshiJieKou_ViewController  jiekou29];
-//    [CeshiJieKou_ViewController  jiekou30];
+//    [CeshiJieKou_ViewController  jiekou29];//30.    教师SOS详情
+//    [CeshiJieKou_ViewController  jiekou30];//31.    教师SOS处理
 //    [CeshiJieKou_ViewController  jiekou31];
-//    [CeshiJieKou_ViewController  jiekou32];
-//    [CeshiJieKou_ViewController  jiekou33];
+//    [CeshiJieKou_ViewController  jiekou32];//33.    教师评价详情
+
 }
 -(void)jiekou{
     TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
