@@ -10,9 +10,11 @@
 #import "KaoqInXiangqing_ViewController.h"
 #import "SheZhi_ViewController.h"
 #import "XL_TouWenJian.h"
+#import "ShaiXuan_ViewController.h"
 
 @interface KaoQin_ViewController (){
     int  pageNo,pageSize;
+    NSDictionary * Dic;
 }
 
 @end
@@ -22,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TableViewDelegate];
-
+    Dic=[NSDictionary dictionary];
     pageSize = 5;
     pageNo = 1;
     
@@ -35,15 +37,15 @@
 }
 -(void)loadNewData{
     pageNo = 1;
-    [self JieKou];
+    [self JieKou:Dic];
     [_tableView.mj_header endRefreshing];
 }
 -(void)loadMoreData{
     pageNo += 1;
-    [self JieKou];
+    [self JieKou:Dic];
     [_tableView.mj_footer endRefreshing];
 }
--(void)JieKou{
+-(void)JieKou:(NSDictionary *)dic{
     //
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
@@ -153,8 +155,12 @@
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
-    
-   
+    ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
+    [self.navigationController pushViewController:Shai animated:NO];
+    Shai.block = ^(NSDictionary *dic) {
+        Dic = [NSDictionary dictionaryWithDictionary:dic];
+        [self JieKou:Dic];
+    };
 }
 
 - (IBAction)ShezhiButton:(id)sender {

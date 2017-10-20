@@ -78,7 +78,7 @@
 //    [CeshiJieKou_ViewController  jiekou21];
 //    [CeshiJieKou_ViewController  jiekou22];
 //    [CeshiJieKou_ViewController  jiekou23];
-    [CeshiJieKou_ViewController  jiekou24];//25.教师咨询详情
+//    [CeshiJieKou_ViewController  jiekou24];//25.教师咨询详情
 //    [CeshiJieKou_ViewController  jiekou25];
 //    [CeshiJieKou_ViewController  jiekou26];//27.    教师公告通知收件箱，发件箱详情
 //    [CeshiJieKou_ViewController  jiekou27];
