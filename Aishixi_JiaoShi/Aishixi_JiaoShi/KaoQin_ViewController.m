@@ -156,6 +156,7 @@
 
 - (IBAction)ShaixuanButton:(id)sender {
     ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
+    Shai.YeShai = 1;
     [self.navigationController pushViewController:Shai animated:NO];
     Shai.block = ^(NSDictionary *dic) {
         Dic = [NSDictionary dictionaryWithDictionary:dic];

@@ -11,5 +11,5 @@ typedef void (^ablock)(NSDictionary *dic);
 @interface ShaiXuan_ViewController : UIViewController
 @property (nonatomic, copy) ablock block;
 @property (weak, nonatomic) IBOutlet UITableView *TableView;
-
+@property (nonatomic,assign) int YeShai;
 @end
