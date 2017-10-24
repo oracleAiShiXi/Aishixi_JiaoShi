@@ -9,9 +9,14 @@
 #import "ZiXun_ViewController.h"
 #import "ZiXunXiangQing_ViewController.h"
 #import "SheZhi_ViewController.h"
-#import "Color+Hex.h"
+#import "XL_TouWenJian.h"
 
-@interface ZiXun_ViewController ()
+@interface ZiXun_ViewController (){
+    int  pageNo,pageSize,count;
+    NSDictionary * Dic;
+    NSMutableArray *consulList;
+    UIImageView * imageview;
+}
 
 @end
 
@@ -20,12 +25,81 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TableViewDelegate];
+    Dic=[NSDictionary dictionary];
+    consulList = [NSMutableArray array];
+    count = 0;
+    pageSize = 5;
+    pageNo = 1;
+    [self jiekou:nil];
+    self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.TableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+
+-(void)loadNewData{
+    consulList = [NSMutableArray array];
+    pageNo = 1;
+    [self jiekou:Dic];
+    [_TableView.mj_header endRefreshing];
+    _TableView.mj_footer.hidden =NO;
+}
+-(void)loadMoreData{
+    if (pageNo * pageSize < count) {
+        pageNo += 1;
+        [self jiekou:Dic];
+        [_TableView.mj_footer endRefreshing];
+    }else{
+        _TableView.mj_footer.hidden =YES;
+    }
+}
+-(void)jiekou:(NSDictionary *)dic{
+    NSString * Method = @"/attend/consulList";
+    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+    NSString *userId = [user objectForKey:@"userId"];
+    //
+    NSString *officeId = @"";
+    //
+    NSString *professionId =@"";
+    //
+    NSString *classId =@"";
+    //
+    NSString *consulType =@"";
+    //
+    NSString *reportState = @"";
+    //
+    NSString *consulStartTime =@"";
+    //
+    NSString *consulEndTime =@"";
+    NSNumber *_pageNo = [NSNumber numberWithInt:pageNo];
+    NSNumber *_pageSize = [NSNumber numberWithInt:pageSize];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",officeId,@"officeId",professionId,@"professionId",classId,@"classId",consulType,@"consulType",reportState,@"reportState",consulStartTime,@"consulStartTime",consulEndTime,@"consulEndTime",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"24.    教师咨询列表\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
+            NSDictionary *data = [responseObject objectForKey:@"data"];
+            [consulList addObjectsFromArray:[data objectForKey:@"consulList"]];
+            count = [[data objectForKey:@"count"] intValue];
+            if (consulList.count == 0) {
+                _TableView.hidden =YES;
+                imageview.hidden = NO;
+            }else{
+                _TableView.hidden =NO;
+                imageview.hidden = YES;
+                [_TableView reloadData];
+            }
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 #pragma mark -----TableViewDelegate
 -(void)TableViewDelegate{
     self.TableView.delegate = self;
     self.TableView.dataSource = self;
     self.TableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Width, Height)];
+    imageview.image =[UIImage imageNamed:@"试题背景"];
+    [self.view addSubview:imageview];
+    imageview.hidden = YES;
 }
 #pragma mark -----TableView---方法
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -48,26 +122,28 @@
     NSString * StateString = @"";
     
     image = [UIImage imageNamed:@"头像"];
-    NameString = @"王小明";
-    YerMonthString = @"2017-08-18";
-    TypeString =@"呵呵";
+    NameString = [consulList[indexPath.section] objectForKey:@"nick"];
+    NSString *guo =[consulList[indexPath.section] objectForKey:@"consulDate"];
+    NSArray * guoArr =[guo componentsSeparatedByString:@" "];
+    YerMonthString = guoArr[0];
+//    TypeString =[consulList[indexPath.section] objectForKey:@""];
     //判断咨询类型
-    if (indexPath.section == 0) {
+    if ([[consulList[indexPath.section] objectForKey:@"consulType"]  isEqual: @"1"]) {
         TypeString = @"岗位";
         Type.backgroundColor = [UIColor colorWithHexString:@"0ee6c8"];
     }
-    else if (indexPath.section == 1){
+    else if ([[consulList[indexPath.section] objectForKey:@"consulType"] isEqualToString:@"2"]){
         TypeString = @"请假";
         Type.backgroundColor = [UIColor colorWithHexString:@"fa9463"];
     }
-    else if (indexPath.section == 2){
+    else if ([[consulList[indexPath.section] objectForKey:@"consulType"] isEqual:@"3"]){
         TypeString = @"其他";
         Type.backgroundColor = [UIColor colorWithHexString:@"ffca27"];
     }
     //判断回复
-    if (indexPath.section == 0) {
+    if ([[consulList[indexPath.section] objectForKey:@"reportState"] isEqual: @"1"]) {
         StateString = @"已回复";
-    }else if (indexPath.section == 1){
+    }else if ([[consulList[indexPath.section] objectForKey:@"reportState"] isEqual: @"2"]){
         StateString = @"未回复";
     }
     
@@ -96,20 +172,21 @@
     return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return consulList.count;
 }
 #pragma mark -----跳页方法
 -(void)TiaoZhuan:(NSIndexPath *)indexPath{
     /*数据处理*/
-    
-    
+    NSString * ID = [consulList[indexPath.section] objectForKey:@"consulId"];
+    int Lala =[[consulList[indexPath.section] objectForKey:@"reportState"] intValue];
     
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;
     self.hidesBottomBarWhenPushed = YES;
     ZiXunXiangQing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zixunxiangqing"];
     /*数据传输*/
-    
+    Kao.ID=ID;
+    Kao.Lala = Lala;
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }

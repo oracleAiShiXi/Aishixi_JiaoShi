@@ -16,6 +16,7 @@
     NSString *jiao,*zhuan,*ban,*gou;
     NSMutableArray * xuanzezhuangtai;
     NSArray * jiaoArr,*zhuanArr,*banArr,*gouArr;
+    UITextField * GZT;
 }
 
 @end
@@ -96,10 +97,10 @@
         [cell addSubview:Pu];
 //        cell.backgroundColor =[UIColor clearColor];
     }else if (indexPath.section == 1){
-        UITextField * tf = [[UITextField alloc] initWithFrame:CGRectMake(8, 6, Width-32,32 )];
-        tf.delegate =self;
-        tf.placeholder = @"请输写公告主题";
-        [cell addSubview:tf];
+        GZT = [[UITextField alloc] initWithFrame:CGRectMake(8, 6, Width-32,32 )];
+        GZT.delegate =self;
+        GZT.placeholder = @"请输写公告主题";
+        [cell addSubview:GZT];
     }else if (indexPath.section == 2){
         tv = [[UITextView alloc] initWithFrame:CGRectMake(8, 6, Width - 32, 130)];
         tv.delegate=self;
@@ -162,7 +163,7 @@
             
             break;
         case 6:
-            
+            [self fabujiekou];
             break;
         default:
             break;
@@ -206,5 +207,27 @@
         xuan.text = @"已选择";
     }
     return xuan;
+}
+-(void)fabujiekou{
+    NSString * Method = @"/teacher/outboxPublic";
+    
+    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+    NSString *userId = [user objectForKey:@"userId"];
+    NSString *level = @"1";
+    if (pan == 0) {
+        level = @"1";
+    }else{
+        level = @"2";
+    }
+    NSString  *noticeTitle = GZT.text;
+    //发送对象;
+    NSDictionary * dd = [NSDictionary dictionaryWithObjectsAndKeys:@"1002",@"userId",@"张三",@"userName", nil];
+    NSArray *officeList = [NSArray arrayWithObjects:dd, nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",level,@"level",@"1",@"noticeTitle",noticeTitle,@"noticeContent",@"1500",@"officeId",@"123456",@"officeName",@"1003",@"professionId",@"12355",@"professionName",@"1",@"companyName",@"1",@"companyTelephone",@"4",@"classId",@"5241",@"className",officeList,@"officeList",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"28.    教师公告通知发布\n%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 @end

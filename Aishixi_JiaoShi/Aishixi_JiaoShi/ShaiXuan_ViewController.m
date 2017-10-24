@@ -10,8 +10,8 @@
 #import "XL_TouWenJian.h"
 
 @interface ShaiXuan_ViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    //       教学单位。      专业。         班级。       机构人员。
-    NSArray *officeList,*professionList,*classList,*userList,*jiemianArr;
+    //       教学单位。      专业。         班级。      机构人员。 界面显示
+    NSArray *officeList,*professionList,*classList,*userList,*jiemianArr,*biaotou;
     int hang;
     UILabel *zuobian,*youbian;
     NSMutableDictionary * dic;
@@ -29,13 +29,14 @@
     classList = [[NSArray alloc] init];
     userList = [[NSArray alloc] init];
     dic =[[NSMutableDictionary alloc] init];
+    biaotou = [NSArray arrayWithObjects:@"教学单位选择",@"院系选择",@"班级选择",@"人员选择", nil];
     [self Delegate];
     [self jiemian];
     [self JieKou];
     
-//    self.block(dic);
-//    [self.navigationController popViewControllerAnimated:NO];
-//    [self tan:officeList Key:@"officeName" Lable:_JiaoXueDanWei];
+    //    self.block(dic);
+    //    [self.navigationController popViewControllerAnimated:NO];
+    //    [self tan:officeList Key:@"officeName" Lable:_JiaoXueDanWei];
 }
 -(void)jiemian{
     jiemianArr = [NSArray array];
@@ -75,6 +76,8 @@
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             NSDictionary *data = [responseObject objectForKey:@"data"];
             officeList = [data objectForKey:@"officeList"];
+            NSDictionary * ss =[NSDictionary dictionaryWithObjectsAndKeys:@"jsahdjka",@"officeName", nil];
+            officeList = [NSArray arrayWithObject:ss];
             professionList = [data objectForKey:@"professionList"];
             classList = [data objectForKey:@"classList"];
             userList = [data objectForKey:@"userList"];
@@ -126,51 +129,63 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 8;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell =[_TableView dequeueReusableCellWithIdentifier:@"xuancell"];
-    UILabel * lable = [cell viewWithTag:501];
+    NSLog(@"%ld",(long)indexPath.section);
     if (_YeShai ==1) {
-        switch (indexPath.section) {
-            case 0:
-                [self tan:officeList Key:@"officeName" Lable:lable];
-                break;
-            case 1:
-                [self tan:officeList Key:@"officeName" Lable:lable];
-                break;
-            case 2:
-                [self tan:officeList Key:@"officeName" Lable:lable];
-                break;
-            case 3:
-                [self tan:officeList Key:@"officeName" Lable:lable];
-                break;
-            case 4:
-                [self tan:officeList Key:@"officeName" Lable:lable];
-                break;
-            case 5:
-                [self tan:officeList Key:@"officeName" Lable:lable];
-                break;
-            case 6:
-                [self tan:officeList Key:@"officeName" Lable:lable];
-                break;
-                
-            default:
-                break;
+        if (indexPath.section == 0) {
+            [self tan:officeList Key:@"officeName" Lable:youbian];
+        }else if (indexPath.section == 7){
+            self.block(dic);
+            [self.navigationController popViewControllerAnimated:NO];
         }
+        //        switch (indexPath.section) {
+        //            case 0:
+        //                [self tan:officeList Key:@"officeName" Lable:youbian];
+        //                break;
+        //            case 1:
+        //                [self tan:officeList Key:@"officeName" Lable:youbian];
+        //                break;
+        //            case 2:
+        //                [self tan:officeList Key:@"officeName" Lable:youbian];
+        //                break;
+        //            case 3:
+        //                [self tan:officeList Key:@"officeName" Lable:youbian];
+        //                break;
+        //            case 4:
+        //                [self tan:officeList Key:@"officeName" Lable:youbian];
+        //                break;
+        //            case 5:
+        //                [self tan:officeList Key:@"officeName" Lable:youbian];
+        //                break;
+        //            case 6:
+        //                [self tan:officeList Key:@"officeName" Lable:youbian];
+        //                break;
+        //            case 7:
+        //                self.block(dic);
+        //                [self.navigationController popViewControllerAnimated:NO];
+        //                break;
+        //            default:
+        //                break;
+        //        }
     }
     
 }
 -(void)tan:(NSArray *)Shu Key:(NSString*)Key Lable:(UILabel *)Lable{
-        UIAlertController * alert = [[UIAlertController alloc] init];
-        for (int i = 0; i < Shu.count; i++) {
-            NSUInteger index=i;
-            NSString * biaotou=[Shu[index]objectForKey:@"ruleName"];
-            UIAlertAction * action = [UIAlertAction actionWithTitle:biaotou style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                Lable.text=[Shu[index] objectForKey:Key];
-            }];
-            [alert addAction:action];
-        }
-        UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+    UIAlertController * alert = [[UIAlertController alloc] init];
+    for (int i = 0; i < Shu.count; i++) {
+        NSUInteger index=i;
+        NSString * biaotou=[Shu[index] objectForKey:Key];
+        UIAlertAction * action = [UIAlertAction actionWithTitle:biaotou style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            Lable.text=[Shu[index] objectForKey:Key];
+            NSLog(@"%@",Lable.text);
+            [dic setObject:Lable.text forKey:[NSString stringWithFormat:@"%@",Key]];
+            NSLog(@"%@",dic);
+        }];
+        [alert addAction:action];
+    }
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"取消", nil) style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 @end

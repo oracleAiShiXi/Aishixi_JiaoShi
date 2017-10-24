@@ -7,17 +7,19 @@
 //
 
 #import "ZiXunXiangQing_ViewController.h"
-#import "Color+Hex.h"
+#import "XL_TouWenJian.h"
 #import <Speech/Speech.h>
-#import "WarningBox.h"
+
 
 
 
 #define Width [[UIScreen mainScreen] bounds].size.width;
 
-@interface ZiXunXiangQing_ViewController ()<SFSpeechRecognizerDelegate,UITextViewDelegate>
+@interface ZiXunXiangQing_ViewController ()<SFSpeechRecognizerDelegate,UITextViewDelegate>{
+    NSString *reUserId;
+    NSMutableDictionary * data;
+}
 @property(nonatomic,strong)SFSpeechRecognizer * recognizer ;
-
 //语音识别功能
 @property(nonatomic,strong)SFSpeechAudioBufferRecognitionRequest * recognitionRequest ;
 @property(nonatomic,strong)SFSpeechRecognitionTask * recognitionTask ;
@@ -36,7 +38,25 @@
     
     [self delegate];
     [self KeyboardJianTing];
-    [self jiemianbuju:nil :0];
+    [self jiekou];
+    
+}
+-(void)jiekou{
+    NSString * Method = @"/attend/consulInfo";
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_ID,@"consulId",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"25.    教师咨询详情\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
+//            data =[NSMutableDictionary dictionary];
+            data = [NSMutableDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"consulInfo"]];
+            reUserId = [data objectForKey:@"userId"];
+            [self jiemianbuju:data :_Lala];
+        }else{
+            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 - (IBAction)anxia:(id)sender {
     NSLog(@"anxiale");
@@ -63,28 +83,32 @@
     _TextF.layer.cornerRadius = 10;
     _TextF.layer.masksToBounds = YES;
     _yuYinShu.backgroundColor =[UIColor colorWithHexString:@"6ca3fd"];
-    
-    
-    NSString *nameString=@"王小明";
-    NSString *XuehaoString = @"2012021385";
-    NSString *XuejieString = @"2018";
-    NSString *yuanxiString = @"电气工程及其自动化";
-    NSString *zhuanyeString = @"电气专业";
-    NSString *banjiString = @"电气15-16班";
-    NSString *shijianString = @"2017-06-28 12:24:36";
-    NSString *typeString =@"";
-    if (i == 0) {
-        typeString = @"岗位";
+    NSString *nameString=[dd objectForKey:@"nick"];
+    NSString *XuehaoString = [dd objectForKey:@"studentNumber"];
+    NSString *XuejieString = [dd objectForKey:@"classPeriod"];
+    NSString *yuanxiString = [dd objectForKey:@"officeName"];
+    NSString *zhuanyeString = [dd objectForKey:@"professionName"];
+    NSString *banjiString = [dd objectForKey:@"className"];
+    NSString *shijianString = [dd objectForKey:@"consulDate"];
+    NSString *typeString =[dd objectForKey:@"consulType"];
+    if ([typeString  isEqual: @"岗位变化"]) {
         _Type.textColor = [UIColor colorWithHexString:@"0ee6ca"];
-    }else if (i == 1){
-        typeString = @"请假";
+    }else if ([typeString  isEqual: @"请假"]){
+//        typeString = @"请假";
         _Type.textColor = [UIColor colorWithHexString:@"fa9463"];
     }else{
-        typeString = @"其他";
+//        typeString = @"其他类型";
         _Type.textColor = [UIColor colorWithHexString:@"fcca26"];
     }
-    NSString *shouString = @"老师啊,你说我长得帅不帅？说实话不能骗我、如果你骗我的话我就去自杀！！";
-    NSString *faSring =_TextF.text;
+    
+    NSString *shouString = [dd objectForKey:@"consulContext"];
+    NSString *faSring ;
+    if ([dd objectForKey:@"reportContext"] == nil) {
+        faSring =_TextF.text;
+    }else{
+        faSring =[dd objectForKey:@"reportContext"];
+    }
+    
     UIImage *shouImage = [UIImage imageNamed:@"头像"];
     UIImage *faImage = [UIImage imageNamed:@"头像"];
     
@@ -101,7 +125,7 @@
     _shouTouXiang.image = shouImage;
     _FaTouXiang.image = faImage;
     
-    if (i == 0) {
+    if (i == 2) {
         _faView.hidden = YES;
         _FaTouXiang.hidden = YES;
         _ZiView.hidden = NO;
@@ -141,9 +165,6 @@
     CGFloat y = CGRectGetMaxY(textView.frame);
     
     textView.frame = CGRectMake(textView.frame.origin.x, y- textView.contentSize.height,textView.frame.size.width, textView.contentSize.height);
-//    _ZiView.frame = CGRectMake(0, y- textView.contentSize.height-8,[[UIScreen mainScreen] bounds].size.width, textView.contentSize.height+16);
-//    _yuYinShu.frame = _yuYinShu.frame;
-    
 }
 -(void)tapAction{
     
@@ -250,8 +271,26 @@
     if ([self isEmpty:_TextF.text] ||_TextF.text.length == 0) {
         [WarningBox warningBoxModeText:@"请输入内容🐱" andView:self.view];
     }else{
-        [self jiemianbuju:nil :1];
+        [self fasongjiekou];
     }
+}
+-(void)fasongjiekou{
+    
+    NSString * Method = @"/consult/reConsul";
+    NSString *reportContent = _TextF.text;
+
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_ID,@"consulId",reUserId,@"reUserId",reportContent,@"reportContent",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"34.    教师咨询回复\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            [data setObject:_TextF.text forKey:@"reportContext"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self jiemianbuju:data :1];
+            });
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 //判断是否全是空格
 - (BOOL)isEmpty:(NSString *) str {

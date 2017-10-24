@@ -10,18 +10,90 @@
 #import "GongGaoXiangQing_ViewController.h"
 #import "FaBuGongGao_ViewController.h"
 #import "SheZhi_ViewController.h"
-
+#import "XL_TouWenJian.h"
 @interface GongGao_ViewController ()
-
+{
+    int  pageNo,pageSize,count;
+    NSDictionary * Dic;
+    NSMutableArray *inboxList ;
+    UIImageView * imageview;
+}
 @end
 
 @implementation GongGao_ViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"%@",Dic);
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TableViewDelegate];
     _SegShou_Fa.selectedSegmentIndex = 0;
     _fa.hidden = YES;
+    Dic=[NSDictionary dictionary];
+    inboxList  = [NSMutableArray array];
+    count = 0;
+    pageSize = 5;
+    pageNo = 1;
+    [self jiekou:nil];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+-(void)loadNewData{
+    inboxList  = [NSMutableArray array];
+    pageNo = 1;
+    [self jiekou:Dic];
+    [_tableView.mj_header endRefreshing];
+}
+-(void)loadMoreData{
+    if (pageNo * pageSize < count) {
+        pageNo += 1;
+        [self jiekou:Dic];
+        [_tableView.mj_footer endRefreshing];
+    }
+}
+-(void)jiekou:(NSDictionary*)dic{
+    NSString * Method = @"/teacher/inboxList";
+    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+    NSString *userId = [user objectForKey:@"userId"];
+    NSString * type = @"";
+    switch (_SegShou_Fa.selectedSegmentIndex) {
+        case 0:
+            type =@"1";
+            break;
+        case 1:
+            type =@"2";
+            break;
+        default:
+            break;
+    }
+    
+    //1shou  2fa
+    NSString * leve = @"";
+    NSString * createDate = @"";
+    NSString * startTime = @"";
+    NSString * endTime = @"";
+    NSNumber *_pageNo = [NSNumber numberWithInt:pageNo];
+    NSNumber *_pageSize = [NSNumber numberWithInt:pageSize];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",type,@"type",leve,@"leve",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime",_pageSize,@"pageSize",_pageNo,@"pageNo",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"26.    教师公告通知收件箱，发件箱\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
+            NSDictionary *data = [responseObject objectForKey:@"data"];
+            [inboxList addObjectsFromArray:[data objectForKey:@"inboxList"]];
+            count = [[data objectForKey:@"count"] intValue];
+            if (inboxList.count == 0) {
+                _tableView.hidden =YES;
+                imageview.hidden = NO;
+            }else{
+                _tableView.hidden =NO;
+                imageview.hidden = YES;
+                [_tableView reloadData];
+            }
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 #pragma mark ---TableViewDelegate
 -(void)TableViewDelegate{
@@ -46,14 +118,14 @@
     
     switch (_SegShou_Fa.selectedSegmentIndex) {
         case 0:
-            BiaoTiSring = @"新学期暑期实习公告";
+            BiaoTiSring = [inboxList[indexPath.section] objectForKey:@"inboxTitle"];
             image = [UIImage imageNamed:@"头像"];
-            ShiJianString =@"2017-06-18";
+            ShiJianString =[inboxList[indexPath.section] objectForKey:@"inboxTime"];
             break;
         case 1:
-            BiaoTiSring = @"我是发件箱～～～";
+            BiaoTiSring = [inboxList[indexPath.section] objectForKey:@"inboxTitle"];
             image = [UIImage imageNamed:@"头像"];
-            ShiJianString =@"2017-12-22";
+            ShiJianString =[inboxList[indexPath.section] objectForKey:@"inboxTime"];
             break;
         default:
             break;
@@ -94,7 +166,7 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return inboxList.count;
 }
 
 #pragma mark ----跳页方法
@@ -109,7 +181,7 @@
     }else{
         Kao.titleX = @"发件详情";
     }
-//    Kao.inboxId = []
+    Kao.inboxId = [inboxList[indexPath.section] objectForKey:@"inboxId"];
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
@@ -129,15 +201,18 @@
 //}
 #pragma mark ----SegmentControl点击方法;
 - (IBAction)FaShou:(id)sender {
+    inboxList = [NSMutableArray array];
     UISegmentedControl * control = (UISegmentedControl *)sender;
     switch (control.selectedSegmentIndex) {
         case 0:
             _fa.hidden = YES;
-            [_tableView reloadData];
+            [self jiekou:nil];
+            //            [_tableView reloadData];
             break;
         case 1:
             _fa.hidden = NO;
-            [_tableView reloadData];
+            [self jiekou:nil];
+            //            [_tableView reloadData];
             break;
         default:
             break;

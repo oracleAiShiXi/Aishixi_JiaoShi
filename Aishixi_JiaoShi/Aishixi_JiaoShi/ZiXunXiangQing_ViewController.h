@@ -30,8 +30,8 @@
 @property (weak, nonatomic) IBOutlet UITextView *TextF;
 
 
-
-
+@property (strong , nonatomic) NSString * ID;
+@property (assign , nonatomic) int  Lala;
 
 
 @end

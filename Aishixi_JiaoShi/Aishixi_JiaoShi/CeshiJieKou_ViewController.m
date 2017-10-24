@@ -327,5 +327,16 @@
         NSLog(@"%@",error);
     }];
 }
-
++(void)jiekou33{
+    NSString * Method = @"/consult/reConsul";
+    NSString *reportContent = @"hahahah";
+    
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:@"17",@"consulId",@"1",@"reUserId",reportContent,@"reportContent",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"34.    教师咨询回复\n%@",responseObject);
+       
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 @end

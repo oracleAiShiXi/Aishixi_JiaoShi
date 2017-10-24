@@ -18,6 +18,7 @@
     NSString *BizMethod=BizMetho;
     
     NSString *Url=[NSString stringWithFormat:@"%@%@",Waiwang,BizMethod];
+    NSLog(@"%@",Url);
     SBJson5Writer *writer=[[SBJson5Writer alloc] init];
     NSDictionary*BizParamStr = BizParamSt;
     NSString *Rucan=[writer stringWithObject:BizParamStr];

@@ -50,7 +50,6 @@
 }
 - (IBAction)Login_ShouDong:(id)sender {
     [self jiekou];
-    
 #pragma mark  通用
 //    [CeshiJieKou_ViewController  jiekou1];
 //    [CeshiJieKou_ViewController  jiekou2];
@@ -87,7 +86,7 @@
 //    [CeshiJieKou_ViewController  jiekou30];//31.    教师SOS处理
 //    [CeshiJieKou_ViewController  jiekou31];
 //    [CeshiJieKou_ViewController  jiekou32];//33.    教师评价详情
-
+//    [CeshiJieKou_ViewController  jiekou33];
 }
 -(void)jiekou{
     TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];

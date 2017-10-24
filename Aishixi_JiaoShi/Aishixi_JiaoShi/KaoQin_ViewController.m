@@ -13,37 +13,46 @@
 #import "ShaiXuan_ViewController.h"
 
 @interface KaoQin_ViewController (){
-    int  pageNo,pageSize;
+    int  pageNo,pageSize,count;
     NSDictionary * Dic;
+    NSMutableArray *attendanceList;
+    UIImageView * imageview;
 }
 
 @end
 
 @implementation KaoQin_ViewController
-
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"%@",Dic);
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TableViewDelegate];
     Dic=[NSDictionary dictionary];
+    attendanceList = [NSMutableArray array];
+    count = 0;
     pageSize = 5;
     pageNo = 1;
+    [self JieKou:nil];
     
-//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        //Call this Block When enter the refresh status automatically
-//    }];
-
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
 -(void)loadNewData{
+    attendanceList = [NSMutableArray array];
     pageNo = 1;
     [self JieKou:Dic];
     [_tableView.mj_header endRefreshing];
+    _tableView.mj_footer.hidden =NO;
 }
 -(void)loadMoreData{
-    pageNo += 1;
-    [self JieKou:Dic];
-    [_tableView.mj_footer endRefreshing];
+    if (pageNo * pageSize < count) {
+        pageNo += 1;
+        [self JieKou:Dic];
+        [_tableView.mj_footer endRefreshing];
+    }else{
+        _tableView.mj_footer.hidden =YES;
+    }
 }
 -(void)JieKou:(NSDictionary *)dic{
     //
@@ -69,8 +78,22 @@
     NSString *_pageNo = [NSString stringWithFormat:@"%d",pageNo];
     
     NSDictionary *did =[NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",attendanceType,@"attendanceType",attendanceDate,@"attendanceDate",attendanceStartTime,@"attendanceStartTime",attendanceEndTime,@"attendanceEndTime",_pageSize,@"pageSize",_pageNo,@"pageNo", nil];
-    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/teacher/attendanceList" Rucan:did type:Post success:^(id responseObject) {
+    
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/attend/attendanceList" Rucan:did type:Post success:^(id responseObject) {
         NSLog(@"%@",responseObject);
+        if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
+            NSDictionary *data = [responseObject objectForKey:@"data"];
+            [attendanceList addObjectsFromArray:[data objectForKey:@"attendanceList"]];
+            count = [[data objectForKey:@"count"] intValue];
+            if (attendanceList.count == 0) {
+                _tableView.hidden =YES;
+                imageview.hidden = NO;
+            }else{
+                _tableView.hidden =NO;
+                imageview.hidden = YES;
+                [_tableView reloadData];
+            }
+        }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
@@ -81,6 +104,10 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Width, Height)];
+    imageview.image =[UIImage imageNamed:@"试题背景"];
+    [self.view addSubview:imageview];
+    imageview.hidden = YES;
 }
 #pragma mark -----TableView---方法
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -102,16 +129,18 @@
     NSString * TimeString = @"";
     
     image = [UIImage imageNamed:@"头像"];
-    NameString = @"斌小狼";
-    YerMonthString = @"2017-09-28";
+    NameString = [attendanceList[indexPath.section] objectForKey:@"nick"];
+    NSString *guo =[attendanceList[indexPath.section] objectForKey:@"attendanceDate"];
+    NSArray *guoArr = [guo componentsSeparatedByString:@" "];
+    YerMonthString = guoArr[0];
     QianShiSring = @"签到时间:";
-    TimeString = @"08:57";
+    TimeString = guoArr[1];
     
     //异常
-    if (indexPath.section == 0) {
-        QianShi.textColor = [UIColor colorWithHexString:@""];
-        Time.textColor = [UIColor colorWithHexString:@""];
-    }
+//    if ([[attendanceList[indexPath.section] objectForKey:@"status"] isEqual:@"1"]) {
+//        QianShi.textColor = [UIColor colorWithHexString:@""];
+//        Time.textColor = [UIColor colorWithHexString:@""];
+//    }
     
     ImageView.image = image;
     Name.text = NameString;
@@ -130,7 +159,7 @@
     return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return attendanceList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5;
@@ -141,15 +170,13 @@
 #pragma mark ----跳页方法
 -(void)TiaoYeFangFa:(NSIndexPath *)indexPath{
     /*数据处理*/
-    
-    
-    
+     NSString * ID = [attendanceList[indexPath.section] objectForKey:@"attendanceId"];
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;
     self.hidesBottomBarWhenPushed = YES;
     KaoqInXiangqing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"kaoqinxiangqing"];
     /*数据传输*/
-    
+    Kao.ID=ID;
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
