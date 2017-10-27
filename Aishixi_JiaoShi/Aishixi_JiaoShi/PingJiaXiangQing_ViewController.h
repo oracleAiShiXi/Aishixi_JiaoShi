@@ -20,11 +20,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *GoodP;
 @property (weak, nonatomic) IBOutlet UIButton *CenterP;
 @property (weak, nonatomic) IBOutlet UIButton *BadP;
+@property (weak, nonatomic) IBOutlet UIButton *fabubutton;
 @property (weak, nonatomic) IBOutlet UITextView *TextView;
 - (IBAction)FaBu:(id)sender;
 - (IBAction)haoP:(id)sender;
 - (IBAction)zhongP:(id)sender;
 - (IBAction)chaP:(id)sender;
-
+@property (nonatomic, strong) NSString* studentId;
 
 @end

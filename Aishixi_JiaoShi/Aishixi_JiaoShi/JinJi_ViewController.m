@@ -9,10 +9,13 @@
 #import "JinJi_ViewController.h"
 #import "JinJiXiangQing_ViewController.h"
 #import "SheZhi_ViewController.h"
+#import "ShaiXuan_ViewController.h"
 #import "XL_TouWenJian.h"
+#import "XLDateCompare.h"
 @interface JinJi_ViewController (){
     int  pageNo,pageSize,count;
     NSMutableArray *sosList;
+    NSDictionary * Dic;
 }
 
 @end
@@ -25,6 +28,7 @@
     count = 0;
     pageSize = 5;
     pageNo = 1;
+    Dic=[NSDictionary dictionary];
     sosList = [[NSMutableArray alloc] init];
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.TableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
@@ -50,25 +54,26 @@
 -(void)JieKou{
     NSString * method = @"/teacher/sosList";
     //请求页数
-    NSString * pageNo =@"1";
+    NSNumber* _pageNo =[NSNumber numberWithInt:pageNo];
     //请求条数
-    NSString * pageSize =@"5";
+    NSNumber* _pageSize =[NSNumber numberWithInt:pageSize];
     //用户Id
-    NSString * userId =@"1";
+    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+    NSString *userId = [user objectForKey:@"userId"];
     //所属单位
-    NSString * officeId =@"1505";
+    NSString * officeId =@"";
     //专业
-    NSString * professionId =@"1002";
+    NSString * professionId =@"";
     //班级
-    NSString * classId =@"1";
+    NSString * classId =@"";
     //选 年、月、周 的标识
-    NSString * createDate =@"1";
+    NSString * createDate =@"";
     //开始时间
-    NSString * startTime =@"2017-09-27";
+    NSString * startTime =@"";
     //结束时间
-    NSString * endTime =@"2017-09-29";
+    NSString * endTime =@"";
     
-    NSDictionary * Rucan = [NSDictionary dictionaryWithObjectsAndKeys:pageNo,@"pageNo",pageSize,@"pageSize",userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime", nil];
+    NSDictionary * Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_pageNo,@"pageNo",_pageSize,@"pageSize",userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
@@ -181,5 +186,15 @@
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
+    self.tabBarController.tabBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = YES;
+    ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
+    Shai.YeShai = 4;
+    Shai.block = ^(NSDictionary *dic) {
+        Dic = [NSDictionary dictionaryWithDictionary:dic];
+        [self JieKou];
+    };
+    [self.navigationController pushViewController:Shai animated:NO];
+    self.hidesBottomBarWhenPushed = NO;
 }
 @end

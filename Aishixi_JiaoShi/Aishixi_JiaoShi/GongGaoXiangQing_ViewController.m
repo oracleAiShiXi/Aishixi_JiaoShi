@@ -26,7 +26,7 @@
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"27.    教师公告通知收件箱，发件箱详情\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
-            NSDictionary * data = [responseObject objectForKey:@"dat"];
+            NSDictionary * data = [responseObject objectForKey:@"data"];
             [self BuJu:data];
         }else{
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];

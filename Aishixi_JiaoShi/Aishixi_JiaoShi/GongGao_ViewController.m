@@ -10,6 +10,7 @@
 #import "GongGaoXiangQing_ViewController.h"
 #import "FaBuGongGao_ViewController.h"
 #import "SheZhi_ViewController.h"
+#import "ShaiXuan_ViewController.h"
 #import "XL_TouWenJian.h"
 @interface GongGao_ViewController ()
 {
@@ -241,5 +242,15 @@
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
+    self.tabBarController.tabBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = YES;
+    ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
+    Shai.YeShai = 3;
+    Shai.block = ^(NSDictionary *dic) {
+        Dic = [NSDictionary dictionaryWithDictionary:dic];
+        [self jiekou:Dic];
+    };
+    [self.navigationController pushViewController:Shai animated:NO];
+    self.hidesBottomBarWhenPushed = NO;
 }
 @end

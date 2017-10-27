@@ -9,6 +9,7 @@
 #import "ZiXun_ViewController.h"
 #import "ZiXunXiangQing_ViewController.h"
 #import "SheZhi_ViewController.h"
+#import "ShaiXuan_ViewController.h"
 #import "XL_TouWenJian.h"
 
 @interface ZiXun_ViewController (){
@@ -202,5 +203,15 @@
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
+    self.tabBarController.tabBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = YES;
+    ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
+    Shai.YeShai = 2;
+    Shai.block = ^(NSDictionary *dic) {
+        Dic = [NSDictionary dictionaryWithDictionary:dic];
+        [self jiekou:Dic];
+    };
+    [self.navigationController pushViewController:Shai animated:NO];
+    self.hidesBottomBarWhenPushed = NO;
 }
 @end

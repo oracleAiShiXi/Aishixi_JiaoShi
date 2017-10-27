@@ -33,7 +33,7 @@
     count = 0;
     pageSize = 5;
     pageNo = 1;
-    [self JieKou:nil];
+    [self JieKou];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
@@ -41,20 +41,20 @@
 -(void)loadNewData{
     attendanceList = [NSMutableArray array];
     pageNo = 1;
-    [self JieKou:Dic];
+    [self JieKou];
     [_tableView.mj_header endRefreshing];
     _tableView.mj_footer.hidden =NO;
 }
 -(void)loadMoreData{
     if (pageNo * pageSize < count) {
         pageNo += 1;
-        [self JieKou:Dic];
+        [self JieKou];
         [_tableView.mj_footer endRefreshing];
     }else{
         _tableView.mj_footer.hidden =YES;
     }
 }
--(void)JieKou:(NSDictionary *)dic{
+-(void)JieKou{
     //
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
@@ -182,13 +182,16 @@
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
+    self.tabBarController.tabBar.hidden = YES;
+    self.hidesBottomBarWhenPushed = YES;
     ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
     Shai.YeShai = 1;
-    [self.navigationController pushViewController:Shai animated:NO];
     Shai.block = ^(NSDictionary *dic) {
         Dic = [NSDictionary dictionaryWithDictionary:dic];
-        [self JieKou:Dic];
+        [self JieKou];
     };
+    [self.navigationController pushViewController:Shai animated:NO];
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (IBAction)ShezhiButton:(id)sender {

@@ -8,19 +8,47 @@
 
 #import "PingJia_ViewController.h"
 #import "PingJiaXiangQing_ViewController.h"
-#import "Color+Hex.h"
+#import "XL_TouWenJian.h"
 
-@interface PingJia_ViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface PingJia_ViewController ()<UITableViewDataSource,UITableViewDelegate>{
+    int  pageNo,pageSize,count;
+    NSMutableArray *studentList;
+}
 
 @end
 
 @implementation PingJia_ViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    studentList = [NSMutableArray array];
+    [self jiekou];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"评价";
+    count = 0;
+    pageSize = 5;
+    pageNo = 1;
     [self delegate];
+    self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    self.TableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+-(void)loadNewData{
+    studentList = [NSMutableArray array];
+    pageNo = 1;
+    [self jiekou];
+    [_TableView.mj_header endRefreshing];
+    self.TableView.mj_footer.hidden = NO;
+}
+-(void)loadMoreData{
+    if (pageNo * pageSize >= count) {
+        self.TableView.mj_footer.hidden = YES;
+    }else{
+        pageNo += 1;
+        [self jiekou];
+        [_TableView.mj_footer endRefreshing];
+    }
 }
 -(void)delegate{
     _TableView.delegate = self;
@@ -42,8 +70,9 @@
     NSString *TpyeString = @"";
     
     image = [UIImage imageNamed:@"02"];
-    NameString = @"王小明";
-    if (indexPath.section == 1) {
+    NameString = [studentList[indexPath.section] objectForKey:@"nick"];
+    int typ = [[studentList[indexPath.section] objectForKey:@"evaluateStatus"] intValue];
+    if (typ == 1) {
         TpyeString = @"已评价";
         Tpye.textColor = [UIColor colorWithHexString:@"8ed4ff"];
     }else{
@@ -56,7 +85,7 @@
     Tpye.text = TpyeString;
     
     
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -72,22 +101,32 @@
     return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return studentList.count;
 }
 -(void)TiaoYe:(NSIndexPath *)indexPath{
     PingJiaXiangQing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"pingjiaxiangqing"];
     /*数据传输*/
-    
+    Kao.studentId = [studentList[indexPath.section] objectForKey:@"userId"];
     [self.navigationController pushViewController:Kao animated:YES];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)jiekou{
+    NSString * Method = @"/teacher/getStudentList";
+    //用户Id
+    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+    NSString *userId = [user objectForKey:@"userId"];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"1",@"pageNo",@"10",@"pageSize",nil];
+    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        NSLog(@"32.    教师评价-获取学生列表\n%@",responseObject);
+        if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
+            NSDictionary * data =[responseObject objectForKey:@"data"];
+            NSArray * aa=[data objectForKey:@"studentList"];
+            [studentList addObjectsFromArray:aa];
+            count = [[data objectForKey:@"count"] intValue];
+            [_TableView reloadData];
+        }
+       
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
-*/
-
 @end

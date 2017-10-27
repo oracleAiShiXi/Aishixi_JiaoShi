@@ -24,6 +24,7 @@
 		5D549AC71F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549AC61F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m */; };
 		5D549ACD1F7260F0001A92F4 /* FaBuGongGao_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D549ACC1F7260F0001A92F4 /* FaBuGongGao_ViewController.m */; };
 		5D9CDCB91F70B7AB001C15C5 /* Color+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */; };
+		5DA2E9161F9F2F0E0059417D /* XLDateCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA2E9111F9F067D0059417D /* XLDateCompare.m */; };
 		5DBE44B21F788D91001B6371 /* SheZhi_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B11F788D91001B6371 /* SheZhi_ViewController.m */; };
 		5DBE44B61F789827001B6371 /* PingJia_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B51F789827001B6371 /* PingJia_ViewController.m */; };
 		5DBE44BA1F789F75001B6371 /* PingJiaXiangQing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B91F789F75001B6371 /* PingJiaXiangQing_ViewController.m */; };
@@ -92,6 +93,8 @@
 		5D549ACC1F7260F0001A92F4 /* FaBuGongGao_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaBuGongGao_ViewController.m; sourceTree = "<group>"; };
 		5D9CDCB71F70B7AB001C15C5 /* Color+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Color+Hex.h"; sourceTree = "<group>"; };
 		5D9CDCB81F70B7AB001C15C5 /* Color+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Color+Hex.m"; sourceTree = "<group>"; };
+		5DA2E9111F9F067D0059417D /* XLDateCompare.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLDateCompare.m; sourceTree = "<group>"; };
+		5DA2E9121F9F067D0059417D /* XLDateCompare.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XLDateCompare.h; sourceTree = "<group>"; };
 		5DBE44B01F788D91001B6371 /* SheZhi_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheZhi_ViewController.h; sourceTree = "<group>"; };
 		5DBE44B11F788D91001B6371 /* SheZhi_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheZhi_ViewController.m; sourceTree = "<group>"; };
 		5DBE44B41F789827001B6371 /* PingJia_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PingJia_ViewController.h; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 		5D9CDCB61F70B754001C15C5 /* 自己封装 */ = {
 			isa = PBXGroup;
 			children = (
+				5DA2E9101F9F065E0059417D /* TimeCom */,
 				5D4E61D71F7A245A00D5EAF0 /* AFNetWorking */,
 				5D5024BE1F70DF9A00924CCD /* XL_FMDB */,
 				5D5024BA1F70C6EB00924CCD /* XL_HUD */,
@@ -344,6 +348,15 @@
 				5DEA436B1F6FB2FC00486956 /* Info.plist */,
 			);
 			name = "界面";
+			sourceTree = "<group>";
+		};
+		5DA2E9101F9F065E0059417D /* TimeCom */ = {
+			isa = PBXGroup;
+			children = (
+				5DA2E9121F9F067D0059417D /* XLDateCompare.h */,
+				5DA2E9111F9F067D0059417D /* XLDateCompare.m */,
+			);
+			name = TimeCom;
 			sourceTree = "<group>";
 		};
 		5DBE44AF1F788AE3001B6371 /* 设置 */ = {
@@ -652,6 +665,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DA2E9161F9F2F0E0059417D /* XLDateCompare.m in Sources */,
 				5D4E61DB1F7A318100D5EAF0 /* XL_WangLuo.m in Sources */,
 				5D549AC71F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m in Sources */,
 				5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */,
