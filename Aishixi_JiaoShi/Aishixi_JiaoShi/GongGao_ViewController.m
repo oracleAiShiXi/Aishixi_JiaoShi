@@ -14,7 +14,7 @@
 #import "XL_TouWenJian.h"
 @interface GongGao_ViewController ()
 {
-    int  pageNo,pageSize,count;
+    int  pageNo,pageSize,count,panP;
     NSDictionary * Dic;
     NSMutableArray *inboxList ;
     UIImageView * imageview;
@@ -23,11 +23,14 @@
 
 @implementation GongGao_ViewController
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"%@",Dic);
+    if (panP == 0) {
+        [self loadNewData];
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self TableViewDelegate];
+    panP=1;
     _SegShou_Fa.selectedSegmentIndex = 0;
     _fa.hidden = YES;
     Dic=[NSDictionary dictionary];
@@ -42,6 +45,8 @@
 }
 -(void)loadNewData{
     inboxList  = [NSMutableArray array];
+    [_tableView reloadData];
+    Dic = [NSDictionary dictionary];
     pageNo = 1;
     [self jiekou:Dic];
     [_tableView.mj_header endRefreshing];
@@ -51,6 +56,8 @@
         pageNo += 1;
         [self jiekou:Dic];
         [_tableView.mj_footer endRefreshing];
+    }else{
+        _tableView.mj_footer.hidden =YES;
     }
 }
 -(void)jiekou:(NSDictionary*)dic{
@@ -70,13 +77,52 @@
     }
     
     //1shou  2fa
-    NSString * leve = @"";
-    NSString * createDate = @"";
-    NSString * startTime = @"";
-    NSString * endTime = @"";
+    NSString * level;
+    if ( [Dic objectForKey:@"level"] ==nil || NULL == [Dic objectForKey:@"level"] ||[[Dic objectForKey:@"level"] isEqual:[NSNull null]]) {
+        level =@"";
+    }else{
+        if ([[Dic objectForKey:@"level"]  isEqual: @"全部"]) {
+            level = @"";
+        }else if ([[Dic objectForKey:@"level"]  isEqual: @"重要"]) {
+            level = @"1";
+        }else if ([[Dic objectForKey:@"level"]  isEqual: @"普通"]) {
+            level = @"2";
+        }
+    }
+    NSString *startTime;
+    if ( [Dic objectForKey:@"handleStrTime"] ==nil || NULL == [Dic objectForKey:@"handleStrTime"] ||[[Dic objectForKey:@"handleStrTime"] isEqual:[NSNull null]]) {
+        startTime =@"";
+    }else{
+        startTime =[Dic objectForKey:@"handleStrTime"];
+    }
+    //
+    NSString *endTime ;
+    if ( [Dic objectForKey:@"handleEndTime"] ==nil || NULL == [Dic objectForKey:@"handleEndTime"] ||[[Dic objectForKey:@"handleEndTime"] isEqual:[NSNull null]]) {
+        endTime =@"";
+    }else{
+        endTime =[Dic objectForKey:@"handleEndTime"];
+    };
+    //attendanceDate   周期
+    NSString *createDate;
+    if ( [Dic objectForKey:@"attendanceDate"] ==nil || NULL == [Dic objectForKey:@"attendanceDate"] ||[[Dic objectForKey:@"attendanceDate"] isEqual:[NSNull null]]) {
+        createDate =@"";
+    }else{
+        if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"全部"]) {
+            createDate =@"";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前周"]) {
+            createDate =@"1";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前月"]) {
+            createDate =@"2";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前半年"]) {
+            createDate =@"3";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前年"]) {
+            createDate =@"4";
+        }
+
+    }
     NSNumber *_pageNo = [NSNumber numberWithInt:pageNo];
     NSNumber *_pageSize = [NSNumber numberWithInt:pageSize];
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",type,@"type",leve,@"leve",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime",_pageSize,@"pageSize",_pageNo,@"pageNo",nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",type,@"type",level,@"level",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime",_pageSize,@"pageSize",_pageNo,@"pageNo",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"26.    教师公告通知收件箱，发件箱\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
@@ -120,12 +166,16 @@
     switch (_SegShou_Fa.selectedSegmentIndex) {
         case 0:
             BiaoTiSring = [inboxList[indexPath.section] objectForKey:@"inboxTitle"];
-            image = [UIImage imageNamed:@"头像"];
+            if ([[inboxList[indexPath.section] objectForKey:@"level"]  isEqual: @"1"]) {
+                image = [UIImage imageNamed:@"zhongyao"];
+            }
             ShiJianString =[inboxList[indexPath.section] objectForKey:@"inboxTime"];
             break;
         case 1:
             BiaoTiSring = [inboxList[indexPath.section] objectForKey:@"inboxTitle"];
-            image = [UIImage imageNamed:@"头像"];
+            if ([[inboxList[indexPath.section] objectForKey:@"level"] isEqual: @"1"]) {
+                image = [UIImage imageNamed:@"zhongyao"];
+            }
             ShiJianString =[inboxList[indexPath.section] objectForKey:@"inboxTime"];
             break;
         default:
@@ -225,7 +275,7 @@
     self.hidesBottomBarWhenPushed = YES;
     FaBuGongGao_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fabugonggao"];
     /*数据传输*/
-    
+    panP = 0;
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
@@ -236,18 +286,21 @@
     self.hidesBottomBarWhenPushed = YES;
     SheZhi_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shezhi"];
     /*数据传输*/
-    
+    panP = 1;
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
     self.tabBarController.tabBar.hidden = YES;
-    self.hidesBottomBarWhenPushed = YES;
+    self.hidesBottomBarWhenPushed = YES;panP = 1;
     ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
     Shai.YeShai = 3;
     Shai.block = ^(NSDictionary *dic) {
         Dic = [NSDictionary dictionaryWithDictionary:dic];
+        inboxList  = [NSMutableArray array];
+        pageNo = 1;
+        _tableView.mj_footer.hidden =NO;
         [self jiekou:Dic];
     };
     [self.navigationController pushViewController:Shai animated:NO];

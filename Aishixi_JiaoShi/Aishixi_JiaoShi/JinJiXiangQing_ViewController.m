@@ -166,6 +166,7 @@
         JingW.text = [NSString stringWithFormat:@"经度纬度:%@",[data objectForKey:@"latlongitude"]];
         WeiZhi.text = [NSString stringWithFormat:@"地理位置:%@",[data objectForKey:@"sosLocation"]];
         NeiRong.text = [data objectForKey:@"sosContent"];
+        NeiRong.textColor = [UIColor colorWithHexString:@"354DF0"];
         if ([[data objectForKey:@"handleState"]  isEqual: @"1"]) {
             ChuLi.text = @"已处理";
             ChuLi.textColor = [UIColor colorWithHexString:@"74e471"];
@@ -219,7 +220,7 @@
             cell =[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellString];
         }
         UILabel * Ren = [cell viewWithTag:614];
-        Ren.text = [data objectForKey:@"userName"];
+        Ren.text = [data objectForKey:@"mobilePhone"];
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
         return cell;
     }else {
@@ -246,6 +247,10 @@
         }else if (indexPath.section == 5){
             NSLog(@"5");
             [self tijiao_jiekou];
+        }else if (indexPath.section == 4){
+           //拨打电话。[data objectForKey:@"mobilePhone"]
+            NSMutableString* str=[[NSMutableString alloc] initWithFormat:@"tel:%@",[data objectForKey:@"mobilePhone"]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }
     }
     
@@ -279,6 +284,7 @@
 }
 -(void)jiazai_jiekou{
     NSString * Method = @"/teacher/sosInfo";
+    
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_sosId,@"sosId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"30.    教师SOS详情\n%@",responseObject);

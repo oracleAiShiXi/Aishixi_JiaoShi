@@ -37,7 +37,7 @@
             _YuanXi.text = [data objectForKey:@"officeName"];
             _ZhuanYe.text = [data objectForKey:@"professionName"];
             _BanJi.text = [data objectForKey:@"className"];
-            NSString * guo =[data objectForKey:@"attendanceDate"];
+            NSString * guo =[data objectForKey:@"attendanceTime"];
             NSArray *guoArr =[guo componentsSeparatedByString:@" "];
             _ShiJian.text = guoArr[1];
             if ([[data objectForKey:@"attendanceType"]isEqual:@"2"]) {

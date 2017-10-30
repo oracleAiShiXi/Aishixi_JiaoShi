@@ -89,7 +89,7 @@
     NSString *yuanxiString = [dd objectForKey:@"officeName"];
     NSString *zhuanyeString = [dd objectForKey:@"professionName"];
     NSString *banjiString = [dd objectForKey:@"className"];
-    NSString *shijianString = [dd objectForKey:@"consulDate"];
+    NSString *shijianString = [dd objectForKey:@"consulTime"];
     NSString *typeString =[dd objectForKey:@"consulType"];
     if ([typeString  isEqual: @"岗位变化"]) {
         _Type.textColor = [UIColor colorWithHexString:@"0ee6ca"];

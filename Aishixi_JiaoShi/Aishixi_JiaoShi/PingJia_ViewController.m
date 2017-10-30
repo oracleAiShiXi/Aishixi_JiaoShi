@@ -20,6 +20,7 @@
 @implementation PingJia_ViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+    pageNo = 1;
     studentList = [NSMutableArray array];
     [self jiekou];
 }
@@ -28,7 +29,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"评价";
     count = 0;
-    pageSize = 5;
+    pageSize = 10;
     pageNo = 1;
     [self delegate];
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -36,6 +37,7 @@
 }
 -(void)loadNewData{
     studentList = [NSMutableArray array];
+    [_TableView reloadData];
     pageNo = 1;
     [self jiekou];
     [_TableView.mj_header endRefreshing];
@@ -114,7 +116,9 @@
     //用户Id
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",@"1",@"pageNo",@"10",@"pageSize",nil];
+    NSNumber *_pageNo = [NSNumber numberWithInt:pageNo];
+    NSNumber *_pageSize = [NSNumber numberWithInt:pageSize];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"32.    教师评价-获取学生列表\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {

@@ -16,6 +16,7 @@
     int  pageNo,pageSize,count;
     NSMutableArray *sosList;
     NSDictionary * Dic;
+    int panP ;
 }
 
 @end
@@ -28,14 +29,22 @@
     count = 0;
     pageSize = 5;
     pageNo = 1;
+    panP= 1 ;
     Dic=[NSDictionary dictionary];
     sosList = [[NSMutableArray alloc] init];
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.TableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     [self JieKou];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    if (panP == 0) {
+        [self loadNewData];
+    }
+}
 -(void)loadNewData{
     sosList = [[NSMutableArray alloc] init];
+    [_TableView reloadData];
+    Dic = [NSDictionary dictionary];
     pageNo = 1;
     [self JieKou];
     [_TableView.mj_header endRefreshing];
@@ -61,19 +70,77 @@
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
     //所属单位
-    NSString * officeId =@"";
-    //专业
-    NSString * professionId =@"";
-    //班级
-    NSString * classId =@"";
-    //选 年、月、周 的标识
-    NSString * createDate =@"";
-    //开始时间
-    NSString * startTime =@"";
-    //结束时间
-    NSString * endTime =@"";
+    NSString *officeId;
+    if ( [[Dic objectForKey:@"officeName"] objectForKey:@"id"] ==nil || NULL == [[Dic objectForKey:@"officeName"] objectForKey:@"id"] ||[ [[Dic objectForKey:@"officeName"] objectForKey:@"id"]  isEqual:[NSNull null]]) {
+        officeId =@"";
+    }else{
+        officeId = [[Dic objectForKey:@"officeName"] objectForKey:@"id"];
+    }
     
-    NSDictionary * Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_pageNo,@"pageNo",_pageSize,@"pageSize",userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime", nil];
+    //
+    NSString *professionId;
+    if ( [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"] ==nil || NULL == [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"] ||[ [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"]  isEqual:[NSNull null]]) {
+        professionId =@"";
+    }else{
+        professionId =[[Dic objectForKey:@"professionName"] objectForKey:@"professionId"];
+    }
+    
+    //
+    NSString *classId ;
+    if ( [[Dic objectForKey:@"className"] objectForKey:@"classId"] ==nil || NULL == [[Dic objectForKey:@"className"] objectForKey:@"classId"] ||[ [[Dic objectForKey:@"className"] objectForKey:@"classId"]  isEqual:[NSNull null]]) {
+        classId =@"";
+    }else{
+        classId =[[Dic objectForKey:@"className"] objectForKey:@"classId"];
+    }
+    //
+    NSString *handleState ;
+    if ( [Dic objectForKey:@"handleState"] ==nil || NULL == [Dic objectForKey:@"handleState"] ||[[Dic objectForKey:@"handleState"] isEqual:[NSNull null]]) {
+        handleState =@"";
+    }else{
+        if ([[Dic objectForKey:@"handleState"]  isEqual: @"全部"]) {
+            handleState = @"";
+        }else if ([[Dic objectForKey:@"handleState"]  isEqual: @"已处理"]){
+            handleState = @"1";
+        }else if ([[Dic objectForKey:@"handleState"]  isEqual: @"处理中"]){
+            handleState = @"2";
+        }else if ([[Dic objectForKey:@"handleState"]  isEqual: @"未处理"]){
+            handleState = @"3";
+        }
+        
+    }
+    //
+    NSString *createDate;
+    if ( [Dic objectForKey:@"attendanceDate"] ==nil || NULL == [Dic objectForKey:@"attendanceDate"] ||[[Dic objectForKey:@"attendanceDate"] isEqual:[NSNull null]]) {
+        createDate =@"";
+    }else{
+        if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"全部"]) {
+            createDate =@"";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前周"]) {
+            createDate =@"1";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前月"]) {
+            createDate =@"2";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前半年"]) {
+            createDate =@"3";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前年"]) {
+            createDate =@"4";
+        }
+    }
+    //
+    NSString *startTime ;
+    if ( [Dic objectForKey:@"handleStrTime"] ==nil || NULL == [Dic objectForKey:@"handleStrTime"] ||[[Dic objectForKey:@"handleStrTime"] isEqual:[NSNull null]]) {
+        startTime =@"";
+    }else{
+        startTime =[Dic objectForKey:@"handleStrTime"];
+    }
+    //
+    NSString *endTime ;
+    if ( [Dic objectForKey:@"handleEndTime"] ==nil || NULL == [Dic objectForKey:@"handleEndTime"] ||[[Dic objectForKey:@"handleEndTime"] isEqual:[NSNull null]]) {
+        endTime =@"";
+    }else{
+        endTime =[Dic objectForKey:@"handleEndTime"];
+    }
+    
+    NSDictionary * Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_pageNo,@"pageNo",_pageSize,@"pageSize",userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",handleState,@"handleState",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
@@ -125,7 +192,7 @@
         if ([handleState isEqual: @"1"]) {
             TpyeString = @"已处理";
             Tpye.textColor = [UIColor colorWithHexString:@"74e471"];
-        }else if ([[sosList[indexPath.section] objectForKey:@"handleState"]  isEqual: @"2"]){
+        }else if ([[sosList[indexPath.section] objectForKey:@"handleState"]  isEqual: @"3"]){
             TpyeString = @"未处理";
             Tpye.textColor = [UIColor colorWithHexString:@"fe8192"];
         }else{
@@ -163,7 +230,7 @@
     /*数据处理*/
     
     NSString* sosId = [sosList[indexPath.section] objectForKey:@"sosId"];
-    
+    panP = 0;
     
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;
@@ -180,18 +247,21 @@
     self.hidesBottomBarWhenPushed = YES;
     SheZhi_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shezhi"];
     /*数据传输*/
-    
+    panP=1;
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
     self.tabBarController.tabBar.hidden = YES;
-    self.hidesBottomBarWhenPushed = YES;
+    self.hidesBottomBarWhenPushed = YES;   panP=1;
     ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
     Shai.YeShai = 4;
     Shai.block = ^(NSDictionary *dic) {
         Dic = [NSDictionary dictionaryWithDictionary:dic];
+        sosList = [[NSMutableArray alloc] init];
+        pageNo = 1;
+        self.TableView.mj_footer.hidden = NO;
         [self JieKou];
     };
     [self.navigationController pushViewController:Shai animated:NO];

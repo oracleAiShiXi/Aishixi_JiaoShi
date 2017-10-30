@@ -13,7 +13,7 @@
 #import "XL_TouWenJian.h"
 
 @interface ZiXun_ViewController (){
-    int  pageNo,pageSize,count;
+    int  pageNo,pageSize,count,panP;
     NSDictionary * Dic;
     NSMutableArray *consulList;
     UIImageView * imageview;
@@ -30,15 +30,20 @@
     consulList = [NSMutableArray array];
     count = 0;
     pageSize = 5;
-    pageNo = 1;
+    pageNo = 1;panP=1;
     [self jiekou:nil];
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.TableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    if (panP == 0) {
+        [self loadNewData];
+    }
+}
 -(void)loadNewData{
     consulList = [NSMutableArray array];
     pageNo = 1;
+    Dic = [NSDictionary dictionary];
     [self jiekou:Dic];
     [_TableView.mj_header endRefreshing];
     _TableView.mj_footer.hidden =NO;
@@ -57,22 +62,91 @@
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
     //
-    NSString *officeId = @"";
+    NSString *officeId ;
+    if ( [[Dic objectForKey:@"officeName"] objectForKey:@"id"] ==nil || NULL == [[Dic objectForKey:@"officeName"] objectForKey:@"id"] ||[ [[Dic objectForKey:@"officeName"] objectForKey:@"id"]  isEqual:[NSNull null]]) {
+        officeId =@"";
+    }else{
+        officeId = [[Dic objectForKey:@"officeName"] objectForKey:@"id"];
+    }
+    NSString *professionId;
+    if ( [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"] ==nil || NULL == [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"] ||[ [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"]  isEqual:[NSNull null]]) {
+        professionId =@"";
+    }else{
+        professionId =[[Dic objectForKey:@"professionName"] objectForKey:@"professionId"];
+    }
+    
     //
-    NSString *professionId =@"";
+    NSString *classId ;
+    if ( [[Dic objectForKey:@"className"] objectForKey:@"classId"] ==nil || NULL == [[Dic objectForKey:@"className"] objectForKey:@"classId"] ||[ [[Dic objectForKey:@"className"] objectForKey:@"classId"]  isEqual:[NSNull null]]) {
+        classId =@"";
+    }else{
+        classId =[[Dic objectForKey:@"className"] objectForKey:@"classId"];
+    }
     //
-    NSString *classId =@"";
+    NSString *consulType ;
+    if ( [Dic objectForKey:@"consulType"] ==nil || NULL == [Dic objectForKey:@"consulType"] ||[[Dic objectForKey:@"consulType"] isEqual:[NSNull null]]) {
+        consulType =@"";
+    }else{
+        if ([[Dic objectForKey:@"consulType"]  isEqual: @"全部"]) {
+            consulType = @"";
+        }else if ([[Dic objectForKey:@"consulType"]  isEqual: @"岗位"]) {
+            consulType = @"1";
+        }else if ([[Dic objectForKey:@"consulType"]  isEqual: @"请假"]) {
+            consulType = @"2";
+        }else if ([[Dic objectForKey:@"consulType"]  isEqual: @"其他"]) {
+            consulType = @"3";
+        }
+//        consulType =[Dic objectForKey:@"consulType"];
+    }
     //
-    NSString *consulType =@"";
+    NSString *reportState;
+    if ( [Dic objectForKey:@"reportState"] ==nil || NULL == [Dic objectForKey:@"reportState"] ||[[Dic objectForKey:@"reportState"] isEqual:[NSNull null]]) {
+        reportState =@"";
+    }else{
+        if ([[Dic objectForKey:@"reportState"] isEqual:@"全部"]) {
+            reportState = @"";
+        }else if ([[Dic objectForKey:@"reportState"] isEqual:@"已回复"]){
+            reportState = @"1";
+        }else if ([[Dic objectForKey:@"reportState"] isEqual:@"未回复"]){
+            reportState = @"2";
+        }
+//        reportState =[Dic objectForKey:@"reportState"];
+    }
     //
-    NSString *reportState = @"";
+    NSString *consulStartTime;
+    if ( [Dic objectForKey:@"handleStrTime"] ==nil || NULL == [Dic objectForKey:@"handleStrTime"] ||[[Dic objectForKey:@"handleStrTime"] isEqual:[NSNull null]]) {
+        consulStartTime =@"";
+    }else{
+        consulStartTime =[Dic objectForKey:@"handleStrTime"];
+    }
     //
-    NSString *consulStartTime =@"";
-    //
-    NSString *consulEndTime =@"";
+    NSString *consulEndTime ;
+    if ( [Dic objectForKey:@"handleEndTime"] ==nil || NULL == [Dic objectForKey:@"handleEndTime"] ||[[Dic objectForKey:@"handleEndTime"] isEqual:[NSNull null]]) {
+        consulEndTime =@"";
+    }else{
+        consulEndTime =[Dic objectForKey:@"handleEndTime"];
+    };
+    //attendanceDate   周期
+    NSString *consulDate;
+    if ( [Dic objectForKey:@"attendanceDate"] ==nil || NULL == [Dic objectForKey:@"attendanceDate"] ||[[Dic objectForKey:@"attendanceDate"] isEqual:[NSNull null]]) {
+        consulDate =@"";
+    }else{
+        if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"全部"]) {
+            consulDate =@"";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前周"]) {
+            consulDate =@"1";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前月"]) {
+            consulDate =@"2";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前半年"]) {
+            consulDate =@"3";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前年"]) {
+            consulDate =@"4";
+        }
+//        consulDate =[Dic objectForKey:@"attendanceDate"];
+    }
     NSNumber *_pageNo = [NSNumber numberWithInt:pageNo];
     NSNumber *_pageSize = [NSNumber numberWithInt:pageSize];
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",officeId,@"officeId",professionId,@"professionId",classId,@"classId",consulType,@"consulType",reportState,@"reportState",consulStartTime,@"consulStartTime",consulEndTime,@"consulEndTime",nil];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",officeId,@"officeId",professionId,@"professionId",classId,@"classId",consulType,@"consulType",reportState,@"reportState",consulStartTime,@"consulStartTime",consulEndTime,@"consulEndTime",consulDate,@"consulDate",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"24.    教师咨询列表\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
@@ -124,7 +198,7 @@
     
     image = [UIImage imageNamed:@"头像"];
     NameString = [consulList[indexPath.section] objectForKey:@"nick"];
-    NSString *guo =[consulList[indexPath.section] objectForKey:@"consulDate"];
+    NSString *guo =[consulList[indexPath.section] objectForKey:@"consulTime"];
     NSArray * guoArr =[guo componentsSeparatedByString:@" "];
     YerMonthString = guoArr[0];
 //    TypeString =[consulList[indexPath.section] objectForKey:@""];
@@ -180,7 +254,7 @@
     /*数据处理*/
     NSString * ID = [consulList[indexPath.section] objectForKey:@"consulId"];
     int Lala =[[consulList[indexPath.section] objectForKey:@"reportState"] intValue];
-    
+    panP = 0;
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;
     self.hidesBottomBarWhenPushed = YES;
@@ -197,18 +271,21 @@
     self.hidesBottomBarWhenPushed = YES;
     SheZhi_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shezhi"];
     /*数据传输*/
-    
+    panP = 1;
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
     self.tabBarController.tabBar.hidden = YES;
-    self.hidesBottomBarWhenPushed = YES;
+    self.hidesBottomBarWhenPushed = YES;panP = 1;
     ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
     Shai.YeShai = 2;
     Shai.block = ^(NSDictionary *dic) {
         Dic = [NSDictionary dictionaryWithDictionary:dic];
+        consulList = [NSMutableArray array];
+        pageNo = 1;
+        _TableView.mj_footer.hidden =NO;
         [self jiekou:Dic];
     };
     [self.navigationController pushViewController:Shai animated:NO];

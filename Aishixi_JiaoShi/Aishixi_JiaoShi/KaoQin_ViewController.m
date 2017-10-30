@@ -40,6 +40,8 @@
 }
 -(void)loadNewData{
     attendanceList = [NSMutableArray array];
+    [_tableView reloadData];
+    Dic=[NSDictionary dictionary];
     pageNo = 1;
     [self JieKou];
     [_tableView.mj_header endRefreshing];
@@ -59,19 +61,73 @@
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
     //
-    NSString *officeId = @"";
+    NSString *officeId;
+    if ( [[Dic objectForKey:@"officeName"] objectForKey:@"id"] ==nil || NULL == [[Dic objectForKey:@"officeName"] objectForKey:@"id"] ||[ [[Dic objectForKey:@"officeName"] objectForKey:@"id"]  isEqual:[NSNull null]]) {
+        officeId =@"";
+    }else{
+        officeId = [[Dic objectForKey:@"officeName"] objectForKey:@"id"];
+    }
+    
     //
-    NSString *professionId =@"";
+    NSString *professionId;
+    if ( [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"] ==nil || NULL == [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"] ||[ [[Dic objectForKey:@"professionName"] objectForKey:@"professionId"]  isEqual:[NSNull null]]) {
+        professionId =@"";
+    }else{
+        professionId =[[Dic objectForKey:@"professionName"] objectForKey:@"professionId"];
+    }
+    
     //
-    NSString *classId =@"";
+    NSString *classId ;
+    if ( [[Dic objectForKey:@"className"] objectForKey:@"classId"] ==nil || NULL == [[Dic objectForKey:@"className"] objectForKey:@"classId"] ||[ [[Dic objectForKey:@"className"] objectForKey:@"classId"]  isEqual:[NSNull null]]) {
+        classId =@"";
+    }else{
+        classId =[[Dic objectForKey:@"className"] objectForKey:@"classId"];
+    }
     //
-    NSString *attendanceType =@"";
+    NSString *attendanceType ;
+    if ( [Dic objectForKey:@"attendanceType"] ==nil || NULL == [Dic objectForKey:@"attendanceType"] ||[[Dic objectForKey:@"attendanceType"] isEqual:[NSNull null]]) {
+        attendanceType =@"";
+    }else{
+        if ([[Dic objectForKey:@"attendanceType"]  isEqual: @"全部"]) {
+            attendanceType = @"";
+        }else if ([[Dic objectForKey:@"attendanceType"]  isEqual: @"正常"]){
+            attendanceType = @"1";
+        }else if ([[Dic objectForKey:@"attendanceType"]  isEqual: @"异常"]){
+            attendanceType = @"2";
+        }
+        
+    }
     //
-    NSString *attendanceDate = @"";
+    NSString *attendanceDate;
+    if ( [Dic objectForKey:@"attendanceDate"] ==nil || NULL == [Dic objectForKey:@"attendanceDate"] ||[[Dic objectForKey:@"attendanceDate"] isEqual:[NSNull null]]) {
+        attendanceDate =@"";
+    }else{
+        if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"全部"]) {
+            attendanceDate =@"";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前周"]) {
+            attendanceDate =@"1";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前月"]) {
+            attendanceDate =@"2";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前半年"]) {
+            attendanceDate =@"3";
+        }else if ([[Dic objectForKey:@"attendanceDate"]  isEqual: @"当前年"]) {
+            attendanceDate =@"4";
+        }
+    }
     //
-    NSString *attendanceStartTime =@"";
+    NSString *attendanceStartTime ;
+    if ( [Dic objectForKey:@"handleStrTime"] ==nil || NULL == [Dic objectForKey:@"handleStrTime"] ||[[Dic objectForKey:@"handleStrTime"] isEqual:[NSNull null]]) {
+        attendanceStartTime =@"";
+    }else{
+        attendanceStartTime =[Dic objectForKey:@"handleStrTime"];
+    }
     //
-    NSString *attendanceEndTime =@"";
+    NSString *attendanceEndTime ;
+    if ( [Dic objectForKey:@"handleEndTime"] ==nil || NULL == [Dic objectForKey:@"handleEndTime"] ||[[Dic objectForKey:@"handleEndTime"] isEqual:[NSNull null]]) {
+        attendanceEndTime =@"";
+    }else{
+        attendanceEndTime =[Dic objectForKey:@"handleEndTime"];
+    }
     
     NSString *_pageSize = [NSString stringWithFormat:@"%d",pageSize];
     
@@ -130,7 +186,7 @@
     
     image = [UIImage imageNamed:@"头像"];
     NameString = [attendanceList[indexPath.section] objectForKey:@"nick"];
-    NSString *guo =[attendanceList[indexPath.section] objectForKey:@"attendanceDate"];
+    NSString *guo =[attendanceList[indexPath.section] objectForKey:@"attendanceTime"];
     NSArray *guoArr = [guo componentsSeparatedByString:@" "];
     YerMonthString = guoArr[0];
     QianShiSring = @"签到时间:";
@@ -188,6 +244,10 @@
     Shai.YeShai = 1;
     Shai.block = ^(NSDictionary *dic) {
         Dic = [NSDictionary dictionaryWithDictionary:dic];
+        _tableView.mj_footer.hidden =NO;
+        attendanceList = [NSMutableArray array];
+        //    [_tableView reloadData];
+        pageNo = 1;
         [self JieKou];
     };
     [self.navigationController pushViewController:Shai animated:NO];
