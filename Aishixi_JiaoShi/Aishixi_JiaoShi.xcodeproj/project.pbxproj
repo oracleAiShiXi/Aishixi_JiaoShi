@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D6AFE91212D46B86B2BD5E9 /* libPods-Aishixi_JiaoShi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */; };
 		5D0101AF1F945FA9003D9B33 /* CeshiJieKou_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0101AE1F945FA9003D9B33 /* CeshiJieKou_ViewController.m */; };
+		5D0AC6F61FA96160009A4A78 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0AC6F51FA95E75009A4A78 /* MyCollectionViewCell.m */; };
 		5D261E141F7B76B600724B6B /* XiuGai_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D261E131F7B76B600724B6B /* XiuGai_ViewController.m */; };
 		5D4E61DB1F7A318100D5EAF0 /* XL_WangLuo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D4E61D91F7A248000D5EAF0 /* XL_WangLuo.m */; };
 		5D5024BD1F70C6F700924CCD /* WarningBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5024BC1F70C6F700924CCD /* WarningBox.m */; };
@@ -60,6 +61,8 @@
 		1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aishixi_JiaoShi.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D0101AD1F945FA9003D9B33 /* CeshiJieKou_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeshiJieKou_ViewController.h; sourceTree = "<group>"; };
 		5D0101AE1F945FA9003D9B33 /* CeshiJieKou_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CeshiJieKou_ViewController.m; sourceTree = "<group>"; };
+		5D0AC6F41FA95E75009A4A78 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
+		5D0AC6F51FA95E75009A4A78 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		5D261E121F7B76B600724B6B /* XiuGai_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XiuGai_ViewController.h; sourceTree = "<group>"; };
 		5D261E131F7B76B600724B6B /* XiuGai_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XiuGai_ViewController.m; sourceTree = "<group>"; };
 		5D4E61D81F7A248000D5EAF0 /* XL_WangLuo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XL_WangLuo.h; sourceTree = "<group>"; };
@@ -155,6 +158,15 @@
 				1D2DF7F52143D9D1A8DFF9C4 /* libPods-Aishixi_JiaoShi.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5D0AC6F31FA95E4F009A4A78 /* 人员多选 */ = {
+			isa = PBXGroup;
+			children = (
+				5D0AC6F41FA95E75009A4A78 /* MyCollectionViewCell.h */,
+				5D0AC6F51FA95E75009A4A78 /* MyCollectionViewCell.m */,
+			);
+			name = "人员多选";
 			sourceTree = "<group>";
 		};
 		5D261E111F7B769000724B6B /* 修改密码 */ = {
@@ -319,6 +331,7 @@
 		5D9CDCB61F70B754001C15C5 /* 自己封装 */ = {
 			isa = PBXGroup;
 			children = (
+				5D0AC6F31FA95E4F009A4A78 /* 人员多选 */,
 				5DA2E9101F9F065E0059417D /* TimeCom */,
 				5D4E61D71F7A245A00D5EAF0 /* AFNetWorking */,
 				5D5024BE1F70DF9A00924CCD /* XL_FMDB */,
@@ -665,6 +678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D0AC6F61FA96160009A4A78 /* MyCollectionViewCell.m in Sources */,
 				5DA2E9161F9F2F0E0059417D /* XLDateCompare.m in Sources */,
 				5D4E61DB1F7A318100D5EAF0 /* XL_WangLuo.m in Sources */,
 				5D549AC71F725FA2001A92F4 /* KaoqInXiangqing_ViewController.m in Sources */,

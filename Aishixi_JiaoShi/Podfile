@@ -9,4 +9,6 @@ pod 'JPush'
 pod ‘MBProgressHUD’
 pod ‘FMDB’
 pod ‘MJRefresh’
+pod ‘Masonry’
+
 end
