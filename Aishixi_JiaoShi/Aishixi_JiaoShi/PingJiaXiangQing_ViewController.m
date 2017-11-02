@@ -30,13 +30,13 @@
     //userId(Long):学生ID
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_studentId,@"userId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"33.    教师评价详情\n%@",responseObject);
+//        NSLog(@"33.    教师评价详情\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             data =[responseObject objectForKey:@"data"];
             [self jiemianbuju:data];
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 - (IBAction)FaBu:(id)sender {
@@ -63,13 +63,13 @@
         NSString *userId = [user objectForKey:@"userId"];
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_studentId,@"edUserId",_TextView.text,@"content",evaluateType,@"evaluateType",@"3",@"evaluatEdType", nil];
         [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-            NSLog(@"4、评价\n%@",responseObject);
+//            NSLog(@"4、评价\n%@",responseObject);
             if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
                 [self fanhui];
             }
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.navigationController.view];
         } failure:^(NSError *error) {
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
         
     }

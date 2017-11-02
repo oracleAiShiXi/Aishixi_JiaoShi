@@ -94,7 +94,7 @@
     [WarningBox warningBoxModeIndeterminate:@"数据连接中..." andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"21 教师筛选\n%@",responseObject);
+//        NSLog(@"21 教师筛选\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             NSDictionary *data = [responseObject objectForKey:@"data"];
             //教学
@@ -109,7 +109,7 @@
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -165,7 +165,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%ld",(long)indexPath.section);
+//    NSLog(@"%ld",(long)indexPath.section);
     if (_YeShai ==1) {
         if (indexPath.section == 0) {
             [self tan:officeList Key:@"officeName" :@"0" Lable:youbian];

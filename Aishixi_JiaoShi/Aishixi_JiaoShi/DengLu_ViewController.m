@@ -9,6 +9,7 @@
 #import "DengLu_ViewController.h"
 #import "TabBar_ViewController.h"
 #import "XL_TouWenJian.h"
+#import "AppDelegate.h"
 
 #import "CeshiJieKou_ViewController.h"
 
@@ -107,7 +108,8 @@
             
             TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
             /*数据传输*/
-            
+            //登陆成功后重新注册一次极光的标签和别名
+            [[AppDelegate appDelegate] method];
             [self presentViewController:Kao animated:YES completion:^{
             
             }];

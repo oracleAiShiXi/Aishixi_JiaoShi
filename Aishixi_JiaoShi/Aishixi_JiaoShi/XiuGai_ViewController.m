@@ -39,9 +39,9 @@
     
     NSDictionary * dd = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",oldPassword,@"oldPassword",@"2",@"userType",newPassword,@"newPassword", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/user/setPassword" Rucan:dd type:Post success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
     
 }

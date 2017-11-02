@@ -142,13 +142,13 @@
     
     NSDictionary * Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_pageNo,@"pageNo",_pageSize,@"pageSize",userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",handleState,@"handleState",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             NSDictionary * data =[responseObject objectForKey:@"data"];
             NSArray * aa=[data objectForKey:@"sosList"];
             [sosList addObjectsFromArray:aa];
             count = [[data objectForKey:@"count"] intValue];
-            NSLog(@"----%@,---%d",sosList,count);
+//            NSLog(@"----%@,---%d",sosList,count);
             
             [_TableView reloadData];
         }

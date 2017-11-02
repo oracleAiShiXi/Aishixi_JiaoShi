@@ -120,7 +120,7 @@
     NSNumber *_pageSize = [NSNumber numberWithInt:pageSize];
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"32.    教师评价-获取学生列表\n%@",responseObject);
+//        NSLog(@"32.    教师评价-获取学生列表\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             NSDictionary * data =[responseObject objectForKey:@"data"];
             NSArray * aa=[data objectForKey:@"studentList"];
@@ -130,7 +130,7 @@
         }
        
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+//        NSLog(@"%@",error);
     }];
 }
 @end

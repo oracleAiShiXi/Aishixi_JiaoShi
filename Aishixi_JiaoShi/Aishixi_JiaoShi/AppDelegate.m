@@ -11,7 +11,7 @@
 #import <JPUSHService.h>
 
 
-#define appkey @"cd464cd9e89279cf591d1314"
+#define appkey @"ae09c6cdae9db765b0e8ad17"
 #define channell @""
 #define isProduction 0
 
@@ -27,36 +27,43 @@
 
 @implementation AppDelegate
 @synthesize lunchView;
-
+static AppDelegate *_appDelegate;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
-#ifdef NSFoundationVersionNumber_iOS_9_x_Max
-        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
-        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
-        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-#endif
-    } else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-        //可以添加自定义categories
-        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
-                                                          UIUserNotificationTypeSound |
-                                                          UIUserNotificationTypeAlert)
-                                              categories:nil];
-    } else {
-        //categories 必须为nil
-        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                          UIRemoteNotificationTypeSound |
-                                                          UIRemoteNotificationTypeAlert)
-                                              categories:nil];
+    //Required
+    //notice: 3.0.0及以后版本注册可以这样写，也可以继续用之前的注册方式
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        // 可以添加自定义categories
+        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
     }
-    // 注册获得device Token
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
-        if (resCode == 0) {
-            [self method];
-        }else{
-            
-        }
-    }];
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+
+    [JPUSHService setupWithOption:launchOptions appKey:appkey
+                          channel:channell
+                 apsForProduction:isProduction
+            advertisingIdentifier:nil];
+    
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+//#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+//        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+//        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+//        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+//#endif
+//    } else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+//        //可以添加自定义categories
+//        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+//                                                          UIUserNotificationTypeSound |
+//                                                          UIUserNotificationTypeAlert)
+//                                              categories:nil];
+//    } else {
+//        //categories 必须为nil
+//        [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+//                                                          UIRemoteNotificationTypeSound |
+//                                                          UIRemoteNotificationTypeAlert)
+//                                              categories:nil];
+//    }
     
     //前导页
     NSString *str=[NSString stringWithFormat:@"%@%@%@",Scheme,QianWaiWangIP,[[NSUserDefaults standardUserDefaults] objectForKey:@"tupianqidong"]];
@@ -81,6 +88,9 @@
     [self jiekou];
     return YES;
 }
++ (AppDelegate *)appDelegate {
+    return _appDelegate;
+}
 -(void)removeLun{
     [UIView animateWithDuration:1.0f delay:0.5f options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         lunchView.alpha = 0.0f;
@@ -93,9 +103,14 @@
 -(void)method{
 //    NSString*tag=[[NSUserDefaults standardUserDefaults] objectForKey:@"mendian"];
 //    NSSet *tags=[NSSet setWithObjects:tag, nil];
-//    
-//    NSString*alias=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
-//    
+    NSString*alias=[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
+    
+    [JPUSHService setAlias:alias completion:^(NSInteger iResCode, NSString *iAlias, NSInteger seq) {
+        NSLog(@"--iResCode  %ld\niAlias  %@\nseq  %ld",(long)iResCode,iAlias,(long)seq);
+        if (iResCode == 6002) {
+            [self method];
+        }
+    } seq:1];
 //    [JPUSHService setTags:tags alias:alias fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias){
 //        NSLog(@"\n%d\n%@\n%@",iResCode,iTags,iAlias);
 //    }];
@@ -117,6 +132,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     /// Required - 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
+    NSLog(@"deviceToken    %@",deviceToken);
+    
+    
+    [self method];
 }
 
 #pragma mark- JPUSHRegisterDelegate
