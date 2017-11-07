@@ -62,11 +62,11 @@
     jiemianArr = [NSArray array];
     switch (_YeShai) {
         case 1:
-            jiemianArr = [NSArray arrayWithObjects:@"所属教学单位",@"所属院系",@"所属班级",@"考勤状态",@"起始时间",@"结束时间",@"时间周期", nil];
+            jiemianArr = [NSArray arrayWithObjects:@"所属院系",@"所属专业",@"所属班级",@"考勤状态",@"起始时间",@"结束时间",@"时间周期", nil];
             hang=8;
             break;
         case 2:
-            jiemianArr = [NSArray arrayWithObjects:@"所属教学单位",@"所属院系",@"所属班级",@"咨询类型",@"回复状态",@"起始时间",@"结束时间",@"时间周期", nil];
+            jiemianArr = [NSArray arrayWithObjects:@"所属院系",@"所属专业",@"所属班级",@"咨询类型",@"回复状态",@"起始时间",@"结束时间",@"时间周期", nil];
             hang=9;
             break;
         case 3:
@@ -74,7 +74,7 @@
             hang=5;
             break;
         case 4:
-            jiemianArr = [NSArray arrayWithObjects:@"所属教学单位",@"所属院系",@"所属班级",@"处理状态",@"起始时间",@"结束时间",@"时间周期", nil];
+            jiemianArr = [NSArray arrayWithObjects:@"所属院系",@"所属专业",@"所属班级",@"处理状态",@"起始时间",@"结束时间",@"时间周期", nil];
             hang=8;
             break;
         default:

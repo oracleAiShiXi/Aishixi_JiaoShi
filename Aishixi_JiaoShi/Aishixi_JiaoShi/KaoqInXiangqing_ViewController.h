@@ -21,4 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *RiQi;
 @property (weak, nonatomic) IBOutlet UILabel *DiZhi;
 @property(strong,nonatomic) NSString * ID;
+@property (weak, nonatomic) IBOutlet UIImageView *zhaoPian;
+
 @end

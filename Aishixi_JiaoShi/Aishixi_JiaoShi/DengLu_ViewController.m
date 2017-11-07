@@ -22,8 +22,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self JieMian];
-    _Name.text = @"zls";
-    _Password.text = @"123456789";
+    NSString *userName = [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
+    NSString * passWord = [[NSUserDefaults standardUserDefaults] objectForKey:@"passWord"];
+    if ( userName ==nil || NULL == userName||[userName  isEqual:[NSNull null]]) {
+        _Name.text =@"";
+    }else{
+        _Name.text =userName ;
+    }
+    if ( passWord ==nil || NULL == passWord||[passWord  isEqual:[NSNull null]]) {
+        _Password.text =@"";
+    }else{
+        _Password.text =passWord ;
+    }
     [self delegate];
 }
 -(void)delegate{
@@ -98,6 +108,9 @@
         NSLog(@"%@",responseObject);
         [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            NSUserDefaults * def =[NSUserDefaults standardUserDefaults];
+            [def setObject:_Name.text forKey:@"userName"];
+            [def setObject:_Password.text forKey:@"passWord"];
             /*数据处理*/
             NSDictionary * data =[responseObject objectForKey:@"data"];
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];

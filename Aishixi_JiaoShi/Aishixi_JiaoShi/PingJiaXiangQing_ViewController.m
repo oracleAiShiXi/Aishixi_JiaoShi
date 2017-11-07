@@ -40,39 +40,49 @@
     }];
 }
 - (IBAction)FaBu:(id)sender {
-    if ([self isBlankString:_TextView.text]) {
-        [WarningBox warningBoxModeText:@"请认真填写评价内容！" andView:self.view];
-    }else{
-        [self.view endEditing:YES];
-        
-        NSString * Method = @"/homePageStu/evaluate";
-        /*edUserId 被评人ID
-         content 评价内容
-         evaluateType 1 好评 2 中评 3 差评
-         evaluatEdType 受评类型 1 企业 2 老师 3 学生
-         */
-        NSString * evaluateType =@"";
-        if (hao ==YES) {
-            evaluateType = @"1";
-        }else if (zhong ==YES) {
-            evaluateType = @"2";
-        }else if (cha ==YES) {
-            evaluateType = @"3";
-        }
-        NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
-        NSString *userId = [user objectForKey:@"userId"];
-        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_studentId,@"edUserId",_TextView.text,@"content",evaluateType,@"evaluateType",@"3",@"evaluatEdType", nil];
-        [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-//            NSLog(@"4、评价\n%@",responseObject);
-            if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
-                [self fanhui];
+    [self.view endEditing:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if ([self isBlankString:_TextView.text]) {
+            [WarningBox warningBoxModeText:@"请认真填写评价内容！" andView:self.view];
+        }else{
+            NSString * Method = @"/homePageStu/evaluate";
+            /*edUserId 被评人ID
+             content 评价内容
+             evaluateType 1 好评 2 中评 3 差评
+             evaluatEdType 受评类型 1 企业 2 老师 3 学生
+             */
+            //        evaId
+           
+            NSString * evaluateType =@"";
+            if (hao ==YES) {
+                evaluateType = @"1";
+            }else if (zhong ==YES) {
+                evaluateType = @"2";
+            }else if (cha ==YES) {
+                evaluateType = @"3";
             }
-            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.navigationController.view];
-        } failure:^(NSError *error) {
-//            NSLog(@"%@",error);
-        }];
-        
-    }
+            NSString *evaId ;
+            if ( [data objectForKey:@"evaId"] ==nil || NULL == [data objectForKey:@"evaId"]||[[data objectForKey:@"evaId"]  isEqual:[NSNull null]]) {
+                evaId =@"";
+            }else{
+                evaId =[data objectForKey:@"evaId"] ;
+            }
+            NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+            NSString *userId = [user objectForKey:@"userId"];
+            NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_studentId,@"edUserId",_TextView.text,@"content",evaluateType,@"evaluateType",@"3",@"evaluatEdType",evaId,@"evaId", nil];
+            [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+                //            NSLog(@"4、评价\n%@",responseObject);
+                if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
+                    [self fanhui];
+                }
+                [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.navigationController.view];
+            } failure:^(NSError *error) {
+                //            NSLog(@"%@",error);
+            }];
+            
+        }
+    });
+    
 }
 -(void)fanhui{
     [self.navigationController popViewControllerAnimated:YES];
@@ -97,7 +107,7 @@
     int typ =[[dd objectForKey:@"evaluateStatus"] intValue];
     if(typ == 1){
         _Tpye.text =@"已评价";
-        _fabubutton.hidden = YES;
+        _fabubutton.hidden = NO;
         _Tpye.textColor = [UIColor colorWithHexString:@"8db5fb"];
         _TextView.text = [dd objectForKey:@"evaluateContent"];
         int res =[[dd objectForKey:@"evaluateResult"] intValue];
@@ -120,10 +130,10 @@
     }
 }
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-    if ([[data objectForKey:@"evaluateStatus"] intValue]!=1) {
-        return  YES;
-    }
-    return NO;
+//    if ([[data objectForKey:@"evaluateStatus"] intValue]!=1) {
+//        return  YES;
+//    }
+    return YES;
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self.view endEditing:YES];

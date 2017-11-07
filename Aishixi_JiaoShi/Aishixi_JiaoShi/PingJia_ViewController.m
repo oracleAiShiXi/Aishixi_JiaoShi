@@ -21,6 +21,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     pageNo = 1;
+    self.TableView.mj_footer.hidden = NO;
     studentList = [NSMutableArray array];
     [self jiekou];
 }
