@@ -170,5 +170,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
     completionHandler();  // 系统要求执行这个方法
 }
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+}
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    [application setApplicationIconBadgeNumber:0];
+    [application cancelAllLocalNotifications];
+}
 
 @end

@@ -36,7 +36,6 @@
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             NSDictionary * data = [[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"];
             [self jiemianBuju:data];
-            
         }else{
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }

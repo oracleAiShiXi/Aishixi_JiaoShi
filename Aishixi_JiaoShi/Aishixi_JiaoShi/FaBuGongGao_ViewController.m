@@ -72,7 +72,7 @@
     
     //4.设置代理
     
-//    mainCollectionView.allowsSelection = YES;
+    //    mainCollectionView.allowsSelection = YES;
     mainCollectionView.allowsMultipleSelection = YES;
     mainCollectionView.delegate = self;
     mainCollectionView.dataSource = self;
@@ -223,18 +223,24 @@
         [cell addSubview:tv];
         UIButton * bb = [[UIButton alloc] initWithFrame:CGRectMake(Width - 58, 88, 50, 50)];
         [bb setImage:[UIImage imageNamed:@"编辑"] forState:UIControlStateNormal];
-//        [bb addTarget:self action:@selector(BianJi) forControlEvents:UIControlEventTouchUpInside];
+        //        [bb addTarget:self action:@selector(BianJi) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:bb];
     }else if (indexPath.section == 4){
         if (panDui == 1) {
-              UILabel * suo = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, Width - 120, 30)];
+            UILabel * suo = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, Width - 120, 30)];
             suo.text = xuanzezhuangtai[3];
             UILabel * xuan = [[UILabel alloc] initWithFrame:CGRectMake(Width-250, 8, 200, 30)];
             xuan.textAlignment = NSTextAlignmentRight;
             xuan.textColor = [UIColor colorWithHexString:@"c8c8c8"];
             //加判断
             if (xuanRen.count !=0) {
-                xuan.text = [NSString stringWithFormat:@"%@等%lu人",[xuanRen[indexPath.row] objectForKey:@"nick"],(unsigned long)xuanRen.count];
+                NSString * renming ;
+                if ( [xuanRen[indexPath.row] objectForKey:@"userName"] ==nil || NULL == [xuanRen[indexPath.row] objectForKey:@"userName"] ||[[xuanRen[indexPath.row] objectForKey:@"userName"] isEqual:[NSNull null]]) {
+                    renming =@"无名";
+                }else{
+                    renming =[xuanRen[indexPath.row] objectForKey:@"userName"];
+                }
+                xuan.text = [NSString stringWithFormat:@"%@等%lu人",renming,(unsigned long)xuanRen.count];
             }else{
                 xuan.text = @"请选择";
             }
@@ -243,7 +249,7 @@
             [cell addSubview:suo];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;//右箭头
         }else{
-              UILabel * suo = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, Width - 120, 30)];
+            UILabel * suo = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, Width - 120, 30)];
             suo.text = xuanzezhuangtai[0];
             UILabel * xuan = [[UILabel alloc] initWithFrame:CGRectMake(Width-250, 8, 200, 30)];
             xuan.textAlignment = NSTextAlignmentRight;
@@ -356,9 +362,9 @@
                     }
                 }
                 //加判断， 如果三个选完了，又换了第一个或第二个，使其后单位清空重新选择；
-//                if (<#condition#>) {
-//                    <#statements#>
-//                }
+                //                if (<#condition#>) {
+                //                    <#statements#>
+                //                }
                 [xueDic setObject:Shu[index] forKey:[NSString stringWithFormat:@"%@",Key]];
                 [_TableView reloadData];
             }];
@@ -402,49 +408,69 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
 }
--(void)fabujiekou{
-    NSString * Method = @"/teacher/outboxPublic";
-    
-    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
-    NSString *userId = [user objectForKey:@"userId"];
-    NSString *level = @"1";
-    if (pan == 0) {
-        level = @"1";
-    }else{
-        level = @"2";
-    }
-    NSString *noticeContent = tv.text;
-    NSString  *noticeTitle = GZT.text;
-    NSArray *officeList = [NSArray array];
-    NSString *officeId = @"";
-    NSString *officeName = @"";
-    NSString * professionId = @"";
-    NSString *professionName=@"";
-    NSString * classId =@"";
-    NSString * className = @"";
-    if (panDui == 1) {
-        officeList = xuanRen;
-    }else{
-        officeList = nil;
-        officeId =[[xueDic objectForKey:@"officeName"] objectForKey:@"id"];
-        officeName=[[xueDic objectForKey:@"officeName"] objectForKey:@"officeName"];
-        professionId=[[xueDic objectForKey:@"professionName"] objectForKey:@"professionId"];
-        professionName=[[xueDic objectForKey:@"professionName"] objectForKey:@"professionName"];
-        classId=[[xueDic objectForKey:@"className"] objectForKey:@"classId"];
-        className=[[xueDic objectForKey:@"className"] objectForKey:@"className"];
-        
-    }
-    
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",level,@"level",noticeTitle,@"noticeTitle",noticeContent,@"noticeContent",officeId,@"officeId",officeName,@"officeName",professionId,@"professionId",professionName,@"professionName",classId,@"classId",className,@"className",officeList,@"officeList",nil];
-    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
-        NSLog(@"28.    教师公告通知发布\n%@",responseObject);
-        if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
-            [self.navigationController popViewControllerAnimated:YES];
+//判断是否全是空格
+- (BOOL)isEmpty:(NSString *) str {
+    if (!str) {
+        return true;
+    } else {
+        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
+        if ([trimedString length] == 0) {
+            return true;
+        } else {
+            return false;
         }
-        [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.navigationController.view];
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
+    }
+}
+-(void)fabujiekou{
+    //加一个全空判断；
+    if ([self isEmpty:tv.text] || [self isEmpty:GZT.text] || (panDui == 1 && xuanRen.count == 0) ) {
+        [WarningBox warningBoxModeText:@"请仔细完成信息！" andView:self.view];
+    }else{
+        
+        NSString * Method = @"/teacher/outboxPublic";
+        
+        NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+        NSString *userId = [user objectForKey:@"userId"];
+        NSString *level = @"1";
+        if (pan == 0) {
+            level = @"1";
+        }else{
+            level = @"2";
+        }
+        NSString *noticeContent = tv.text;
+        NSString  *noticeTitle = GZT.text;
+        NSArray *officeList = [NSArray array];
+        NSString *officeId = @"";
+        NSString *officeName = @"";
+        NSString * professionId = @"";
+        NSString *professionName=@"";
+        NSString * classId =@"";
+        NSString * className = @"";
+        if (panDui == 1) {
+            officeList = xuanRen;
+        }else{
+            officeList = nil;
+            officeId =[[xueDic objectForKey:@"officeName"] objectForKey:@"id"];
+            officeName=[[xueDic objectForKey:@"officeName"] objectForKey:@"officeName"];
+            professionId=[[xueDic objectForKey:@"professionName"] objectForKey:@"professionId"];
+            professionName=[[xueDic objectForKey:@"professionName"] objectForKey:@"professionName"];
+            classId=[[xueDic objectForKey:@"className"] objectForKey:@"classId"];
+            className=[[xueDic objectForKey:@"className"] objectForKey:@"className"];
+            
+        }
+        
+        NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",level,@"level",noticeTitle,@"noticeTitle",noticeContent,@"noticeContent",officeId,@"officeId",officeName,@"officeName",professionId,@"professionId",professionName,@"professionName",classId,@"classId",className,@"className",officeList,@"officeList",nil];
+        [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+            NSLog(@"28.    教师公告通知发布\n%@",responseObject);
+            if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.navigationController.view];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    }
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 3;
@@ -471,10 +497,10 @@
         cell.tag=indexPath.row+100;
         cell.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
     }else if (indexPath.section==1){
-        if(nil==[gouArr[indexPath.row] objectForKey:@"nick"]){
+        if(nil==[gouArr[indexPath.row] objectForKey:@"userName"]){
             cell.blabel.text =@"";
         }else{
-            cell.blabel.text =[NSString stringWithFormat:@"%@",[gouArr[indexPath.row] objectForKey:@"nick"]];
+            cell.blabel.text =[NSString stringWithFormat:@"%@",[gouArr[indexPath.row] objectForKey:@"userName"]];
         }
         cell.tag=indexPath.row+200;
         if ([[gouArr[indexPath.row] objectForKey:@"status"]  isEqual: @"1"]) {
@@ -527,11 +553,11 @@
     UILabel *label = [[UILabel alloc] initWithFrame:headerView.bounds];
     
     if(indexPath.section==0){
-//        label.text = @"年级";
+        //        label.text = @"年级";
     }else if (indexPath.section==1){
         label.text = @"人员选择";
     }else if (indexPath.section==2){
-//        label.text = @"授课教师";
+        //        label.text = @"授课教师";
     }
     
     
@@ -566,7 +592,7 @@
     else if(indexPath.section==1){
         for(UICollectionViewCell *celll in mainCollectionView.visibleCells){
             if(celll.tag==200+indexPath.row){
-            
+                
                 celll.backgroundColor =[UIColor colorWithHexString:@"40bcff"];
                 
                 NSMutableDictionary *dd = [NSMutableDictionary dictionaryWithDictionary:gouArr[indexPath.row]];
@@ -589,14 +615,14 @@
     //    NSLog(@"%@",msg);
     //    NSLog(@"-----%ld----%ld",(long)indexPath.section,(long)indexPath.row);
     if(indexPath.section==0){
-
+        
     }
     else if(indexPath.section==1){
         for(UICollectionViewCell *celll in mainCollectionView.visibleCells){
             if(celll.tag==200+indexPath.row){
                 
                 celll.backgroundColor =[UIColor colorWithHexString:@"FFDB01"];
-//                [(NSMutableDictionary*)gouArr[indexPath.row] setObject:@"0" forKey:@"status"];
+                //                [(NSMutableDictionary*)gouArr[indexPath.row] setObject:@"0" forKey:@"status"];
                 NSMutableDictionary *dd = [NSMutableDictionary dictionaryWithDictionary:gouArr[indexPath.row]];
                 [dd setObject:@"0" forKey:@"status"];
                 [gouArr replaceObjectAtIndex:indexPath.row withObject:dd];
@@ -604,7 +630,7 @@
         }
     }
     else if (indexPath.section==2){
-
+        
     }
 }
 @end

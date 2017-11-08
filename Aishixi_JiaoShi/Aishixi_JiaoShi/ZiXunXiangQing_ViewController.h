@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void (^ABLOK)(int dic);
 @interface ZiXunXiangQing_ViewController : UIViewController
+@property (nonatomic, copy) ABLOK Ablock;
+
 @property (weak, nonatomic) IBOutlet UILabel *Name;
 @property (weak, nonatomic) IBOutlet UILabel *XueHao;
 @property (weak, nonatomic) IBOutlet UILabel *XueJie;

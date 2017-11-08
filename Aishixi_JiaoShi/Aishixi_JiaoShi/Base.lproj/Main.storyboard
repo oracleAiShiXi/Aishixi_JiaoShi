@@ -816,8 +816,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OQP-eW-hoq">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OQP-eW-hoq">
+                                <rect key="frame" x="0.0" y="117" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgc-Vr-fiz">
                                         <rect key="frame" x="8" y="38" width="359" height="215.5"/>

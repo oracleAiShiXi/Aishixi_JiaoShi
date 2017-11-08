@@ -30,14 +30,14 @@
     consulList = [NSMutableArray array];
     count = 0;
     pageSize = 5;
-    pageNo = 1;panP=1;
+    pageNo = 1;panP=0;
     [self jiekou:nil];
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.TableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
 //    [self.tabBarController.tabBar.items objectAtIndex:1].badgeValue = [NSString stringWithFormat:@"20"];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    if (panP == 0) {
+    if (panP == 1) {
         [self loadNewData];
     }
 }
@@ -255,12 +255,14 @@
     /*数据处理*/
     NSString * ID = [consulList[indexPath.section] objectForKey:@"consulId"];
     int Lala =[[consulList[indexPath.section] objectForKey:@"reportState"] intValue];
-    panP = 0;
     /*TabBar 隐藏*/
     self.tabBarController.tabBar.hidden = YES;
     self.hidesBottomBarWhenPushed = YES;
     ZiXunXiangQing_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"zixunxiangqing"];
     /*数据传输*/
+    Kao.Ablock = ^(int dic) {
+        panP = dic;
+    };
     Kao.ID=ID;
     Kao.Lala = Lala;
     [self.navigationController pushViewController:Kao animated:YES];
@@ -272,14 +274,13 @@
     self.hidesBottomBarWhenPushed = YES;
     SheZhi_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shezhi"];
     /*数据传输*/
-    panP = 1;
     [self.navigationController pushViewController:Kao animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
 
 - (IBAction)ShaixuanButton:(id)sender {
     self.tabBarController.tabBar.hidden = YES;
-    self.hidesBottomBarWhenPushed = YES;panP = 1;
+    self.hidesBottomBarWhenPushed = YES;
     ShaiXuan_ViewController * Shai = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"shaixuan"];
     Shai.YeShai = 2;
     Shai.block = ^(NSDictionary *dic) {

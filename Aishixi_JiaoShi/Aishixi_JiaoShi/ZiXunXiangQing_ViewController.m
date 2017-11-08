@@ -13,11 +13,12 @@
 
 
 
-#define Width [[UIScreen mainScreen] bounds].size.width;
+//#define Width [[UIScreen mainScreen] bounds].size.width;
 
 @interface ZiXunXiangQing_ViewController ()<SFSpeechRecognizerDelegate,UITextViewDelegate>{
     NSString *reUserId;
     NSMutableDictionary * data;
+    int chuan;
 }
 @property(nonatomic,strong)SFSpeechRecognizer * recognizer ;
 //语音识别功能
@@ -31,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    chuan = 0;
+    
    self.navigationItem.title = @"咨询详情"; self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
     _YuanXi.adjustsFontSizeToFitWidth = YES;
     _ZhuanYe.adjustsFontSizeToFitWidth = YES;
@@ -39,7 +42,16 @@
     [self delegate];
     [self KeyboardJianTing];
     [self jiekou];
-    
+    [self items];
+}
+-(void)items{
+    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
+    UIBarButtonItem*left=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStyleDone target:self action:@selector(fanhui)];
+    [self.navigationItem setLeftBarButtonItem:left];
+}
+-(void)fanhui{
+    self.Ablock(chuan);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)jiekou{
     NSString * Method = @"/attend/consulInfo";
@@ -283,6 +295,7 @@
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"34.    教师咨询回复\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
+            chuan = 1;
             [data setObject:_TextF.text forKey:@"reportContext"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self jiemianbuju:data :1];
@@ -305,5 +318,8 @@
             return false;
         }
     }
+}
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 @end

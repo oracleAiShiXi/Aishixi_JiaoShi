@@ -99,41 +99,59 @@
 //    [CeshiJieKou_ViewController  jiekou32];//33.    教师评价详情
 //    [CeshiJieKou_ViewController  jiekou33];
 }
--(void)jiekou{
-  
-
-    NSDictionary * did =[NSDictionary dictionaryWithObjectsAndKeys:_Name.text,@"userName",_Password.text,@"passWord",@"2",@"userType",nil];
-    [WarningBox warningBoxModeIndeterminate:@"登陆中..." andView:self.view];
-    [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/user/logined" Rucan:did type:Post success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
-        [WarningBox warningBoxHide:YES andView:self.view];
-        if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
-            NSUserDefaults * def =[NSUserDefaults standardUserDefaults];
-            [def setObject:_Name.text forKey:@"userName"];
-            [def setObject:_Password.text forKey:@"passWord"];
-            /*数据处理*/
-            NSDictionary * data =[responseObject objectForKey:@"data"];
-            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            //用户Id
-            [user setObject:[data objectForKey:@"userId"] forKey:@"userId"];
-            //用户电话
-            [user setObject:[data objectForKey:@"tel"] forKey:@"tel"];
-            
-            TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
-            /*数据传输*/
-            //登陆成功后重新注册一次极光的标签和别名
-            [[AppDelegate appDelegate] method];
-            [self presentViewController:Kao animated:YES completion:^{
-            
-            }];
-        }else{
-            [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
-            
+//判断是否全是空格
+- (BOOL)isEmpty:(NSString *) str {
+    if (!str) {
+        return true;
+    } else {
+        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+        NSString *trimedString = [str stringByTrimmingCharactersInSet:set];
+        if ([trimedString length] == 0) {
+            return true;
+        } else {
+            return false;
         }
+    }
+}
+-(void)jiekou{
+    if ([self isEmpty:_Name.text] || [self isEmpty:_Password.text]) {
+        [WarningBox warningBoxModeText:@"请认真填写用户名及密码!" andView:self.view];
+    }else{
         
-    } failure:^(NSError *error) {
-        [WarningBox warningBoxHide:YES andView:self.view];
-        NSLog(@"%@",error);
-    }];
+        NSDictionary * did =[NSDictionary dictionaryWithObjectsAndKeys:_Name.text,@"userName",_Password.text,@"passWord",@"2",@"userType",nil];
+        [WarningBox warningBoxModeIndeterminate:@"登陆中..." andView:self.view];
+        [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/user/logined" Rucan:did type:Post success:^(id responseObject) {
+            NSLog(@"%@",responseObject);
+            [WarningBox warningBoxHide:YES andView:self.view];
+            if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+                NSUserDefaults * def =[NSUserDefaults standardUserDefaults];
+                [def setObject:_Name.text forKey:@"userName"];
+                [def setObject:_Password.text forKey:@"passWord"];
+                /*数据处理*/
+                NSDictionary * data =[responseObject objectForKey:@"data"];
+                NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+                //用户Id
+                [user setObject:[data objectForKey:@"userId"] forKey:@"userId"];
+                //用户电话
+                [user setObject:[data objectForKey:@"tel"] forKey:@"tel"];
+                
+                TabBar_ViewController *Kao =[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"tabbar"];
+                /*数据传输*/
+                //登陆成功后重新注册一次极光的标签和别名
+                [[AppDelegate appDelegate] method];
+                [self presentViewController:Kao animated:YES completion:^{
+                    
+                }];
+            }else{
+                [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.view];
+                
+            }
+            
+        } failure:^(NSError *error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            NSLog(@"%@",error);
+        }];
+    }
+
 }
 @end
