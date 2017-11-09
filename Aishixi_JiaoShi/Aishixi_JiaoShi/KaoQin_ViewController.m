@@ -31,7 +31,7 @@
     Dic=[NSDictionary dictionary];
     attendanceList = [NSMutableArray array];
     count = 0;
-    pageSize = 5;
+    pageSize = 10;
     pageNo = 1;
     [self JieKou];
     
@@ -58,6 +58,7 @@
 }
 -(void)JieKou{
     //
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
     //
@@ -137,9 +138,11 @@
     
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/attend/attendanceList" Rucan:did type:Post success:^(id responseObject) {
         NSLog(@"%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             NSDictionary *data = [responseObject objectForKey:@"data"];
             [attendanceList addObjectsFromArray:[data objectForKey:@"attendanceList"]];
+            NSLog(@"%@",attendanceList);
             count = [[data objectForKey:@"count"] intValue];
             if (attendanceList.count == 0) {
                 _tableView.hidden =YES;
@@ -151,6 +154,8 @@
             }
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }

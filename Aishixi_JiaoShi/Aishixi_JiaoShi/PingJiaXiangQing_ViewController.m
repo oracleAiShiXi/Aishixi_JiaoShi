@@ -26,22 +26,27 @@
     [self jiekou];
 }
 -(void)jiekou{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * Method = @"/teacher/evaluateInfo";
     //userId(Long):学生ID
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_studentId,@"userId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
 //        NSLog(@"33.    教师评价详情\n%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             data =[responseObject objectForKey:@"data"];
             [self jiemianbuju:data];
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
 //        NSLog(@"%@",error);
     }];
 }
 - (IBAction)FaBu:(id)sender {
     [self.view endEditing:YES];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
         if ([self isBlankString:_TextView.text]) {
             [WarningBox warningBoxModeText:@"请认真填写评价内容！" andView:self.view];
         }else{
@@ -71,12 +76,14 @@
             NSString *userId = [user objectForKey:@"userId"];
             NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_studentId,@"edUserId",_TextView.text,@"content",evaluateType,@"evaluateType",@"3",@"evaluatEdType",evaId,@"evaId", nil];
             [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+                [WarningBox warningBoxHide:YES andView:self.view];
                 //            NSLog(@"4、评价\n%@",responseObject);
                 if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
                     [self fanhui];
                 }
                 [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.navigationController.view];
             } failure:^(NSError *error) {
+                [WarningBox warningBoxHide:YES andView:self.view];
                 //            NSLog(@"%@",error);
             }];
             

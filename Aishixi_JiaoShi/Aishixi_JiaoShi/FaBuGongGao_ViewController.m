@@ -82,11 +82,12 @@
     mainCollectionView.hidden = YES;
 }
 -(void)jiekou{
+    
     NSString * Method = @"/attend/choice";
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",nil];
-    [WarningBox warningBoxModeIndeterminate:@"数据连接中..." andView:self.view];
+    [WarningBox warningBoxModeIndeterminate:@"数据加载中..." andView:self.view];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         [WarningBox warningBoxHide:YES andView:self.view];
         NSLog(@"21 教师筛选\n%@",responseObject);
@@ -105,6 +106,8 @@
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }
@@ -305,6 +308,7 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.view endEditing:YES];
     if (panDui == 0) {
         switch (indexPath.section) {
             case 4:
@@ -325,6 +329,7 @@
     }else{
         switch (indexPath.section) {
             case 4:
+                
                 mainCollectionView.hidden = NO;
                 break;
             case 5:
@@ -427,7 +432,7 @@
     if ([self isEmpty:tv.text] || [self isEmpty:GZT.text] || (panDui == 1 && xuanRen.count == 0) ) {
         [WarningBox warningBoxModeText:@"请仔细完成信息！" andView:self.view];
     }else{
-        
+        [WarningBox warningBoxModeText:@"发布中..." andView:self.view];
         NSString * Method = @"/teacher/outboxPublic";
         
         NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
@@ -463,11 +468,14 @@
         NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",level,@"level",noticeTitle,@"noticeTitle",noticeContent,@"noticeContent",officeId,@"officeId",officeName,@"officeName",professionId,@"professionId",professionName,@"professionName",classId,@"classId",className,@"className",officeList,@"officeList",nil];
         [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
             NSLog(@"28.    教师公告通知发布\n%@",responseObject);
+            [WarningBox warningBoxHide:YES andView:self.view];
             if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
                 [self.navigationController popViewControllerAnimated:YES];
             }
             [WarningBox warningBoxModeText:[NSString stringWithFormat:@"%@",[responseObject objectForKey:@"msg"]] andView:self.navigationController.view];
         } failure:^(NSError *error) {
+            [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
             NSLog(@"%@",error);
         }];
     }

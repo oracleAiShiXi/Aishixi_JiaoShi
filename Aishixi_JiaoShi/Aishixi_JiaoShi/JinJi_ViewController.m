@@ -27,7 +27,7 @@
     [super viewDidLoad];
     [self TableViewDelegate];
     count = 0;
-    pageSize = 5;
+    pageSize = 10;
     pageNo = 1;
     panP= 1 ;
     Dic=[NSDictionary dictionary];
@@ -61,6 +61,7 @@
 }
 #pragma mark ----接口
 -(void)JieKou{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * method = @"/teacher/sosList";
     //请求页数
     NSNumber* _pageNo =[NSNumber numberWithInt:pageNo];
@@ -142,6 +143,7 @@
     
     NSDictionary * Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_pageNo,@"pageNo",_pageSize,@"pageSize",userId,@"userId",officeId,@"officeId",professionId,@"professionId",classId,@"classId",handleState,@"handleState",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:method Rucan:Rucan type:Post success:^(id responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
 //        NSLog(@"%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
             NSDictionary * data =[responseObject objectForKey:@"data"];
@@ -153,6 +155,8 @@
             [_TableView reloadData];
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }

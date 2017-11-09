@@ -284,10 +284,12 @@
 }
 -(void)jiazai_jiekou{
     NSString * Method = @"/teacher/sosInfo";
-    
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_sosId,@"sosId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"30.    教师SOS详情\n%@",responseObject);
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             data = [NSMutableDictionary dictionaryWithDictionary:[responseObject objectForKey:@"data"] ];
             if (![[data objectForKey:@"handleStrTime"] isEqual:@""] && ![[data objectForKey:@"handleEndTime"] isEqual:@""]) {
@@ -297,6 +299,9 @@
         }
         
     } failure:^(NSError *error) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }
@@ -312,6 +317,7 @@
     }
 }
 -(void)tijiao_jiekou{
+    
     NSString * Method = @"/teacher/handle";
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
@@ -329,6 +335,7 @@
         }
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }

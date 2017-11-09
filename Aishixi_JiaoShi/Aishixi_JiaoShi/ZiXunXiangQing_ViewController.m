@@ -34,7 +34,7 @@
     [super viewDidLoad];
     chuan = 0;
     
-   self.navigationItem.title = @"咨询详情"; self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
+    self.navigationItem.title = @"咨询详情"; self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
     _YuanXi.adjustsFontSizeToFitWidth = YES;
     _ZhuanYe.adjustsFontSizeToFitWidth = YES;
     _TextF.delegate = self;
@@ -54,12 +54,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)jiekou{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * Method = @"/attend/consulInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_ID,@"consulId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"25.    教师咨询详情\n%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
-//            data =[NSMutableDictionary dictionary];
+            //            data =[NSMutableDictionary dictionary];
             data = [NSMutableDictionary dictionaryWithDictionary:[[responseObject objectForKey:@"data"] objectForKey:@"consulInfo"]];
             reUserId = [data objectForKey:@"userId"];
             [self jiemianbuju:data :_Lala];
@@ -67,6 +69,8 @@
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }
@@ -106,10 +110,10 @@
     if ([typeString  isEqual: @"岗位变化"]) {
         _Type.textColor = [UIColor colorWithHexString:@"0ee6ca"];
     }else if ([typeString  isEqual: @"请假"]){
-//        typeString = @"请假";
+        //        typeString = @"请假";
         _Type.textColor = [UIColor colorWithHexString:@"fa9463"];
     }else{
-//        typeString = @"其他类型";
+        //        typeString = @"其他类型";
         _Type.textColor = [UIColor colorWithHexString:@"fcca26"];
     }
     
@@ -290,18 +294,25 @@
     
     NSString * Method = @"/consult/reConsul";
     NSString *reportContent = _TextF.text;
-
-    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_ID,@"consulId",reUserId,@"reUserId",reportContent,@"reportContent",nil];
+    NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
+    NSString *userId = [user objectForKey:@"userId"];
+    [WarningBox warningBoxModeText:@"回复中..." andView:self.view];
+    NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_ID,@"consulId",userId,@"reUserId",reportContent,@"reportContent",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"34.    教师咨询回复\n%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"]isEqual:@"0000"]) {
             chuan = 1;
             [data setObject:_TextF.text forKey:@"reportContext"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self jiemianbuju:data :1];
             });
+        }else{
+            [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }

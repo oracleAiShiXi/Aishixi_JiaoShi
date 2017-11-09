@@ -87,6 +87,7 @@
     _TableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 -(void)JieKou{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * Method = @"/attend/choice";
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
@@ -96,6 +97,7 @@
         [WarningBox warningBoxHide:YES andView:self.view];
 //        NSLog(@"21 教师筛选\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqualToString:@"0000"]) {
+            [WarningBox warningBoxHide:YES andView:self.view];
             NSDictionary *data = [responseObject objectForKey:@"data"];
             //教学
             officeList = [data objectForKey:@"officeList"];
@@ -109,6 +111,8 @@
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
 //        NSLog(@"%@",error);
     }];
 }

@@ -36,7 +36,7 @@
     Dic=[NSDictionary dictionary];
     inboxList  = [NSMutableArray array];
     count = 0;
-    pageSize = 5;
+    pageSize = 10;
     pageNo = 1;
     [self jiekou:nil];
     
@@ -61,6 +61,7 @@
     }
 }
 -(void)jiekou:(NSDictionary*)dic{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * Method = @"/teacher/inboxList";
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
@@ -124,6 +125,8 @@
     NSNumber *_pageSize = [NSNumber numberWithInt:pageSize];
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",type,@"type",level,@"level",createDate,@"createDate",startTime,@"startTime",endTime,@"endTime",_pageSize,@"pageSize",_pageNo,@"pageNo",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
         NSLog(@"26.    教师公告通知收件箱，发件箱\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             NSDictionary *data = [responseObject objectForKey:@"data"];
@@ -139,6 +142,9 @@
             }
         }
     } failure:^(NSError *error) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }

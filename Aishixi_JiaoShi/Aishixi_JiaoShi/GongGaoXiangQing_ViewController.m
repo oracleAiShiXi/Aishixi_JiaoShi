@@ -21,10 +21,13 @@
     [self JieKou];
 }
 -(void)JieKou{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * Method = @"/teacher/inboxInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_inboxId,@"inboxId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"27.    教师公告通知收件箱，发件箱详情\n%@",responseObject);
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             NSDictionary * data = [responseObject objectForKey:@"data"];
             [self BuJu:data];
@@ -33,6 +36,9 @@
         }
         
     } failure:^(NSError *error) {
+        
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
     

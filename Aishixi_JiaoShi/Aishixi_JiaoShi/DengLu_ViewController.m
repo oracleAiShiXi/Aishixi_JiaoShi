@@ -117,7 +117,6 @@
     if ([self isEmpty:_Name.text] || [self isEmpty:_Password.text]) {
         [WarningBox warningBoxModeText:@"请认真填写用户名及密码!" andView:self.view];
     }else{
-        
         NSDictionary * did =[NSDictionary dictionaryWithObjectsAndKeys:_Name.text,@"userName",_Password.text,@"passWord",@"2",@"userType",nil];
         [WarningBox warningBoxModeIndeterminate:@"登陆中..." andView:self.view];
         [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/user/logined" Rucan:did type:Post success:^(id responseObject) {
@@ -149,6 +148,7 @@
             
         } failure:^(NSError *error) {
             [WarningBox warningBoxHide:YES andView:self.view];
+            [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
             NSLog(@"%@",error);
         }];
     }

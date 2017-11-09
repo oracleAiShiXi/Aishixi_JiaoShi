@@ -31,6 +31,7 @@
     [self jiekou];
 }
 -(void)jiekou{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     [self.view endEditing:YES];
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
@@ -39,8 +40,12 @@
     
     NSDictionary * dd = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",oldPassword,@"oldPassword",@"2",@"userType",newPassword,@"newPassword", nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:@"/user/setPassword" Rucan:dd type:Post success:^(id responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
 //        NSLog(@"%@",responseObject);
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
 //        NSLog(@"%@",error);
     }];
     

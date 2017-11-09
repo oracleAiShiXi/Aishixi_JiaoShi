@@ -113,6 +113,7 @@
     [self.navigationController pushViewController:Kao animated:YES];
 }
 -(void)jiekou{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * Method = @"/teacher/getStudentList";
     //用户Id
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
@@ -121,6 +122,7 @@
     NSNumber *_pageSize = [NSNumber numberWithInt:pageSize];
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
+        [WarningBox warningBoxHide:YES andView:self.view];
 //        NSLog(@"32.    教师评价-获取学生列表\n%@",responseObject);
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             NSDictionary * data =[responseObject objectForKey:@"data"];
@@ -131,6 +133,8 @@
         }
        
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
 //        NSLog(@"%@",error);
     }];
 }

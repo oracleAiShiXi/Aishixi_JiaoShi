@@ -18,7 +18,7 @@
 //李世东
 //#define QianWaiWangIP @"192.168.1.115:8080"
 //宋浩然
-//#define QianWaiWangIP @"192.168.1.193:8080"
+//#define QianWaiWangIP @"192.168.1.184:8080"
 //展昌明
 //#define QianWaiWangIP @"192.168.1.104:8080"
 //局域网

@@ -29,10 +29,12 @@
     _LanQuan2.layer.borderColor =[UIColor colorWithHexString:@"6ca1fa"].CGColor;
 }
 -(void)jiekou{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * Method = @"/attend/attendanceInfo";
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:_ID,@"attendanceId",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"23.    教师考勤详情\n%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             NSDictionary * data = [[responseObject objectForKey:@"data"] objectForKey:@"attendanceInfo"];
             [self jiemianBuju:data];
@@ -40,6 +42,8 @@
             [WarningBox warningBoxModeText:[responseObject objectForKey:@"msg"] andView:self.view];
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }

@@ -29,7 +29,7 @@
     Dic=[NSDictionary dictionary];
     consulList = [NSMutableArray array];
     count = 0;
-    pageSize = 5;
+    pageSize = 10;
     pageNo = 1;panP=0;
     [self jiekou:nil];
     self.TableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -59,6 +59,7 @@
     }
 }
 -(void)jiekou:(NSDictionary *)dic{
+    [WarningBox warningBoxModeText:@"数据加载中..." andView:self.view];
     NSString * Method = @"/attend/consulList";
     NSUserDefaults *user =[NSUserDefaults standardUserDefaults];
     NSString *userId = [user objectForKey:@"userId"];
@@ -150,6 +151,7 @@
     NSDictionary *Rucan = [NSDictionary dictionaryWithObjectsAndKeys:userId,@"userId",_pageNo,@"pageNo",_pageSize,@"pageSize",officeId,@"officeId",professionId,@"professionId",classId,@"classId",consulType,@"consulType",reportState,@"reportState",consulStartTime,@"consulStartTime",consulEndTime,@"consulEndTime",consulDate,@"consulDate",nil];
     [XL_WangLuo QianWaiWangQingqiuwithBizMethod:Method Rucan:Rucan type:Post success:^(id responseObject) {
         NSLog(@"24.    教师咨询列表\n%@",responseObject);
+        [WarningBox warningBoxHide:YES andView:self.view];
         if ([[responseObject objectForKey:@"code"] isEqual:@"0000"]) {
             NSDictionary *data = [responseObject objectForKey:@"data"];
             [consulList addObjectsFromArray:[data objectForKey:@"consulList"]];
@@ -164,6 +166,8 @@
             }
         }
     } failure:^(NSError *error) {
+        [WarningBox warningBoxHide:YES andView:self.view];
+        [WarningBox warningBoxModeText:@"网络连接失败！请检查网络！" andView:self.view];
         NSLog(@"%@",error);
     }];
 }
