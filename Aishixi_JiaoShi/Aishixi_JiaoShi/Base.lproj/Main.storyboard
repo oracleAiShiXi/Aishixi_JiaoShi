@@ -14,7 +14,7 @@
         <!--Deng Lu View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="DengLu_ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="denglu" id="BYZ-38-t0r" customClass="DengLu_ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -2776,11 +2776,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入旧密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52K-nD-4cC">
-                                <rect key="frame" x="88" y="64" width="271" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入旧密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="52K-nD-4cC">
+                                <rect key="frame" x="88" y="64" width="271" height="31"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlr-5w-zhF">
                                 <rect key="frame" x="16" y="123" width="64" height="31"/>
@@ -2792,11 +2792,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCr-5R-56w">
-                                <rect key="frame" x="88" y="123" width="271" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCr-5R-56w">
+                                <rect key="frame" x="88" y="123" width="271" height="31"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="next" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83O-91-T7j">
                                 <rect key="frame" x="16" y="182" width="64" height="31"/>
@@ -2808,11 +2808,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请再次输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HOs-7o-bxC">
-                                <rect key="frame" x="88" y="182" width="271" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HOs-7o-bxC">
+                                <rect key="frame" x="88" y="182" width="271" height="31"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjy-r2-p0G">
                                 <rect key="frame" x="25" y="263" width="324" height="32"/>
@@ -2836,6 +2836,7 @@
                             <constraint firstItem="c4c-Ua-ll8" firstAttribute="leading" secondItem="TdC-1b-2PX" secondAttribute="leadingMargin" id="2mW-W7-aPP"/>
                             <constraint firstItem="c4c-Ua-ll8" firstAttribute="top" secondItem="yRk-PL-PrS" secondAttribute="bottom" constant="44" id="5y3-ym-tE4"/>
                             <constraint firstItem="HOs-7o-bxC" firstAttribute="leading" secondItem="83O-91-T7j" secondAttribute="trailing" constant="8" id="96d-SG-SNi"/>
+                            <constraint firstItem="HOs-7o-bxC" firstAttribute="height" secondItem="83O-91-T7j" secondAttribute="height" id="OZl-ir-1Fd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wjy-r2-p0G" secondAttribute="trailing" constant="10" id="QDS-69-8DX"/>
                             <constraint firstItem="83O-91-T7j" firstAttribute="top" secondItem="tlr-5w-zhF" secondAttribute="bottom" constant="28" id="Uep-Tt-JcG"/>
                             <constraint firstItem="wjy-r2-p0G" firstAttribute="leading" secondItem="TdC-1b-2PX" secondAttribute="leadingMargin" constant="9" id="Zcl-r7-P7d"/>
@@ -2843,6 +2844,7 @@
                             <constraint firstItem="wjy-r2-p0G" firstAttribute="top" secondItem="83O-91-T7j" secondAttribute="bottom" constant="50" id="aTr-TY-xvT"/>
                             <constraint firstItem="HOs-7o-bxC" firstAttribute="trailing" secondItem="TdC-1b-2PX" secondAttribute="trailingMargin" id="amB-n4-FQs"/>
                             <constraint firstItem="52K-nD-4cC" firstAttribute="top" secondItem="c4c-Ua-ll8" secondAttribute="top" id="e1N-vA-TGe"/>
+                            <constraint firstItem="UCr-5R-56w" firstAttribute="height" secondItem="tlr-5w-zhF" secondAttribute="height" id="g6h-0R-TQy"/>
                             <constraint firstItem="52K-nD-4cC" firstAttribute="leading" secondItem="c4c-Ua-ll8" secondAttribute="trailing" constant="8" id="goy-gL-QNx"/>
                             <constraint firstItem="UCr-5R-56w" firstAttribute="trailing" secondItem="TdC-1b-2PX" secondAttribute="trailingMargin" id="hrK-ZZ-hR2"/>
                             <constraint firstItem="UCr-5R-56w" firstAttribute="leading" secondItem="tlr-5w-zhF" secondAttribute="trailing" constant="8" id="lJR-Mf-74K"/>
@@ -2851,6 +2853,7 @@
                             <constraint firstItem="tlr-5w-zhF" firstAttribute="top" secondItem="c4c-Ua-ll8" secondAttribute="bottom" constant="28" id="rtL-8T-NtP"/>
                             <constraint firstItem="tlr-5w-zhF" firstAttribute="leading" secondItem="TdC-1b-2PX" secondAttribute="leadingMargin" id="v6I-Ws-19Z"/>
                             <constraint firstItem="52K-nD-4cC" firstAttribute="trailing" secondItem="TdC-1b-2PX" secondAttribute="trailingMargin" id="xZI-h9-4c8"/>
+                            <constraint firstItem="52K-nD-4cC" firstAttribute="height" secondItem="c4c-Ua-ll8" secondAttribute="height" id="zfA-eI-XwQ"/>
                         </constraints>
                     </view>
                     <connections>
