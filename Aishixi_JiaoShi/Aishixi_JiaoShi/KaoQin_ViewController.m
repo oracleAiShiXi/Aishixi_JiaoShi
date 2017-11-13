@@ -16,7 +16,6 @@
     int  pageNo,pageSize,count;
     NSDictionary * Dic;
     NSMutableArray *attendanceList;
-    UIImageView * imageview;
 }
 
 @end
@@ -144,14 +143,7 @@
             [attendanceList addObjectsFromArray:[data objectForKey:@"attendanceList"]];
             NSLog(@"%@",attendanceList);
             count = [[data objectForKey:@"count"] intValue];
-            if (attendanceList.count == 0) {
-                _tableView.hidden =YES;
-                imageview.hidden = NO;
-            }else{
-                _tableView.hidden =NO;
-                imageview.hidden = YES;
-                [_tableView reloadData];
-            }
+            [_tableView reloadData];
         }
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -165,10 +157,6 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Width, Height)];
-    imageview.image =[UIImage imageNamed:@"试题背景"];
-    [self.view addSubview:imageview];
-    imageview.hidden = YES;
 }
 #pragma mark -----TableView---方法
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

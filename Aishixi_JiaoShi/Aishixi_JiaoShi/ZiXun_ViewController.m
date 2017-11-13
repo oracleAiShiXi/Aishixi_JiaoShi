@@ -16,7 +16,6 @@
     int  pageNo,pageSize,count,panP;
     NSDictionary * Dic;
     NSMutableArray *consulList;
-    UIImageView * imageview;
 }
 
 @end
@@ -156,14 +155,7 @@
             NSDictionary *data = [responseObject objectForKey:@"data"];
             [consulList addObjectsFromArray:[data objectForKey:@"consulList"]];
             count = [[data objectForKey:@"count"] intValue];
-            if (consulList.count == 0) {
-                _TableView.hidden =YES;
-                imageview.hidden = NO;
-            }else{
-                _TableView.hidden =NO;
-                imageview.hidden = YES;
-                [_TableView reloadData];
-            }
+            [_TableView reloadData];
         }
     } failure:^(NSError *error) {
         [WarningBox warningBoxHide:YES andView:self.view];
@@ -176,10 +168,6 @@
     self.TableView.delegate = self;
     self.TableView.dataSource = self;
     self.TableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, Width, Height)];
-    imageview.image =[UIImage imageNamed:@"试题背景"];
-    [self.view addSubview:imageview];
-    imageview.hidden = YES;
 }
 #pragma mark -----TableView---方法
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

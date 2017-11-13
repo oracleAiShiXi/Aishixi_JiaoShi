@@ -17,7 +17,6 @@
     int  pageNo,pageSize,count,panP;
     NSDictionary * Dic;
     NSMutableArray *inboxList ;
-    UIImageView * imageview;
 }
 @end
 
@@ -132,14 +131,7 @@
             NSDictionary *data = [responseObject objectForKey:@"data"];
             [inboxList addObjectsFromArray:[data objectForKey:@"inboxList"]];
             count = [[data objectForKey:@"count"] intValue];
-            if (inboxList.count == 0) {
-                _tableView.hidden =YES;
-                imageview.hidden = NO;
-            }else{
-                _tableView.hidden =NO;
-                imageview.hidden = YES;
-                [_tableView reloadData];
-            }
+            [_tableView reloadData];
         }
     } failure:^(NSError *error) {
         

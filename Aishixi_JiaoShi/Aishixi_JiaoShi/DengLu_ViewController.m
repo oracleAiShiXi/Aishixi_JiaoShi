@@ -39,6 +39,8 @@
 -(void)delegate{
     _Name.delegate = self;
     _Password.delegate = self;
+    _Name.autocorrectionType = UITextAutocorrectionTypeNo;
+    _Password.autocorrectionType = UITextAutocorrectionTypeNo;
 }
 -(void)PuanDuanIfDengLuGuo{
     

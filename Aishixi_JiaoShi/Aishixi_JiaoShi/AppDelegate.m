@@ -10,10 +10,9 @@
 #import "XL_TouWenJian.h"
 #import <JPUSHService.h>
 
-
 #define appkey @"ae09c6cdae9db765b0e8ad17"
 #define channell @""
-#define isProduction 0
+#define isProduction 1
 
 #define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define UISCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
