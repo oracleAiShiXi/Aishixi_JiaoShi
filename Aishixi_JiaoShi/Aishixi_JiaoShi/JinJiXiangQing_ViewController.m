@@ -157,11 +157,17 @@
         UILabel * NeiRong = [cell viewWithTag:609];
         UILabel * ChuLi = [cell viewWithTag:610];
         Name.text = [data objectForKey:@"studentName"];
+        Name.adjustsFontSizeToFitWidth = YES;
         XueHao.text = [data objectForKey:@"studentNumber"];
+        XueHao.adjustsFontSizeToFitWidth = YES;
         XueJie.text = [data objectForKey:@"classPeriod"];
+        XueJie.adjustsFontSizeToFitWidth = YES;
         YuanXi.text = [data objectForKey:@"officeName"];
+        YuanXi.adjustsFontSizeToFitWidth = YES;
         ZhuanYe.text = [data objectForKey:@"professionName"];
+        ZhuanYe.adjustsFontSizeToFitWidth = YES;
         BanJi.text = [data objectForKey:@"className"];
+        BanJi.adjustsFontSizeToFitWidth = YES;
         HuShi.text = [NSString stringWithFormat:@"呼叫时间:%@",[data objectForKey:@"createDate"]];
         JingW.text = [NSString stringWithFormat:@"经度纬度:%@",[data objectForKey:@"latlongitude"]];
         WeiZhi.text = [NSString stringWithFormat:@"地理位置:%@",[data objectForKey:@"sosLocation"]];

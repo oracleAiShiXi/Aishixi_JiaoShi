@@ -217,24 +217,24 @@
 }
 
 - (IBAction)haoP:(id)sender {
-    if ([[data objectForKey:@"evaluateStatus"] intValue]!=1) {
+//    if ([[data objectForKey:@"evaluateStatus"] intValue]!=1) {
         hao = YES ;zhong = false;cha = false ;
         [self danxuananniubuju];
-    }
+//    }
 }
 
 - (IBAction)zhongP:(id)sender {
-    if ([[data objectForKey:@"evaluateStatus"] intValue]!=1) {
+//    if ([[data objectForKey:@"evaluateStatus"] intValue]!=1) {
         hao = false ;zhong = YES;cha = false ;
         [self danxuananniubuju];
-    }
+//    }
 }
 
 - (IBAction)chaP:(id)sender {
-    if ([[data objectForKey:@"evaluateStatus"] intValue]!=1) {
+//    if ([[data objectForKey:@"evaluateStatus"] intValue]!=1) {
         hao = false ;zhong = false;cha = YES ;
         [self danxuananniubuju];
-    }
+//    }
 }
 -  (BOOL) isBlankString:(NSString *)string {
     
