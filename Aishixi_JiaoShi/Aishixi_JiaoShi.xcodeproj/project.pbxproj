@@ -904,9 +904,9 @@
 			baseConfigurationReference = 9C543ACD30E41B45EF6AE123 /* Pods-Aishixi_JiaoShi.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Aishixi_JiaoShi/Aishixi_JiaoShi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Harbin Aipuyifeng Science&Tech. Development Co., Ltd. (GP8BUACAG4)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = Aishixi_JiaoShi/Info.plist;
@@ -958,8 +958,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GuoYun.Aishixi-JiaoShi";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "583ce219-64f0-494d-8915-890515273dd1";
-				PROVISIONING_PROFILE_SPECIFIER = Aishixi_3_JiaoShi_CeShi;
+				PROVISIONING_PROFILE = "2d765fec-522f-4723-9b97-bb6a456ecca5";
+				PROVISIONING_PROFILE_SPECIFIER = Aishixi3_JiaoShi_ShCh;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -968,9 +969,9 @@
 			baseConfigurationReference = D1551CDA0E1B48377DA00260 /* Pods-Aishixi_JiaoShi.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Aishixi_JiaoShi/Aishixi_JiaoShi.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yulan Zhao (4RSNZMG5V8)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Harbin Aipuyifeng Science&Tech. Development Co., Ltd. (GP8BUACAG4)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = GP8BUACAG4;
 				INFOPLIST_FILE = Aishixi_JiaoShi/Info.plist;
@@ -1022,8 +1023,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.GuoYun.Aishixi-JiaoShi";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "583ce219-64f0-494d-8915-890515273dd1";
-				PROVISIONING_PROFILE_SPECIFIER = Aishixi_3_JiaoShi_CeShi;
+				PROVISIONING_PROFILE = "2d765fec-522f-4723-9b97-bb6a456ecca5";
+				PROVISIONING_PROFILE_SPECIFIER = Aishixi3_JiaoShi_ShCh;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -22,9 +22,9 @@
 //展昌明
 //#define QianWaiWangIP @"192.168.1.104:8080"
 //外网
-#define QianWaiWangIP @"47.92.5.144:8088"
+//#define QianWaiWangIP @"47.92.5.144:8088"
 //域名
-//#define QianWaiWangIP @"www.ishixi.cn"
+#define QianWaiWangIP @"www.ishixi.cn"
 //周德川
 //#define QianWaiWangIP @"192.168.1.139:8080"
 #define QianWaiWang [NSString stringWithFormat:@"%@%@%@%@",Scheme,QianWaiWangIP,AppName,apath]
