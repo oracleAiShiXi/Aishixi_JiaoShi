@@ -186,10 +186,10 @@
     TimeString = guoArr[1];
     
     //异常
-//    if ([[attendanceList[indexPath.section] objectForKey:@"status"] isEqual:@"1"]) {
-//        QianShi.textColor = [UIColor colorWithHexString:@""];
-//        Time.textColor = [UIColor colorWithHexString:@""];
-//    }
+    if ([[attendanceList[indexPath.section] objectForKey:@"attendanceType"] isEqual:@"2"]) {
+        QianShi.textColor = [UIColor redColor];
+        Time.textColor = [UIColor redColor];
+    }
     
     ImageView.image = image;
     Name.text = NameString;

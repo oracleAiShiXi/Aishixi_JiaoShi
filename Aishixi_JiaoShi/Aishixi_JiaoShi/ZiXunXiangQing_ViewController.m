@@ -37,6 +37,8 @@
     self.navigationItem.title = @"咨询详情"; self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
     _YuanXi.adjustsFontSizeToFitWidth = YES;
     _ZhuanYe.adjustsFontSizeToFitWidth = YES;
+    _XueHao.adjustsFontSizeToFitWidth =YES;
+    _BanJi.adjustsFontSizeToFitWidth = YES;
     _TextF.delegate = self;
     
     [self delegate];
