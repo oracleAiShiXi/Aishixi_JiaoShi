@@ -10,6 +10,7 @@
 #import "PingJia_ViewController.h"
 #import "XiuGai_ViewController.h"
 #import "DengLu_ViewController.h"
+#import "KaiFa_ViewController.h"
 #import "XL_TouWenJian.h"
 @interface SheZhi_ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -31,7 +32,7 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return 4;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5;
@@ -51,6 +52,9 @@
     }else if (indexPath.row == 1){
         ming.text = @"修改密码";
     }else if (indexPath.row == 2){
+        ming.text = @"关于我们";
+    }
+    else if (indexPath.row == 3){
         ming.text = @"退出登录";
     }else{
         
@@ -76,6 +80,15 @@
         
         [self.navigationController pushViewController:a animated:YES];
     }else if (indexPath.row == 2){
+        //开发名单
+        /*TabBar 隐藏*/
+        self.tabBarController.tabBar.hidden = YES;
+        self.hidesBottomBarWhenPushed = YES;
+        KaiFa_ViewController *a = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"kaifa"];
+        
+        [self.navigationController pushViewController:a animated:YES];
+        
+    }else if (indexPath.row == 3){
         //退出登录
         [WarningBox warningBoxModeText:@"正在退出..." andView:self.view];
         [[NSUserDefaults standardUserDefaults]setObject:@"" forKey:@"passWord"];
@@ -83,8 +96,6 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self presentViewController:deng animated:YES completion:nil];
         });
-    }else if (indexPath.row == 3){
-        //使用帮助
     }else if (indexPath.row == 4){
         
     }

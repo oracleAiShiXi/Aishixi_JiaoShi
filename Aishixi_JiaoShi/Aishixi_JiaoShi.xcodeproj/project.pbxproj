@@ -40,6 +40,7 @@
 		5DBE44B61F789827001B6371 /* PingJia_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B51F789827001B6371 /* PingJia_ViewController.m */; };
 		5DBE44BA1F789F75001B6371 /* PingJiaXiangQing_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE44B91F789F75001B6371 /* PingJiaXiangQing_ViewController.m */; };
 		5DD416E51F983D7700655292 /* ShaiXuan_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD416E41F983D7700655292 /* ShaiXuan_ViewController.m */; };
+		5DDECC291FDF84B800E4BFD5 /* KaiFa_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DDECC281FDF84B800E4BFD5 /* KaiFa_ViewController.m */; };
 		5DEA435C1F6FB2FC00486956 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA435B1F6FB2FC00486956 /* main.m */; };
 		5DEA435F1F6FB2FC00486956 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA435E1F6FB2FC00486956 /* AppDelegate.m */; };
 		5DEA43621F6FB2FC00486956 /* DengLu_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA43611F6FB2FC00486956 /* DengLu_ViewController.m */; };
@@ -128,6 +129,8 @@
 		5DBE44B91F789F75001B6371 /* PingJiaXiangQing_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PingJiaXiangQing_ViewController.m; sourceTree = "<group>"; };
 		5DD416E31F983D7700655292 /* ShaiXuan_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaiXuan_ViewController.h; sourceTree = "<group>"; };
 		5DD416E41F983D7700655292 /* ShaiXuan_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShaiXuan_ViewController.m; sourceTree = "<group>"; };
+		5DDECC271FDF84B800E4BFD5 /* KaiFa_ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KaiFa_ViewController.h; sourceTree = "<group>"; };
+		5DDECC281FDF84B800E4BFD5 /* KaiFa_ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KaiFa_ViewController.m; sourceTree = "<group>"; };
 		5DEA43571F6FB2FC00486956 /* Aishixi_JiaoShi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aishixi_JiaoShi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEA435B1F6FB2FC00486956 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5DEA435D1F6FB2FC00486956 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -426,6 +429,7 @@
 			children = (
 				5DBE44B01F788D91001B6371 /* SheZhi_ViewController.h */,
 				5DBE44B11F788D91001B6371 /* SheZhi_ViewController.m */,
+				5DDECC261FDF848000E4BFD5 /* 开发名单 */,
 				5D261E111F7B769000724B6B /* 修改密码 */,
 				5DBE44B31F78980B001B6371 /* 评价列表 */,
 			);
@@ -458,6 +462,15 @@
 				5DD416E41F983D7700655292 /* ShaiXuan_ViewController.m */,
 			);
 			name = "筛选";
+			sourceTree = "<group>";
+		};
+		5DDECC261FDF848000E4BFD5 /* 开发名单 */ = {
+			isa = PBXGroup;
+			children = (
+				5DDECC271FDF84B800E4BFD5 /* KaiFa_ViewController.h */,
+				5DDECC281FDF84B800E4BFD5 /* KaiFa_ViewController.m */,
+			);
+			name = "开发名单";
 			sourceTree = "<group>";
 		};
 		5DEA434E1F6FB2FC00486956 = {
@@ -749,6 +762,7 @@
 				5DB489AC1FB0409000A41369 /* EBImageBrowser.m in Sources */,
 				5D549AC41F725F93001A92F4 /* ZiXunXiangQing_ViewController.m in Sources */,
 				5D261E141F7B76B600724B6B /* XiuGai_ViewController.m in Sources */,
+				5DDECC291FDF84B800E4BFD5 /* KaiFa_ViewController.m in Sources */,
 				5DEA435F1F6FB2FC00486956 /* AppDelegate.m in Sources */,
 				5D5024C11F70DFB600924CCD /* XL_FMDB.m in Sources */,
 				5D549AC11F725F7C001A92F4 /* GongGaoXiangQing_ViewController.m in Sources */,
